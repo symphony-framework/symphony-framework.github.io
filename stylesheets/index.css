@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .intro-panels {
+    @apply flex flex-row h-[700px] w-full;
+  }
+
+  .intro-panel {
+    @apply flex-1 flex justify-center items-center w-full;
+  }
+
+  .section-heading {
+    @apply text-2xl mb-8;
+  }
+
+  .subsection-heading {
+    @apply text-xl mb-8 pt-16
+  }
+
+  .casestudy-text {
+    @apply text-lg mb-6;
+  }
+
+  .sidebar-section {
+    @apply p-2;
+  }
+
+  .sidebar-subsection-list {
+    @apply hidden;
+  }
+
+  .sidebar-subsection {
+    @apply pl-6 pt-1;
+  }
+}
