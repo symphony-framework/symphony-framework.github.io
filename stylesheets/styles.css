@@ -518,7 +518,7 @@ video {
 
 .intro-panels {
   display: flex;
-  height: 700px;
+  height: 100vh;
   width: 100%;
   flex-direction: row;
 }

@@ -4,7 +4,7 @@
 
 @layer components {
   .intro-panels {
-    @apply flex flex-row h-[700px] w-full;
+    @apply flex flex-row h-screen w-full;
   }
 
   .intro-panel {
