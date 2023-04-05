@@ -69,47 +69,35 @@
     
     <ul class="pl-12 pt-6 border-r fixed w-96 top-24 -left-96 transition-all" id="sidebar">
       <li class="sidebar-section" id="section-1-sidebar" data-section="1">
-        <a href="#section-1">Section 1</a>
+        <a href="#section-1">Introduction</a>
         <ul class="sidebar-subsection-list" data-section="1">
           <li class="sidebar-subsection" data-subsection="1.1">
-            <a href="#subsection-1.1">Subsection 1.1</a>
-          </li>
-          <li class="sidebar-subsection" data-subsection="1.2">
-            <a href="#subsection-1.2">Subsection 1.2</a>
-          </li>
-          <li class="sidebar-subsection" data-subsection="1.3">
-            <a href="#subsection-1.3">Subsection 1.3</a>
+            <a href="#subsection-1.1">Introducing Symphony</a>
           </li>
         </ul>
       </li>
       <li class="sidebar-section" id="section-2-sidebar" data-section="2">
-        <a href="#section-2">Section 2</a>
+        <a href="#section-2">What is real-time collaboration</a>
         <ul class="sidebar-subsection-list" data-section="2">
           <li class="sidebar-subsection" data-subsection="2.1">
-            <a href="#subsection-2.1">Subsection 2.1</a>
+            <a href="#subsection-2.1">Real-time</a>
           </li>
           <li class="sidebar-subsection" data-subsection="2.2">
-            <a href="#subsection-2.2">Subsection 2.2</a>
-          </li>
-          <li class="sidebar-subsection" data-subsection="2.3">
-            <a href="#subsection-2.3">Subsection 2.3</a>
-          </li>
-          <li class="sidebar-subsection" data-subsection="2.4">
-            <a href="#subsection-2.4">Subsection 2.4</a>
+            <a href="#subsection-2.2">Collaboration</a>
           </li>
         </ul>
       </li>
       <li class="sidebar-section" id="section-3-sidebar" data-section="3">
-        <a href="#section-3">Section 3</a>
+        <a href="#section-3">Solutions</a>
         <ul class="sidebar-subsection-list" data-section="3">
           <li class="sidebar-subsection" data-subsection="3.1">
-            <a href="#subsection-3.1">Subsection 3.1</a>
+            <a href="#subsection-3.1">Do-it-yourself (DIY)</a>
           </li>
           <li class="sidebar-subsection" data-subsection="3.2">
-            <a href="#subsection-3.2">Subsection 3.2</a>
+            <a href="#subsection-3.2">Real-time collaboration as a service</a>
           </li>
           <li class="sidebar-subsection" data-subsection="3.3">
-            <a href="#subsection-3.3">Subsection 3.3</a>
+            <a href="#subsection-3.3">Where does Symphony fit in?</a>
           </li>
         </ul>
       </li>
@@ -122,93 +110,101 @@
       <!-- Section 1 -->
 
       <div id="section-1" class="pt-20">
-        <h2 class='section-heading' data-section="1">Section 1</h2>
+        <h2 class='section-heading' data-section="1"></h2>
+        <blockquote class='blockquote'>
+          "Alone we can do so little; together we can do so much." <nobr>- Hellen Keller</nobr>
+        </blockquote>
         <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Collaboration has been a key feature of the internet since its earliest days. The history of collaboration on the internet can be traced back to the 1960s, when Douglas Engelbart, the inventor of the computer mouse, studied how computers could support collaborative work and communication. He developed a system called NLS (oN-Line System) that allowed users to create and edit documents, link them together, and share them with others.
         </p>
         <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Of course, for much of the internet’s history, collaboration had to be done asynchronously - collaborators might email a document back and forth after each round of changes, for example.
         </p>
         <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Even today, many online editing tools do not allow for concurrent changes by multiple users in real-time. Basecamp, for example, is an online collaboration platform that allows users to share and work on the same documents. What happens, though, when more than one user wants to edit a document at the same time?
         </p>
+        <div class="diagram">
+          <img src="images/diagrams/lockedout.PNG"/>
+        </div>   
+        <p class="casestudy-text">
+          As the above image shows, online collaboration via Basecamp is <strong>not real-time</strong>—only one user is allowed to modify content at a time, and others must wait for that user to finish before making their own changes.
+        </p>
+        <div class="diagram">
+          <img src="images/diagrams/collab-apps.png"/>
+        </div>
+        <p class="casestudy-text">
+          Some other well-known applications such as Figma, Google Docs, Miro, and Trello allow users to modify shared content at the same time—in other words, collaborate in <strong>real-time</strong>.
+        </p>
+        <p class="casestudy-text">
+          <strong>Real-time collaboration</strong> refers to the ability for multiple users to work on the same document or project simultaneously and see the changes made by others as they happen. Real-time collaboration has become so prevalent that some deem it an essential aspect of many modern web applications, one that has opened up new ways of working together on the web.
+        </p>
+        <blockquote class="blockquote">"[Real-time collaboration] eliminates the need to export, sync, or email copies of files and allows more people to take part in the design process." <nobr>- Evan Wallace, Figma</nobr></blockquote>
 
         <div id="subsection-1.1">
-          <h3 class="subsection-heading" data-subsection="1.1">Subsection 1.1</h3>
+          <h3 class="subsection-heading" data-subsection="1.1">Introducing Symphony</h3>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <strong>Symphony</strong> is a platform for providing real-time collaboration to web applications.
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            What does that mean?
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-
-        <div id="subsection-1.2">
-          <h3 class="subsection-heading" data-subsection="1.2">Subsection 1.2</h3>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Let’s illustrate this with a simple whiteboard application that we’ve created for demo purposes. Users can perform the basic actions you’d expect in this kind of app, like drawing lines, adding shapes, changing colors, and so on. At this point, this is just a single-user application that does not support multi-user collaboration.
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Go ahead, give it a try.
+          </p>
+          <p class="casestudy-text">[TBA - single whiteboard app]</p>
+          <p class='casestudy-text'>
+            Now let’s add Symphony into the mix. By deploying the Symphony backend to AWS and connecting it with our whiteboard by adding a few lines of code, the application is now collaborative. Users can work together in the same collaborative space and see what others are doing in real-time.
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-
-        <div id="subsection-1.3">
-          <h3 class="subsection-heading" data-subsection="1.3">Subsection 1.3</h3>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Try and see what happens when you draw on either of the below whiteboards.
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            [TBA - whiteboard apps side by side]
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            In this case study, we will explore the components of web-based real-time collaboration, review existing solutions that can enable real-time collaboration in applications, and present our project, Symphony: how developers can use it, how we created it, and the trade-offs we weighed during the development process.
           </p>
         </div>
-        
-      </div>
 
       <!-- Section 2 -->
 
       <div id="section-2" class="pt-20">
-        <h2 class='section-heading' data-section="2">Section 2</h2>
-        <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-
+        <h2 class='section-heading' data-section="2">What is real-time collaboration?</h2>
         <div id="subsection-2.1">
-          <h3 class="subsection-heading" data-subsection="2.1">Subsection 2.1</h3>
+          <h3 class="subsection-heading" data-subsection="2.1">Real-time</h3>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            For an application to feature real-time collaboration, the first requirement is that data must be exchanged between users, or between users and a server, in real-time. Generally, when we say that an application is “real-time”, we mean that the user sees updated data either instantly or without noticeable delay, and without needing to take any specific action or make any particular request to see the updated data.
           </p>
+          <div class="diagram">
+            <img src="images/diagrams/real-time-example.gif"/>
+          </div>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            For the purposes of real-time collaboration, data must flow in two directions: from the user, when that user makes a change that will be shared with others, and to the user, when someone else makes a change.
           </p>
+          <div class="diagram">
+            <img src="images/diagrams/broadcast.gif"/>
+          </div>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            When implementing a real-time web application, challenges arise because HTTP, the protocol by which most web communication occurs, is not real-time by design. Instead, HTTP uses a request-response model whereby the client sends a request to a server and then waits for the server to respond with the requested data.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/http-request-response.png"/>
+          </div>
+          <p class="casestudy-text">
+            So how can we make an application that lets users see a constant stream of updated data? For bi-direction, real-time data exchange over the web, two protocols in particular merit our consideration: <strong>WebRTC</strong> and <strong>WebSocket</strong>.
           </p>
         </div>
+        <h4 class="subsubsection-heading">WebRTC</h4>
+        <p class="casestudy-text">
+          <strong>WebRTC</strong>, which stands for Web Real-Time Communication, is an open-source project that allows web browsers and mobile applications to engage in peer-to-peer real-time communication via APIs. The connection between peers is established with the use of a signaling server that acts as an initial intermediary, allowing two clients to find each other and negotiate connection parameters. Once the connection is established, data is transferred directly between the peers via media streams and/or data channels.
+        </p>
+        <div class="diagram">
+          <img src="images/diagrams/WebRTC.gif"/>
+        </div>
+
 
         <div id="subsection-2.2">
           <h3 class="subsection-heading" data-subsection="2.2">Subsection 2.2</h3>

@@ -516,6 +516,30 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.blockquote {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-left-width: 4px;
+  padding-left: 8rem;
+  padding-right: 8rem;
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.casestudy-text {
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.diagram {
+  display: flex;
+  justify-content: center;
+}
+
 .intro-panels {
   display: flex;
   height: 100vh;
@@ -533,34 +557,38 @@ video {
 
 .section-heading {
   margin-bottom: 2rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 700;
 }
 
 .subsection-heading {
   margin-bottom: 2rem;
   padding-top: 4rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
 }
 
-.casestudy-text {
-  margin-bottom: 1.5rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+.subsubsection-heading {
+  margin-bottom: 2rem;
+  padding-top: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
 }
 
 .sidebar-section {
   padding: 0.5rem;
 }
 
-.sidebar-subsection-list {
-  display: none;
-}
-
 .sidebar-subsection {
   padding-left: 1.5rem;
   padding-top: 0.25rem;
+}
+
+.sidebar-subsection-list {
+  display: none;
 }
 
 .fixed {

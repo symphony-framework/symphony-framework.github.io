@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 @layer components {
+  .blockquote {
+    @apply text-lg font-bold italic text-center my-8 px-32 border-l-4;
+  }
+
+  .casestudy-text {
+    @apply text-lg mb-6;
+  }
+
+  .diagram {
+    @apply flex justify-center;
+  }
+
   .intro-panels {
     @apply flex flex-row h-screen w-full;
   }
@@ -12,26 +24,26 @@
   }
 
   .section-heading {
-    @apply text-2xl mb-8;
+    @apply text-5xl mb-8 font-bold;
   }
 
   .subsection-heading {
-    @apply text-xl mb-8 pt-16
+    @apply text-3xl mb-8 pt-16 font-bold;
   }
 
-  .casestudy-text {
-    @apply text-lg mb-6;
+  .subsubsection-heading {
+    @apply text-2xl mb-8 pt-6 font-bold;
   }
 
   .sidebar-section {
     @apply p-2;
   }
 
-  .sidebar-subsection-list {
-    @apply hidden;
-  }
-
   .sidebar-subsection {
     @apply pl-6 pt-1;
+  }
+
+  .sidebar-subsection-list {
+    @apply hidden;
   }
 }
