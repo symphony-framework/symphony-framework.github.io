@@ -43,6 +43,10 @@
     @apply text-2xl mb-8 pt-6 font-bold;
   }
 
+  .navbar-item {
+    @apply mx-6;
+  }
+
   .section {
     @apply mt-12;
   }
