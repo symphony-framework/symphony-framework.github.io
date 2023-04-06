@@ -44,7 +44,7 @@
   }
 
   .section {
-    @apply pt-20;
+    @apply mt-12;
   }
 
   .section-heading {
@@ -52,7 +52,7 @@
   }
 
   .subsection-heading {
-    @apply text-4xl mb-8 pt-16 font-bold;
+    @apply text-4xl mb-10 mt-12 font-bold;
   }
 
   .subsubsection-heading {
