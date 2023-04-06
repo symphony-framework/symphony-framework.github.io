@@ -628,6 +628,10 @@ video {
   font-weight: 700;
 }
 
+.section {
+  margin-top: 3rem;
+}
+
 .section-heading {
   margin-bottom: 2rem;
   font-size: 3rem;
@@ -636,8 +640,8 @@ video {
 }
 
 .subsection-heading {
-  margin-bottom: 2rem;
-  padding-top: 4rem;
+  margin-bottom: 2.5rem;
+  margin-top: 3rem;
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: 700;
@@ -792,10 +796,6 @@ video {
 
 .pl-20 {
   padding-left: 5rem;
-}
-
-.pt-20 {
-  padding-top: 5rem;
 }
 
 .pt-6 {
