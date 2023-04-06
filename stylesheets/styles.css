@@ -520,13 +520,23 @@ video {
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-left-width: 4px;
-  padding-left: 8rem;
   padding-right: 8rem;
-  text-align: center;
+  padding-left: 8rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 700;
   font-style: italic;
+}
+
+.casestudy-list {
+  list-style-type: disc;
+  padding-left: 4rem;
+}
+
+.casestudy-list-item {
+  padding-bottom: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .casestudy-text {
@@ -555,6 +565,14 @@ video {
   justify-content: center;
 }
 
+.mini-heading {
+  margin-bottom: 2rem;
+  padding-top: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
 .section-heading {
   margin-bottom: 2rem;
   font-size: 3rem;
@@ -565,16 +583,16 @@ video {
 .subsection-heading {
   margin-bottom: 2rem;
   padding-top: 4rem;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
   font-weight: 700;
 }
 
 .subsubsection-heading {
   margin-bottom: 2rem;
   padding-top: 1.5rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
   font-weight: 700;
 }
 
@@ -593,6 +611,10 @@ video {
 
 .fixed {
   position: fixed;
+}
+
+.relative {
+  position: relative;
 }
 
 .-left-96 {
@@ -662,6 +684,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.grow {
+  flex-grow: 1;
 }
 
 .translate-x-96 {

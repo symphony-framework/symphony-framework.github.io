@@ -4,7 +4,15 @@
 
 @layer components {
   .blockquote {
-    @apply text-lg font-bold italic text-center my-8 px-32 border-l-4;
+    @apply text-lg font-bold italic my-8 pr-32 pl-32 border-l-4;
+  }
+
+  .casestudy-list {
+    @apply list-disc pl-16;
+  }
+
+  .casestudy-list-item {
+    @apply text-lg pb-4;
   }
 
   .casestudy-text {
@@ -23,16 +31,20 @@
     @apply flex-1 flex justify-center items-center w-full;
   }
 
+  .mini-heading {
+    @apply text-2xl mb-8 pt-6 font-bold;
+  }
+
   .section-heading {
     @apply text-5xl mb-8 font-bold;
   }
 
   .subsection-heading {
-    @apply text-3xl mb-8 pt-16 font-bold;
+    @apply text-4xl mb-8 pt-16 font-bold;
   }
 
   .subsubsection-heading {
-    @apply text-2xl mb-8 pt-6 font-bold;
+    @apply text-3xl mb-8 pt-6 font-bold;
   }
 
   .sidebar-section {
