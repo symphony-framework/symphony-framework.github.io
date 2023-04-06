@@ -528,6 +528,12 @@ video {
   font-style: italic;
 }
 
+.casestudy-link {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+  text-decoration-line: underline;
+}
+
 .casestudy-list {
   list-style-type: disc;
   padding-left: 4rem;
@@ -545,9 +551,24 @@ video {
   line-height: 1.75rem;
 }
 
+.code-example {
+  margin-bottom: 1.5rem;
+  display: block;
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
 .diagram {
   display: flex;
   justify-content: center;
+  padding-bottom: 1.5rem;
 }
 
 .intro-panels {
