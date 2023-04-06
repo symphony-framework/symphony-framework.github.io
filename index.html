@@ -101,6 +101,20 @@
           </li>
         </ul>
       </li>
+      <li class="sidebar-section" id="section-4-sidebar" data-section="4">
+        <a href="#section-4">Using Symphony</a>
+        <ul class="sidebar-subsection-list" data-section="4">
+          <li class="sidebar-subsection" data-subsection="4.1">
+            <a href="#subsection-4.1">Backend</a>
+          </li>
+          <li class="sidebar-subsection" data-subsection="4.2">
+            <a href="#subsection-4.2">Client</a>
+          </li>
+          <li class="sidebar-subsection" data-subsection="4.3">
+            <a href="#subsection-4.3">Developer dashboard</a>
+          </li>
+        </ul>
+      </li>
     </ul>
 
     <!-- Case Study -->
@@ -226,7 +240,7 @@
           <img src="images/diagrams/WebSocket.gif"/>
         </div>
         <p class="casestudy-text">
-          WebSocket provides better data integrity than WebRTC due to the underlying reliability of TCP. [link] It is therefore often used in situations where delivering accurate data is paramount (e.g. real-time dashboards, stock price tickers) and where minimizing latency is less critical (e.g. live chat).
+          WebSocket provides better data integrity than WebRTC due to the underlying reliability of TCP. It is therefore often used in situations where delivering accurate data is paramount (e.g. real-time dashboards, stock price tickers) and where minimizing latency is less critical (e.g. live chat).
         </p>
         <h4 class="subsubsection-heading">
           Real-time infrastructure in Symphony
@@ -348,7 +362,7 @@
               Room.sh, meeting spaces with collaborative drawing, editing, and coding
             </li>
             <li class="casestudy-list-item">
-              Nimbus Note, team collaboration softwar
+              Nimbus Note, team collaboration software
             </li>
             <li class="casestudy-list-item">
               Dynaboard, a tool for collaborative web development
@@ -419,63 +433,189 @@
       <!-- Section 3 -->
 
       <div id="section-3" class="pt-20">
-        <h2 class='section-heading' data-section="3">Section 3</h2>
+        <h2 class='section-heading' data-section="3">Solutions</h2>
         <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Now that we understand the ingredients of real-time collaboration, let’s place ourselves in the shoes of a developer who wishes to add real-time collaboration to an application. What kinds of functionality and infrastructure will we need?
         </p>
         <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          First, we’ll want a WebSocket server or servers to receive updates from users and transmit those updates to other users who are in the same room.
         </p>
         <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Next, we’ll need a means of resolving merge conflicts, e.g. an implementation of OT or a CRDT.
+        </p>
+        <div class="diagram">
+          <img src="images/diagrams/real-time-banner.png"/>
+        </div>
+        <p class='casestudy-text'>
+          Ideally, we will also have a way of persisting room state. When users leave a room, they probably don’t want to lose all of their work. Instead, they should be able to return later and pick up where they left off. This can be achieved by storing room state in a database when users disconnect, and retrieving that state from the database when they reconnect.
         </p>
         <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          What if a user loses their internet connection but wants to continue working on a document? Wouldn’t it be nice if a user’s offline changes can be stored and then synced back up with others when the user reconnects? To enable this, we’ll want a way for each client to store state locally.
         </p>
         <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Finally, from the developer’s perspective, it could be useful to know how users are collaborating in an application. A developer dashboard might be one way of gaining visibility into metrics like the number of rooms, the number of users per room, and the size of the document associated with a given room.
         </p>
-        <p class='casestudy-text'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <p class="casestudy-text">
+          What then are the developer’s options for obtaining this functionality and related infrastructure?
         </p>
 
         <div id="subsection-3.1">
-          <h3 class="subsection-heading" data-subsection="3.1">Subsection 3.1</h3>
+          <h3 class="subsection-heading" data-subsection="3.1">Do-it-yourself (DIY)</h3>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            One option is for the developer to implement or source each of these components separately and stitch them together.
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            For the backend infrastructure to handle real-time messaging and persist state, one could use a so-called backend-as-a-service such as Ably, Pusher, or PubNub, or alternatively deploy one’s own backend by provisioning resources on a cloud provider like AWS.
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            For conflict resolution, as we discussed earlier, robust open-source solutions such as Yjs and Automerge are a solid choice. One could even choose to implement a bespoke conflict resolution implementation, although this would be considerably more time-consuming and difficult.
+          </p>
+          <p class="casestudy-text">
+            In sum, going the DIY route is less costly, but the implementation burden placed on the developer is higher.
           </p>
         </div>
 
         <div id="subsection-3.2">
-          <h3 class="subsection-heading" data-subsection="3.2">Subsection 3.2</h3>
+          <h3 class="subsection-heading" data-subsection="3.2">Real-time collaboration as a service</h3>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Building out your own backend to manage websocket connections and implementing or integrating a means of conflict resolution can be challenging. For this reason, services and frameworks exist to abstract away the backend and conflict resolution and let the developer focus on their application itself.
           </p>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <blockquote class="blockquote">
+            "Because building low-latency, collaborative experiences is hard!" <nobr>- Microsoft</nobr>
+          </blockquote>
+          <h4 class="subsubsection-heading">Liveblocks</h4>
+          <p class="casestudy-text">
+            Liveblocks is a major player in this space that provides an all-in-one solution for developers wishing to add real-time collaboration to their applications. A service that takes care of managing and scaling the WebSocket infrastructure, Liveblocks also provides a custom CRDT-like solution for resolving merge conflicts. This convenience comes at a cost, however: for an application with up to 2,000 monthly active users, the price is $299 as of this writing.
           </p>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <h4 class="subsubsection-heading">Fluid Framework</h4>
+          <p class="casestudy-text">
+            Fluid Framework is an open-source, cloud-agnostic framework for real-time collaboration, developed by Microsoft. For conflict resolution, it uses a distributed data structure that Microsoft describes as “more similar to CRDT than OT.” When deployed on a single server, Fluid Framework can handle hundreds of concurrent users. For larger applications, however,the developer will need to implement her own scaling solution. Another drawback of Fluid Framework is that it does not include support for offline editing, although short periods of client disconnection are tolerated.
           </p>
+          <p class="casestudy-text">
+            While Fluid Framework itself is open-source and self-hosted, Microsoft also offers a managed service called Azure Fluid Framework that uses Fluid Framework under the hood.
+          </p>         
         </div>
 
         <div id="subsection-3.3">
-          <h3 class="subsection-heading" data-subsection="3.3">Subsection 3.3</h3>
+          <h3 class="subsection-heading" data-subsection="3.3">Where does Symphony fit in?</h3>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            We drew inspiration from both Liveblocks and Fluid Framework. Our goal was to build a framework that developers can easily integrate into existing applications to add real-time collaborative functionality. We also wanted Symphony to be open-source, like Fluid Framework, and to enable offline editing functionality.
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            We liked Liveblocks’ developer dashboard, which gives devs real-time insight into how users are collaborating via their application, and decided to implement a dashboard in Symphony as well.
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            In short, Symphony is aimed at developers of collaborative web applications who want to get real-time collaboration up and running quickly on a smaller budget.
           </p>
+          <div class="diagram">
+            <img src="images/diagrams/solutions.png"/>
+          </div>
+        </div>
+      </div>
+
+      <div id="section-4" class="pt-20">
+        <h2 class='section-heading' data-section="4">Using Symphony</h2>
+        <div class="casestudy-text">
+          Symphony has three main components:
+        </div>
+        <ul class="casestudy-list">
+          <li class="casestudy-list-item">
+            Symphony backend
+          </li>
+          <li class="casestudy-list-item">
+            Symphony client
+          </li>
+          <li class="casestudy-list-item">
+            Symphony dashboard
+          </li>
+        </ul>
+        <p class="casestudy-text">
+          The Symphony backend receives updates from and distributes updates to clients via WebSocket connections, persists document data, and stores metadata about rooms and user connections to rooms.
+        </p>
+        <p class="casestudy-text">
+          The Symphony client enables the developer’s web application to connect to, and exchange updates with, the Symphony backend.
+        </p>
+        <p class="casestudy-text">
+          The Symphony dashboard provides developers with visibility into how their users are collaborating by displaying metadata about rooms and users.
+        </p>
+
+        <div id="subsection-4.1">
+          <h3 class="subsection-heading" data-subsection="4.1">Backend</h3>
+          <p class="casestudy-text">
+            The first step to using Symphony is to deploy the Symphony backend to AWS.
+          </p>
+          <p class="casestudy-text font-bold">
+            [TBA]
+          </p>
+        </div>
+        <div id="subsection-4.2">
+          <h3 class="subsection-heading" data-subsection="4.2">Client</h3>
+          <p class="casestudy-text">
+            Once you’ve got the Symphony backend deployed, the next step is to import the Symphony client into your web application.
+          </p>
+          <p class="casestudy-text">
+            First, install the <code>@symphony-rtc/client</code> npm library:
+          </p>          
+          <code class="code-example">
+            $ npm install @symphony-rtc/client<br>
+          </code>
+          <p class="casestudy-text">
+            Next, in your application, import the <code>SymphonyClient</code> class and instantiate a new client object, passing in your Symphony backend endpoint:
+          </p>
+          <code class="code-example">
+            import { SymphonyClient } from "@symphony-rtc/client";<br>
+            <br>
+            const client = new SymphonyClient(websocket_url);
+          </code>
+          <div class="casestudy-text">
+            To begin collaborating, call enter on the client object, passing in the name of the room (<code>roomId</code>) as an argument:
+          </div>
+          <code class="code-example">
+            const room = client.enter(roomId);
+          </code>
+          <div class="casestudy-text">
+            Symphony provides two shared data types for collaboration: <code>SyncedMap</code>, an object based on the JavaScript Map, and <code>SyncedList</code>, which is based on the JavaScript Array. To create one of these data types, call the appropriate method on the room object returned in the previous step, e.g:
+          </div>
+          <code class="code-example">
+            const syncedMap = room.newMap();
+          </code>
+          <div class="casestudy-text">
+            To subscribe to updates to a synced data structure, call <code>subscribe</code> on the room object, passing in the synced object and a callback function. The callback function will be invoked when the synced data structure is updated.
+          </div>
+          <code class="code-example">
+            room.subscribe(syncedMap, event => {<br>
+              &#160;&#160;// ...<br>
+            })
+          </code>
+          <div class="casestudy-text">
+            To stop collaborating in a room, call <code>leave</code> on the client object and pass in the name of the room (<code>roomId</code>) as an argument:
+          </div>
+          <code class="code-example">
+            client.leave(roomId);
+          </code>
+          <p class="casestudy-text">
+            The Symphony client is designed with ease of use in mind, abstracting away some of the complexity of working with the underlying Yjs types. If you want more granular, low-level control, or access to Yjs types not implemented in Symphony such as Text, XmlElement, XmlFragment, etc., you can still use the Yjs API on the frontend–it works just fine with the Symphony backend. For more information about the Yjs API, see the <a href="https://docs.yjs.dev/" class="casestudy-link">Yjs documentation</a>.
+          </p>
+        </div>
+
+        <div id="subsection-4.3">
+          <h3 class="subsection-heading" data-subsection="4.3">Developer dashboard</h3>
+          <p class="casestudy-text">
+            With the Symphony backend up and running and the Symphony client integrated in your application, your users can now collaborate.
+          </p>
+          <p class="casestudy-text">
+            But for the developer, the story doesn’t end there.
+          </p>
+          <p class="casestudy-text font-bold">
+            [TBA]
+          </p>
+        </div>
+      </div>
+
+      <div id="section-5" class="pt-20">
+        <h2 class="section-heading" data-section="5">Building Symphony</h2>
+        <div id="subsection-5.1">
+          <h3 class="subsection-heading" data-subsection="5.1">Design philosophy</h3>
         </div>
       </div>
     </div>

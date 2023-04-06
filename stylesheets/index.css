@@ -7,6 +7,10 @@
     @apply text-lg font-bold italic my-8 pr-32 pl-32 border-l-4;
   }
 
+  .casestudy-link {
+    @apply underline text-blue-600;
+  }
+
   .casestudy-list {
     @apply list-disc pl-16;
   }
@@ -19,8 +23,12 @@
     @apply text-lg mb-6;
   }
 
+  .code-example {
+    @apply block bg-gray-800 text-gray-100 rounded px-2 py-1 mb-6;
+  }
+
   .diagram {
-    @apply flex justify-center;
+    @apply flex justify-center pb-6;
   }
 
   .intro-panels {
