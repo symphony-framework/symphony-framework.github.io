@@ -154,14 +154,14 @@
           <p class='casestudy-text'>
             Go ahead, give it a try.
           </p>
-          <p class="casestudy-text">[TBA - single whiteboard app]</p>
+          <p class="casestudy-text font-bold">[TBA - single whiteboard app]</p>
           <p class='casestudy-text'>
             Now let’s add Symphony into the mix. By deploying the Symphony backend to AWS and connecting it with our whiteboard by adding a few lines of code, the application is now collaborative. Users can work together in the same collaborative space and see what others are doing in real-time.
           </p>
           <p class='casestudy-text'>
             Try and see what happens when you draw on either of the below whiteboards.
           </p>
-          <p class='casestudy-text'>
+          <p class='casestudy-text font-bold'>
             [TBA - whiteboard apps side by side]
           </p>
           <p class='casestudy-text'>
@@ -204,48 +204,217 @@
         <div class="diagram">
           <img src="images/diagrams/WebRTC.gif"/>
         </div>
-
+        <p class="casestudy-text">
+          Since WebRTC is primarily used over UDP, it offers superior latency at the cost of some packet loss. This makes it an especially attractive choice for video and audio streaming.
+        </p>
+        <h4 class="subsubsection-heading">WebSocket</h4>
+        <p class="casestudy-text">
+          <strong>WebSocket</strong> is a protocol that provides a two-way channel of real-time communication between a client and a server. The connection is established via the WebSocket handshake: 
+        </p>
+        <ul class="casestudy-list">
+          <li class="casestudy-list-item">
+            The client sends an HTTP request to the server with an <code>Upgrade</code> header
+          </li>
+          <li class="casestudy-list-item">
+            The server responds with <code>Connection: Upgrade</code> and <code>Upgrade: Websocket</code> headers
+          </li>
+        </ul>
+        <p class="casestudy-text">
+          Once the handshake is complete, the WebSocket connection is established using the same underlying TCP/IP connection used in the handshake, and either party can now send data.
+        </p>
+        <div class="diagram">
+          <img src="images/diagrams/WebSocket.gif"/>
+        </div>
+        <p class="casestudy-text">
+          WebSocket provides better data integrity than WebRTC due to the underlying reliability of TCP. [link] It is therefore often used in situations where delivering accurate data is paramount (e.g. real-time dashboards, stock price tickers) and where minimizing latency is less critical (e.g. live chat).
+        </p>
+        <h4 class="subsubsection-heading">
+          Real-time infrastructure in Symphony
+        </h4>
+        <p class="casestudy-text">
+          As we have seen, both WebRTC and WebSocket have trade-offs that make each better for some use cases and less suitable for others. When designing Symphony, we thought about which of these two technologies would be better for our use case. 
+        </p>
+        <p class="casestudy-text">
+          Applications that would use Symphony are likely already using a client-server model. We also knew that we wanted to persist data - both the data users are working on, as well as metadata about how users are collaborating. To do this, a server would be needed. As a protocol based on a client-server model, WebSocket was therefore a natural choice for us.
+        </p>     
 
         <div id="subsection-2.2">
-          <h3 class="subsection-heading" data-subsection="2.2">Subsection 2.2</h3>
+          <h3 class="subsection-heading" data-subsection="2.2">Collaboration</h3>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Now that we’ve established what “real-time” means and how it can be achieved over the web, let’s turn to collaboration. What do we mean by “collaboration,” and what are some of its components?
           </p>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            First, let’s consider a simple chat application. Imagine we have two users, Sarah and Bob, exchanging messages in real-time. As soon as one user enters a message, the other user sees the message displayed without noticeable delay. Is this an example of a collaborative application?
           </p>
+          <div class="diagram">
+            <img src="images/diagrams/chat-app.gif"/>
+          </div>
           <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            The answer is <strong>no</strong>. While the two users are exchanging information in real-time, they are not collaborating because they are not modifying the same state. Each user has control only over his or her own messages, and each of these messages is independent of the others. Sarah can see Bob’s messages in real-time, but she cannot modify them.
+          </p>
+          <p class="casestudy-text">
+            Now let’s look at a different kind of application. 
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/word-processor.gif"/>
+          </div>
+          <p class="casestudy-text">
+            This time, Sarah and Bob are using an online word processor to work together on a document. Sarah and Bob are each making their own changes, but they are viewing the same document, reflecting the modifications made by both users to that document, in real-time. Therefore we can say that there exists a <strong>shared state</strong> between Sarah and Bob.
+          </p>
+          <p class="casestudy-text">
+            This shared state, which is reflected in a single synchronized view presented to all users working on the same document or project, lies at the core of real-time collaborative applications.
+          </p>
+          <p class="casestudy-text">
+            Let’s now review some concepts that are critical to understanding how online collaboration works.
+          </p>
+          <h4 class="subsubsection-heading">Conflict</h4>
+          <p class="casestudy-text">
+            In a chat application, delayed or out-of-order delivery of messages is generally not a critical problem.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/chat-app-conflict.gif"/>
+          </div>
+          <p class="casestudy-text">
+            Turning back to Sarah and Bob’s document, though, what happens if Sarah makes some changes, but due to network conditions these updates are delivered to Bob out of order?
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/word-processor-out-of-order.gif"/>
+          </div>
+          <p class="casestudy-text">
+            Here, Sarah makes two changes to the title, but due to network conditions the changes are delivered to Bob in reverse order. Bob’s state now reflects the first change, while Sarah’s state reflects the second. This means that Sarah and Bob are out of sync, and we’ve lost the critical underpinning of real-time collaboration - a shared state.
+          </p>
+          <p class="casestudy-text">
+            Now let’s imagine that Sarah and Bob make different changes to the same content at the same time. What might happen then?
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/word-processor-out-of-order-same-time.gif"/>
+          </div>
+          <p class="casestudy-text">
+            Here, Sarah and Bob have different ideas for what a good title would be, and they each transmit a change to the title at the same time. Next, Bob’s change is delivered to Sarah, which overrides the state presented in her client–she now sees Bob’s version. Meanwhile, Sarah’s change is delivered to Bob, which overrides his local state, and he is now shown Sarah’s version. Again, the users find themselves out of sync.
+          </p>
+          <p class="casestudy-text">
+            It’s acceptable - even inevitable - for users to go out of sync temporarily, but we need some way of ensuring that they will eventually converge again to the same state. In the end, we want all users to see the same document on their screen, reflecting all the changes that have been made
+          </p>
+          <p class="casestudy-text">
+            So how can we deal with conflicting changes made by different users? There are generally two families of algorithms that are used for this.
+          </p>
+          <h5 class="mini-heading">Operational transformation</h5>
+          <p class="casestudy-text">
+            <strong>Operational transformation (OT)</strong> is the traditional technique to synchronize and reconcile concurrent changes to a shared data structure in real-time collaborative applications. When a user inserts or deletes data, that change is first sent to the server. The server then modifies, or transforms, that change if necessary, before sending it on to other users.
+          </p>
+          <p class="casestudy-text">
+            Used most famously by Google Docs, OTs are especially good for text editing of long documents with low memory and performance overhead. They do have downsides, however. They generally require that a user be connected to the server at all times, limiting the user’s ability to work offline and sync up later after connecting. Most importantly, they are very hard to implement correctly. It is difficult to deal with all edge cases, and many papers on OT implementations were found to have errors, years after publication. 
+          </p>
+          <blockquote class="blockquote">
+            "Unfortunately, implementing OT sucks. There's a million algorithms with different tradeoffs, mostly trapped in academic papers. The algorithms are really hard and time consuming to implement correctly." <nobr>- Joseph Gentle, Google Wave engineer</nobr>
+          </blockquote>
+          <h5 class="mini-heading">Conflict-free replicated data types</h5>
+          <p class="casestudy-text">
+            A <strong>conflict-free replicated data type (CRDT)</strong> is a type of data structure that is designed to be replicated across multiple devices while ensuring that all replicas converge to the same state, even in the presence of concurrent updates. 
+          </p>
+          <p class="casestudy-text">
+            A relatively new concept aiming to solve problems in distributed computing, CRDTs have become a popular choice in resolving merge conflicts arising out of real-time collaboration, which can be seen as a kind of distributed system where state is shared across multiple clients.
+          </p>
+          <p class="casestudy-text">
+            Unlike OT, CRDTs do not make any assumptions about your network topology–they can be used in a strictly peer-to-peer environment, but also work perfectly well in a client-server model.
+          </p>
+          <blockquote class="blockquote">
+            "Even if you have a client-server setup, CRDTs are still worth researching because they provide a well-studied, solid foundation to start with."" <nobr>- Evan Wallace, Figma</nobr>
+          </blockquote>
+          <p class="casestudy-text">
+            Early CRDTs were found to be relatively slow compared to their OT counterparts. Another potential downside is memory overhead, since every change to a document creates more data that must be retained to guarantee consistency.
+          </p>
+          <blockquote class="blockquote">
+            "Because of how CRDTs work, documents grow without bound. … Can you ever delete that data? Probably not. And that data can’t just sit on disk. It needs to be loaded into memory to handle edits." <nobr>- Joseph Gentle</nobr>
+          </blockquote>
+          <p class="casestudy-text">
+            Recent work by Martin Kleppmann and others has made CRDTs faster and less memory hungry. These advancements have led CRDTs to overtake OT as the tool of choice for real-time collaboration in the estimation of some researchers.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/automerge-yjs.png"/>
+          </div>
+          <h5 class="mini-heading">Conflict resolution in Symphony</h5>
+          <p class="casestudy-text">
+            So which choice is best?
+          </p>
+          <p class="casestudy-text">
+            The first thing to point out is that there is no single best, one-size-fits-all solution to resolving merge conflicts. The best choice will, therefore, depend on the specific use case.
+          </p>
+          <p class="casestudy-text">
+            For Symphony, we were looking for something that was open-source, well-documented, and performant. For that reason, we chose <strong>Yjs</strong>, as it is a mature CRDT implementation with an active community and tools ecosystem. Yjs has also has been battle-tested in production applications including:            
+          </p>
+          <ul class="casestudy-list">
+            <li class="casestudy-list-item">
+              Room.sh, meeting spaces with collaborative drawing, editing, and coding
+            </li>
+            <li class="casestudy-list-item">
+              Nimbus Note, team collaboration softwar
+            </li>
+            <li class="casestudy-list-item">
+              Dynaboard, a tool for collaborative web development
+            </li>
+          </ul>
+          <p class="casestudy-text">
+            We also considered using Automerge, the other leading open-source offering in this space. There was probably not a wrong choice to be made between the two, but we were ultimately persuaded by Yjs’s superior maturity and speed, as well as its relative memory efficiency.
+          </p>
+          <h4 class="subsubsection-heading">Rooms</h4>
+          <div class="diagram">
+            <img src="images/diagrams/rooms.png"/>
+          </div>
+          <p class="casestudy-text">
+            Collaboration is something that happens when two or more users work together on a specific document or project. We call this group of collaborating users, together with the shared state they are collaborating on, a <strong>room</strong>. This is consistent with the nomenclature favored by others in this space including Liveblocks, a provider of real-time collaboration as a service:
+          </p>
+          <blockquote class="blockquote">
+            "A room is the space people can join to collaborate together."" <nobr>- Liveblocks</nobr>
+          </blockquote>
+          <p class="casestudy-text">
+            A <strong>document</strong> is the shared state that users are collaborating on. Keep in mind that collaboration is <strong>not limited to text documents</strong>; a document could also be a JavaScript Map with key/value pairs that represent drawn objects on a whiteboard, for example.
+          </p>
+          <h4 class="subsubsection-heading">Presence</h4>
+          <p class="casestudy-text">
+            When collaborating with others, it is useful to see not only the current state of the document but also which users are currently present and what they are doing at any given moment. Seeing what other users are doing in real-time makes for a smoother and more meaningful collaborative experience.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/whiteboard-awareness.png"/>
+          </div>
+          <p class="casestudy-text">
+            We call this feature <strong>presence</strong>, which is the term most commonly used by other providers of real-time collaboration tools, including Liveblocks.
+          </p>
+          <p class="casestudy-text">
+            In Symphony, presence is implemented using the Yjs Awareness Protocol. Each client sends an update to the server when some aspect of presence–cursor position for example– has changed. Which data to include in these presence updates, and the way that data is structured, is left to the application developer.
+          </p>
+          <p class="casestudy-text">
+            It should be noted that presence data is distinct from the shared state (document) that is the subject of users’ collaboration. Importantly, presence data is ephemeral and does not need to be retained on the backend.
+          </p>
+          <h4 class="subsubsection-heading">Undo/Redo</h4>
+          <p class="casestudy-text">
+            There is one additional concept worth discussing when it comes to collaborative applications: the ability of users to <strong>undo</strong> (and/or <strong>redo</strong>) their updates.
+          </p>
+          <p class="casestudy-text">
+            When only a single user is editing, the concept of undo is simple: simply revert to the state immediately preceding the most recent change.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/whiteboard-undo.gif"/>
+          </div>
+          <p class="casestudy-text">
+            However, when multiple users are making changes, the picture gets more complicated. If a user’s undo action simply returns the state to that immediately preceding that user’s last update, what happens to intervening updates by others?
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/whiteboard-undo-collab.gif"/>
+          </div>
+          <p class="casestudy-text">
+            When Bob clicks the undo button, Alice’s red triangle is deleted. That’s probably not what either person wanted!
+          </p>
+          <p class="casestudy-text">
+            So going back to the state preceding the user’s change is not the answer. What we want instead is to make the undo/redo behavior user-specific. Fortunately, Yjs provides us with a robust undo/redo implementation that does just that: it limits the scope of these actions to the user’s own changes.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/whiteboard-undo-collab-good.gif"/>
+          </div>
+          <p class="casestudy-text">
+            When Bob clicks “Undo”, his color change to the circle is reverted, but Alice’s red triangle remains in place.
           </p>
         </div>
-        
-        <div id="subsection-2.3">
-          <h3 class="subsection-heading" data-subsection="2.3">Subsection 2.3</h3>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-
-        <div id="subsection-2.4">
-          <h3 class="subsection-heading" data-subsection="2.4">Subsection 2.4</h3>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p class='casestudy-text'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-
-      </div>
 
       <!-- Section 3 -->
 
