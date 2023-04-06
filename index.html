@@ -115,6 +115,37 @@
           </li>
         </ul>
       </li>
+      <li class="sidebar-section" id="section-5-sidebar" data-section="5">
+        <a href="#section-5">Building Symphony</a>
+        <ul class="sidebar-subsection-list" data-section="5">
+          <li class="sidebar-subsection" data-subsection="5.1">
+            <a href="#subsection-5.1">Design philosophy</a>
+          </li>
+          <li class="sidebar-subsection" data-subsection="5.2">
+            <a href="#subsection-5.2">Prototyping</a>
+          </li>
+          <li class="sidebar-subsection" data-subsection="5.3">
+            <a href="#subsection-5.3">Load testing the prototype</a>
+          </li>
+          <li class="sidebar-subsection" data-subsection="5.4">
+            <a href="#subsection-5.4">Scaling</a>
+          </li>
+          <li class="sidebar-subsection" data-subsection="5.5">
+            <a href="#subsection-5.5">Load testing the final architecture</a>
+          </li>
+        </ul>
+      </li>
+      <li class="sidebar-section" id="section-6-sidebar" data-section="6">
+        <a href="#section-6">The future of Symphony</a>
+        <ul class="sidebar-subsection-list" data-section="6">
+          <li class="sidebar-subsection" data-subsection="6.1">
+            <a href="#subsection-6.1">Limitations of Redis pub/sub</a>
+          </li>
+          <li class="sidebar-subsection" data-subsection="6.2">
+            <a href="#subsection-6.2">Toward a new architecture</a>
+          </li>
+        </ul>
+      </li>
     </ul>
 
     <!-- Case Study -->
@@ -123,7 +154,7 @@
 
       <!-- Section 1 -->
 
-      <div id="section-1" class="pt-20">
+      <div id="section-1" class="section">
         <h2 class='section-heading' data-section="1"></h2>
         <blockquote class='blockquote'>
           "Alone we can do so little; together we can do so much." <nobr>- Hellen Keller</nobr>
@@ -185,7 +216,7 @@
 
       <!-- Section 2 -->
 
-      <div id="section-2" class="pt-20">
+      <div id="section-2" class="section">
         <h2 class='section-heading' data-section="2">What is real-time collaboration?</h2>
         <div id="subsection-2.1">
           <h3 class="subsection-heading" data-subsection="2.1">Real-time</h3>
@@ -432,7 +463,7 @@
 
       <!-- Section 3 -->
 
-      <div id="section-3" class="pt-20">
+      <div id="section-3" class="section">
         <h2 class='section-heading' data-section="3">Solutions</h2>
         <p class='casestudy-text'>
           Now that we understand the ingredients of real-time collaboration, let’s place ourselves in the shoes of a developer who wishes to add real-time collaboration to an application. What kinds of functionality and infrastructure will we need?
@@ -513,7 +544,7 @@
         </div>
       </div>
 
-      <div id="section-4" class="pt-20">
+      <div id="section-4" class="section">
         <h2 class='section-heading' data-section="4">Using Symphony</h2>
         <div class="casestudy-text">
           Symphony has three main components:
@@ -596,6 +627,15 @@
           <p class="casestudy-text">
             The Symphony client is designed with ease of use in mind, abstracting away some of the complexity of working with the underlying Yjs types. If you want more granular, low-level control, or access to Yjs types not implemented in Symphony such as Text, XmlElement, XmlFragment, etc., you can still use the Yjs API on the frontend–it works just fine with the Symphony backend. For more information about the Yjs API, see the <a href="https://docs.yjs.dev/" class="casestudy-link">Yjs documentation</a>.
           </p>
+          <code class="code-example">
+            import * as Y from "yjs";<br>
+            import { WebsocketProvider } from "y-websocket";<br>
+            <br>
+            const ydoc = new Y.Doc();<br>
+            const provider = new WebsocketProvider(websocket_url, roomId, ydoc);<br>
+            const yText = ydoc.getText("my-text-document");<br>
+            // ...
+          </code>
         </div>
 
         <div id="subsection-4.3">
@@ -612,10 +652,246 @@
         </div>
       </div>
 
-      <div id="section-5" class="pt-20">
+      <div id="section-5" class="section">
         <h2 class="section-heading" data-section="5">Building Symphony</h2>
+
         <div id="subsection-5.1">
           <h3 class="subsection-heading" data-subsection="5.1">Design philosophy</h3>
+          <p class="casestudy-text">
+            When designing Symphony, our decisions were informed at every step of the way by the fundamental problem we aimed to address: that building collaborative applications where multiple users can change a given piece of state concurrently is difficult.
+          </p>
+          <p class="casestudy-text">
+            With this in mind, we aimed to provide the infrastructure needed for creating conflict-free collaborative experiences on the web in a way that is easy for developers to drop into their existing applications.
+          </p>
+          <p class="casestudy-text">
+            We wanted to abstract away the complexity of managing WebSocket connections, resolving merge conflicts, and persisting state so that developers would be free to focus on their applications.
+          </p>
+          <p class="casestudy-text">
+            Finally, we wanted the framework to be suitable for small to medium-sized applications, with capacity for at least 1,000 concurrent users.
+          </p>
+        </div>
+
+        <div id="subsection-5.2">
+          <h3 class="subsection-heading" data-subsection="5.2">Prototyping</h3>
+          <p class="casestudy-text">
+            Our first goal when building Symphony was to create a basic prototype of the system. We chose to do this in AWS, which was a natural choice as the biggest player in the cloud provider market with 32% market share as of early 2023.
+          </p>
+          <h4 class="subsubsection-heading">Deploying the WebSocket server</h4>
+          <p class="casestudy-text">
+            Our starting point for the Symphony backend was y-websocket, a reference WebSocket server for syncing Yjs documents over a WebSocket connection. We deployed the server to Amazon Elastic Compute Cloud (EC2), which is the standard virtual private server offered by AWS.
+          </p>
+          <h4 class="subsubsection-heading">Persisting and retrieving document data</h4>
+          <p class="casestudy-text">
+            Our next step was to modify the server to persist document data to a database so that users would be able to leave a room without losing their work.
+          </p>
+          <p class="casestudy-text">
+            The main decision points here were 1) where to persist the data and 2) when to persist the data.
+          </p>
+          <p class="casestudy-text">
+            For the first point we chose Amazon Simple Storage Service (S3). S3 provides object storage, which is ideal for persisting large amounts of unstructured data such as our room documents.
+          </p>
+          <p class="casestudy-text">
+            For the second, we decided to persist document data to S3 when the last user leaves a room. At this point, the server stores the document in S3 and unloads it from memory, freeing up server resources.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/client-ec2-server-s3.gif"/>
+          </div>
+          <p class="casestudy-text">
+            We also need to retrieve S3 data when the server opens up a room. Whenever a user connects to a room and the server does not have the document for that room in memory, it queries S3 to retrieve the data there, if any.
+          </p>
+          <h4 class="subsubsection-heading">Persisting and accessing metadata</h4>
+          <p class="casestudy-text">
+            We also wanted the server to persist metadata about each room to give developers visibility into metrics like number of rooms and connections per room. To do this, the server sends metadata about connections and rooms to a PostgreSQL database provisioned in AWS’s Relational Database Service (RDS).
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/client-ec2-server-s3-pg-meta-and-time.gif"/>
+          </div>
+          <p class="casestudy-text">
+            To access this room metadata, we added GET routes to the server. The dashboard sends HTTP requests to these routes, and the server responds with data such as the number rooms and connections per room that are used to populate the dashboard. A continuous stream of data is also sent from the server to the dashboard client via SSE.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/dashboard-events-ec2.gif"/>
+          </div>
+          <h4 class="subsubsection-heading">Connecting to the prototype</h4>
+          <p class="casestudy-text">
+            To enable web applications to connect to the Symphony backend, we developed a frontend client library. The library provides an easy-to-use API for developer convenience and utilizes an existing IndexedDB plugin for Yjs to store state locally in the browser. This local storage allows users to work offline and sync their changes when they reconnect.
+          </p>
+          <h4 class="subsubsection-heading">From EC2 to ECS</h4>
+          <p class="casestudy-text">
+            With the server deployed to EC2, the developer remains responsible for managing the server–applying security updates, handling logs, etc. We wanted Symphony to abstract away this backend management from the developer, in line with our design philosophy of making an easy-to-use framework.
+          </p>
+          <p class="casestudy-text">
+            With that in mind, we moved our architecture into AWS Elastic Container Service (ECS), a fully managed container orchestration service for deploying, managing, and scaling containerized applications.
+          </p>
+          <p class="casestudy-text">
+            To do this, we first had to containerize our application, and then reference that Docker container in an ECS task definition. The task definition is then referenced by a service definition which indicates how many instances of the container we want to run. ECS also gives you the choice of deploying in EC2 or Fargate mode. Since we wanted to abstract away all instance management from the developer, we chose Fargate.
+          </p>
+          <p class="casestudy-text">
+            Finally, we provisioned an Application Load Balancer (ALB) which serves as a single point of entry to our backend for both the Symphony client and the dashboard client.
+          </p>
+          <p class="casestudy-text">
+            The diagram below shows our completed Symphony backend prototype with a single server instance running in ECS. Note that while ECS is a scalable service, our server isn’t actually scalable yet, for reasons we’ll discuss later.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/client-alb-ecs-server-s3-pg.png"/>
+          </div>
+        </div>
+
+        <div id="subsection-5.3">
+          <h3 class="subsection-heading" data-subsection="5.3">Load testing the prototype</h3>
+          <p class="casestudy-text">
+            Now that our prototype was up and running, we wanted to test how many users could connect to the Symphony backend at once, under as close to real-life conditions as possible. We also wanted to identify our server’s bottlenecks (especially compute vs memory) to inform our scaling strategy.
+          </p> 
+          <h4 class="subsubsection-heading">Initial steps</h4>
+          <p class="casestudy-text">
+            We started out by exploring two popular open-source load testing tools, Artillery.io and Graphana k6. While both support WebSocket testing, neither proved to be appropriate for our use case. <strong>[TBA - 1-2 sentences on why we didn't use these]</strong>
+          </p>
+          <h4 class="subsubsection-heading">Building a testing architecture</h4>
+          <p class="casestudy-text">
+            Given the constraints of the above testing platforms, we decided to write a Node.js application that initiates [500] connections (each connection representing a single user) to the Symphony backend, with a total of [125] rooms ([four users per room]). The connections are established over [X] minutes ([Y users every Z seconds]). We then deployed this application to [multiple] EC2 instances.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/load-testing-symphony-server.png"/>
+          </div>
+          <p class="casestudy-text">
+            In our testing script, each user would send [one] document update per second, and [five] presence updates per second. While the rate of both updates could vary widely depending on the specific use case, we felt that these were reasonable values to simulate real-world usage (Liveblocks’ default settings throttle user updates to 10 per second, for comparison).
+          </p>
+          <h4 class="subsubsection-heading">Testing the prototype</h4>
+          <p class="casestudy-text">
+            We tested our prototype provisioned with a single WebSocket server deployed to a t2.small instance, which has 1vCPU and 2GiB of memory.
+          </p>
+          <p class="casestudy-text font-bold">
+            [TBA - diagram with load testing results]
+          </p>
+          <p class="casestudy-text font-bold">
+            [TBA - discussion of load testing results]
+          </p>
+        </div>
+
+        <div id="subsection-5.4">
+          <h3 class="subsection-heading" data-subsection="5.4">Scaling</h3>
+          <p class="casestudy-text">
+            With load testing results in hand, we turned to the task of scaling our architecture to accommodate a greater number of users.
+          </p>
+          <p class="casestudy-text">
+            But before we start thinking about how to actually scale our architecture, we’ve got a little housekeeping to take care of. 
+          </p>
+          <h4 class="subsubsection-heading">Decoupling</h4>
+          <p class="casestudy-text">
+            Our WebSocket server and dashboard server currently reside in the same code. We want to scale the WebSocket server so that our system can support more users, but we don’t need to scale the dashboard server. We therefore extracted the dashboard routes into a separate server, containerized it, and deployed a single instance of it to ECS.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/dashboard-client-alb-ecs-server-s3.png"/>
+          </div>
+          <p class="casestudy-text">
+            With that out of the way …
+          </p>
+          <h4 class="subsubsection-heading">Scaling with ECS Fargate</h4>
+          <p class="casestudy-text">
+            AWS ECS Fargate offers auto scaling out of the box, based on metrics like average CPU and memory usage. So with our containerized WebSocket server currently deployed to Fargate, isn’t the Symphony backend already scalable?
+          </p>
+          <p class="casestudy-text">
+            Not quite. If we try to auto scale now, we’ll find that users who are in the same room but connected to different servers are out of sync. Why is that?
+          </p>
+          <p class="casestudy-text">
+            The problem is that not all WebSocket servers will have the same documents loaded in memory. Imagine that users A and B want to join the same room for a collaboration session. User A joins first and is routed by the ALB to server #1; he begins making some document updates. A little while later, user B joins the same room and is routed to server #2. But user A has been sending updates to server #1. How can server #2 know the current state of the document?
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/old-doc-state.gif"/>
+          </div>
+          <h4 class="subsubsection-heading">Looking to existing solutions</h4>
+          <p class="casestudy-text">
+            This is not a problem unique to the Symphony backend. One common pattern for scaling WebSockets is to have each server connect to Redis channels: to a “publish” channel to send all updates received by the server from users, and to a “subscribe” channel to receive all updates published by other servers. In this way, we can scale our servers horizontally and they will be able to receive all updates they need for their connected users. Indeed, this is how existing attempts to scale Yjs documents with Redis, such as y-redis, have worked.
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/pub-sub.gif"/>
+          </div>
+          <p class="casestudy-text">
+            However, we’ve still got a problem. 
+          </p>
+          <p class="casestudy-text">
+            When a server receives an incoming connection for a given room for the first time, it doesn’t just need to receive all <strong>future</strong> updates to that room’s state. It also needs to somehow get all <strong>previous</strong> updates to state. If we’re using the traditional Redis pub/sub approach, this means that every server needs to subscribe to Redis for every document, and needs to hold every document in memory, to ensure that the state is there when it needs it–when a user connects and starts collaborating on that state. In other words, we haven’t actually done anything to reduce the memory demands on our servers.                
+          </p>
+          <p class="casestudy-text">
+            What if we could design the system in such a way that servers don’t need to hold all documents in memory–but instead, only the documents for which they have connected users?  In that case, when a server receives a connection for a room for the first time, it would need to get the current document data from somewhere.
+          </p>
+          <p class="casestudy-text">
+            But from where?
+          </p>
+          <p class="casestudy-text">
+            One idea that came to mind was to allow servers to query each other for that initial state. In this way, a server receiving a new connection could get “up to speed” so to speak on the current state of the document, and then subscribe to Redis for all future updates.
+          </p>
+          <h4 class="subsubsection-heading">Querying for state</h4>
+          <p class="casestudy-text">
+            If a server is going to get document data from another server, the next question is, how does it know which server to query? We would need to store data–room names and IP addresses–indicating which rooms are being handled by which servers. For this we chose AWS DynamoDB, a serverless NoSQL key-value database.
+          </p>
+          <p class="casestudy-text">
+            When a user is routed to a server that does not have the relevant document in memory, the server queries DynamoDB with the room name.
+          </p>
+          <p class="casestudy-text">
+            If DynamoDB returns an empty set, it means that there aren’t any servers currently handling that room. In this case, the server queries S3 to get persisted data for the room, if any, and then publishes/subscribes to Redis for updates to that room.
+          </p>
+          <p class="casestudy-text">
+            If DynamoDB returns a set containing one or more server IP addresses, the server sends a GET request to the first IP address in the set. The responding server sends the current state of the document, and the requesting server then publishes/subscribes to Redis as usual.
+          </p>
+          <p class="casestudy-text">
+            In either case, the server’s IP address is added to the DynamoDB set for that room name, registering it as one of the servers that can now be queried for the room’s state.
+          </p>
+          <h4 class="subsubsection-heading">Some more housekeeping</h4>
+          <p class="casestudy-text">
+            There’s one last bit of cleanup that we need to take care of. What happens when the last user for a room disconnects from a server, and the server unloads the relevant document from memory? We don’t want other servers to query it for that state, because it doesn’t have that state any longer.
+          </p>
+          <p class="casestudy-text">
+            To handle this, after the last user connected to a server for a given room disconnects, but before the server backs up the document data to S3 and unloads that data from memory, the server sends a query to DynamoDB to remove its IP address from the set for the relevant room.
+          </p>
+          <p class="casestudy-text">
+            Our final architecture is below:
+          </p>
+          <div class="diagram">
+            <img src="images/diagrams/scaled-cropped.png"/>
+          </div>
+        </div>
+
+        <div id="subsection-5.5">
+          <h3 class="subsection-heading" data-subsection="5.5">
+            Load testing the final architecture
+          </h3>
+          <p class="casestudy-text">
+            With our scaled solution in place, we wanted to see how many concurrent users and rooms it could support. For consistency and comparability, we used the same parameters as when we tested the single-server prototype: [four] users per room, [five] presence updates per user per second, and [one] document update per user per second.
+          </p>
+          <p class="casestudy-text font-bold">
+            [TBA - diagram of final load testing results]
+          </p>
+          <p class="casestudy-text font-bold">
+            [TBA - discussion of final load testing results]
+          </p> 
+        </div>
+      </div>
+
+      <div id="section-6" class="section">
+        <h2 class="section-heading" data-section="6">The future of Symphony</h2>
+        <p class="casestudy-text">
+          While we were mostly satisfied with our final architecture’s capacity to support [X] rooms, we’ve started to think about how we might be able to do even better.
+        </p>
+
+        <div id="subsection-6.1">
+          <h3 class="subsection-heading" data-subsection="6.1">Limitations of Redis pub/sub</h3>
+          <p class="casestudy-text">
+            While our final architecture allows our WebSocket servers to scale horizontally, we still see some duplication of rooms across servers. This inefficiency means that developers are provisioning more resources than are strictly needed to handle their WebSocket traffic, and these resources come at a cost.
+          </p>
+        </div>
+
+        <div id="subsection-6.2">
+          <h3 class="subsection-heading" data-subsection="6.2">Toward a new architecture</h3>
+          <p class="casestudy-text">
+            One design pattern we’ve noticed in the real-time collaborative space is what we’ll call the “single room per container” design. In this approach, each instance of the WebSocket server is responsible for only a single room, and all users for a given room are routed to the same server. Figma, a collaborative web application for interface that uses a custom-built WebSocket backend and conflict resolution mechanism, appears to use this pattern.
+          </p>
+          <blockquote class="blockquote">
+            "Our servers currently spin up a separate process for each multiplayer document which everyone editing that document connects to." <nobr>- Evan Wallace, Figma</nobr>
+          </blockquote>
+          <p class="casestudy-text">
+            A possible advantage of this approach might be improved CPU and memory efficiency. If all traffic for a given room is routed to the same container, there will be no duplication of room states across servers.
+          </p>
         </div>
       </div>
     </div>
