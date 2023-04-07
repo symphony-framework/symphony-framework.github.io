@@ -852,8 +852,14 @@
             AWS ECS Fargate offers auto scaling out of the box, based on metrics like average CPU and memory usage. So with our containerized WebSocket server currently deployed to Fargate, isn’t the Symphony backend already scalable?
           </p>
           <p class="casestudy-text">
-            Not quite. If we try to auto scale now, we’ll find that users who are in the same room but connected to different servers are out of sync. Why is that?
+            Not quite. If we try to scale now, we’ll find that users who are in the same room but connected to different servers are out of sync. Why is that?
           </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/servers-old-state.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>          
           <p class="casestudy-text">
             The problem is that not all WebSocket servers will have the same documents loaded in memory. Imagine that users A and B want to join the same room for a collaboration session. User A joins first and is routed by the ALB to server #1; he begins making some document updates. A little while later, user B joins the same room and is routed to server #2. But user A has been sending updates to server #1. How can server #2 know the current state of the document?
           </p>
@@ -879,6 +885,9 @@
           <p class="casestudy-text">
             When a server receives an incoming connection for a given room for the first time, it doesn’t just need to receive all <strong>future</strong> updates to that room’s state. It also needs to somehow get all <strong>previous</strong> updates to state. If we’re using the traditional Redis pub/sub approach, this means that every server needs to subscribe to Redis for every document, and needs to hold every document in memory, to ensure that the state is there when it needs it–when a user connects and starts collaborating on that state. In other words, we haven’t actually done anything to reduce the memory demands on our servers.                
           </p>
+          <div class="diagram">
+            <img src="assets/images/diagrams/all-servers-all-docs.png" class="w-full"/>
+          </div>
           <p class="casestudy-text">
             What if we could design the system in such a way that servers don’t need to hold all documents in memory–but instead, only the documents for which they have connected users?  In that case, when a server receives a connection for a room for the first time, it would need to get the current document data from somewhere.
           </p>
@@ -888,6 +897,12 @@
           <p class="casestudy-text">
             One idea that came to mind was to allow servers to query each other for that initial state. In this way, a server receiving a new connection could get “up to speed” so to speak on the current state of the document, and then subscribe to Redis for all future updates.
           </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/current-state-from-other-server.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
           <h4 class="subsubsection-heading">Querying for state</h4>
           <p class="casestudy-text">
             If a server is going to get document data from another server, the next question is, how does it know which server to query? We would need to store data–room names and IP addresses–indicating which rooms are being handled by which servers. For this we chose AWS DynamoDB, a serverless NoSQL key-value database.
@@ -904,6 +919,12 @@
           <p class="casestudy-text">
             In either case, the server’s IP address is added to the DynamoDB set for that room name, registering it as one of the servers that can now be queried for the room’s state.
           </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline class="w-full">
+              <source src="assets/videos/current-doc-state.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>          
           <h4 class="subsubsection-heading">Some more housekeeping</h4>
           <p class="casestudy-text">
             There’s one last bit of cleanup that we need to take care of. What happens when the last user for a room disconnects from a server, and the server unloads the relevant document from memory? We don’t want other servers to query it for that state, because it doesn’t have that state any longer.
@@ -911,6 +932,12 @@
           <p class="casestudy-text">
             To handle this, after the last user connected to a server for a given room disconnects, but before the server backs up the document data to S3 and unloads that data from memory, the server sends a query to DynamoDB to remove its IP address from the set for the relevant room.
           </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline class="w-full">
+              <source src="assets/videos/last-connection-close.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>          
           <p class="casestudy-text">
             Our final architecture is below:
           </p>
