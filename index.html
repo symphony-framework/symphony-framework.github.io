@@ -20,7 +20,7 @@
         <li class="navbar-item">Docs</li>
         <li class='navbar-item ml-4'>
           <a target="_blank" href="https://github.com/symphony-hq">
-            <img src="images/icons/github-mark.png" class=" w-8 h-auto"/>
+            <img src="assets/images/icons/github-mark.png" class=" w-8 h-auto"/>
           </a>          
         </li>
       </ul>
@@ -32,7 +32,7 @@
 
       <div class="intro-panels">
         <div class="intro-panel">
-          <!-- <img src="./images/6.png" alt="Symphony logo" class="w-10"/> -->
+          <!-- <img src="./assets/images/6.png" alt="Symphony logo" class="w-10"/> -->
           <p class="text-5xl">Symphony logo</p>
         </div>
         <div class="intro-panel bg-symphony-background-blue text-gray-50">
@@ -174,13 +174,13 @@
           Even today, many online editing tools do not allow for concurrent changes by multiple users in real-time. Basecamp, for example, is an online collaboration platform that allows users to share and work on the same documents. What happens, though, when more than one user wants to edit a document at the same time?
         </p>
         <div class="diagram">
-          <img src="images/diagrams/lockedout.PNG"/>
+          <img src="assets/images/diagrams/lockedout.PNG"/>
         </div>   
         <p class="casestudy-text">
           As the above image shows, online collaboration via Basecamp is <strong>not real-time</strong>—only one user is allowed to modify content at a time, and others must wait for that user to finish before making their own changes.
         </p>
         <div class="diagram">
-          <img src="images/diagrams/collab-apps.png"/>
+          <img src="assets/images/diagrams/collab-apps.png" class="w-1/2 h-auto"/>
         </div>
         <p class="casestudy-text">
           Some other well-known applications such as Figma, Google Docs, Miro, and Trello allow users to modify shared content at the same time—in other words, collaborate in <strong>real-time</strong>.
@@ -228,20 +228,32 @@
           <p class='casestudy-text'>
             For an application to feature real-time collaboration, the first requirement is that data must be exchanged between users, or between users and a server, in real-time. Generally, when we say that an application is “real-time”, we mean that the user sees updated data either instantly or without noticeable delay, and without needing to take any specific action or make any particular request to see the updated data.
           </p>
+          
           <div class="diagram">
-            <img src="images/diagrams/real-time-example.gif"/>
+            <video autoplay loop muted playsinline class="w-1/2 h-auto">
+              <source src="assets/videos/real-time-example.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
+          
+          
           <p class='casestudy-text'>
             For the purposes of real-time collaboration, data must flow in two directions: from the user, when that user makes a change that will be shared with others, and to the user, when someone else makes a change.
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/broadcast.gif"/>
-          </div>
+          
+            <div class="diagram">
+              <video autoplay loop muted playsinline class="small-dg">
+                <source src="assets/videos/broadcast.mp4" type="video/mp4" />
+                Your browser does not support the HTML5 Video element.
+              </video>
+            </div>
+          
+          
           <p class='casestudy-text'>
             When implementing a real-time web application, challenges arise because HTTP, the protocol by which most web communication occurs, is not real-time by design. Instead, HTTP uses a request-response model whereby the client sends a request to a server and then waits for the server to respond with the requested data.
           </p>
           <div class="diagram">
-            <img src="images/diagrams/http-request-response.png"/>
+            <img src="assets/images/diagrams/http-request-response.png"/>
           </div>
           <p class="casestudy-text">
             So how can we make an application that lets users see a constant stream of updated data? For bi-direction, real-time data exchange over the web, two protocols in particular merit our consideration: <strong>WebRTC</strong> and <strong>WebSocket</strong>.
@@ -252,7 +264,10 @@
           <strong>WebRTC</strong>, which stands for Web Real-Time Communication, is an open-source project that allows web browsers and mobile applications to engage in peer-to-peer real-time communication via APIs. The connection between peers is established with the use of a signaling server that acts as an initial intermediary, allowing two clients to find each other and negotiate connection parameters. Once the connection is established, data is transferred directly between the peers via media streams and/or data channels.
         </p>
         <div class="diagram">
-          <img src="images/diagrams/WebRTC.gif"/>
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/webrtc.mp4" type="video/mp4" />
+            Your browser does not support the HTML5 Video element.
+          </video>
         </div>
         <p class="casestudy-text">
           Since WebRTC is primarily used over UDP, it offers superior latency at the cost of some packet loss. This makes it an especially attractive choice for video and audio streaming.
@@ -273,7 +288,10 @@
           Once the handshake is complete, the WebSocket connection is established using the same underlying TCP/IP connection used in the handshake, and either party can now send data.
         </p>
         <div class="diagram">
-          <img src="images/diagrams/WebSocket.gif"/>
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/websocket.mp4" type="video/mp4"/>
+            Your browser does not support the HTML5 Video element.
+          </video>
         </div>
         <p class="casestudy-text">
           WebSocket provides better data integrity than WebRTC due to the underlying reliability of TCP. It is therefore often used in situations where delivering accurate data is paramount (e.g. real-time dashboards, stock price tickers) and where minimizing latency is less critical (e.g. live chat).
@@ -297,7 +315,10 @@
             First, let’s consider a simple chat application. Imagine we have two users, Sarah and Bob, exchanging messages in real-time. As soon as one user enters a message, the other user sees the message displayed without noticeable delay. Is this an example of a collaborative application?
           </p>
           <div class="diagram">
-            <img src="images/diagrams/chat-app.gif"/>
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/chat-app.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class='casestudy-text'>
             The answer is <strong>no</strong>. While the two users are exchanging information in real-time, they are not collaborating because they are not modifying the same state. Each user has control only over his or her own messages, and each of these messages is independent of the others. Sarah can see Bob’s messages in real-time, but she cannot modify them.
@@ -306,7 +327,10 @@
             Now let’s look at a different kind of application. 
           </p>
           <div class="diagram">
-            <img src="images/diagrams/word-processor.gif"/>
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/word-processor.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             This time, Sarah and Bob are using an online word processor to work together on a document. Sarah and Bob are each making their own changes, but they are viewing the same document, reflecting the modifications made by both users to that document, in real-time. Therefore we can say that there exists a <strong>shared state</strong> between Sarah and Bob.
@@ -322,13 +346,19 @@
             In a chat application, delayed or out-of-order delivery of messages is generally not a critical problem.
           </p>
           <div class="diagram">
-            <img src="images/diagrams/chat-app-conflict.gif"/>
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/chat-app-random-order.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             Turning back to Sarah and Bob’s document, though, what happens if Sarah makes some changes, but due to network conditions these updates are delivered to Bob out of order?
           </p>
           <div class="diagram">
-            <img src="images/diagrams/word-processor-out-of-order.gif"/>
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/word-processor-out-of-order.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             Here, Sarah makes two changes to the title, but due to network conditions the changes are delivered to Bob in reverse order. Bob’s state now reflects the first change, while Sarah’s state reflects the second. This means that Sarah and Bob are out of sync, and we’ve lost the critical underpinning of real-time collaboration - a shared state.
@@ -336,8 +366,11 @@
           <p class="casestudy-text">
             Now let’s imagine that Sarah and Bob make different changes to the same content at the same time. What might happen then?
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/word-processor-out-of-order-same-time.gif"/>
+          <div class="diagram">            
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/word-processor-out-of-order-same-time.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             Here, Sarah and Bob have different ideas for what a good title would be, and they each transmit a change to the title at the same time. Next, Bob’s change is delivered to Sarah, which overrides the state presented in her client–she now sees Bob’s version. Meanwhile, Sarah’s change is delivered to Bob, which overrides his local state, and he is now shown Sarah’s version. Again, the users find themselves out of sync.
@@ -356,7 +389,7 @@
             Used most famously by Google Docs, OTs are especially good for text editing of long documents with low memory and performance overhead. They do have downsides, however. They generally require that a user be connected to the server at all times, limiting the user’s ability to work offline and sync up later after connecting. Most importantly, they are very hard to implement correctly. It is difficult to deal with all edge cases, and many papers on OT implementations were found to have errors, years after publication. 
           </p>
           <blockquote class="blockquote">
-            "Unfortunately, implementing OT sucks. There's a million algorithms with different tradeoffs, mostly trapped in academic papers. The algorithms are really hard and time consuming to implement correctly." <nobr>- Joseph Gentle, Google Wave engineer</nobr>
+            "Unfortunately, implementing OT sucks. There's a million algorithms with different tradeoffs, mostly trapped in academic papers. The algorithms are really hard and time consuming to implement correctly." <nobr>- Joseph Gentle, former Google Wave engineer</nobr>
           </blockquote>
           <h5 class="mini-heading">Conflict-free replicated data types</h5>
           <p class="casestudy-text">
@@ -375,13 +408,13 @@
             Early CRDTs were found to be relatively slow compared to their OT counterparts. Another potential downside is memory overhead, since every change to a document creates more data that must be retained to guarantee consistency.
           </p>
           <blockquote class="blockquote">
-            "Because of how CRDTs work, documents grow without bound. … Can you ever delete that data? Probably not. And that data can’t just sit on disk. It needs to be loaded into memory to handle edits." <nobr>- Joseph Gentle</nobr>
+            "Because of how CRDTs work, documents grow without bound. … Can you ever delete that data? Probably not. And that data can’t just sit on disk. It needs to be loaded into memory to handle edits." <nobr>- Joseph Gentle, former Google Wave engineer</nobr>
           </blockquote>
           <p class="casestudy-text">
             Recent work by Martin Kleppmann and others has made CRDTs faster and less memory hungry. These advancements have led CRDTs to overtake OT as the tool of choice for real-time collaboration in the estimation of some researchers.
           </p>
           <div class="diagram">
-            <img src="images/diagrams/automerge-yjs.png"/>
+            <img src="assets/images/diagrams/automerge-yjs.png"/>
           </div>
           <h5 class="mini-heading">Conflict resolution in Symphony</h5>
           <p class="casestudy-text">
@@ -409,7 +442,7 @@
           </p>
           <h4 class="subsubsection-heading">Rooms</h4>
           <div class="diagram">
-            <img src="images/diagrams/rooms.png"/>
+            <img src="assets/images/diagrams/rooms.png"/>
           </div>
           <p class="casestudy-text">
             Collaboration is something that happens when two or more users work together on a specific document or project. We call this group of collaborating users, together with the shared state they are collaborating on, a <strong>room</strong>. This is consistent with the nomenclature favored by others in this space including Liveblocks, a provider of real-time collaboration as a service:
@@ -425,7 +458,7 @@
             When collaborating with others, it is useful to see not only the current state of the document but also which users are currently present and what they are doing at any given moment. Seeing what other users are doing in real-time makes for a smoother and more meaningful collaborative experience.
           </p>
           <div class="diagram">
-            <img src="images/diagrams/whiteboard-awareness.png"/>
+            <img src="assets/images/diagrams/whiteboard-awareness.png"/>
           </div>
           <p class="casestudy-text">
             We call this feature <strong>presence</strong>, which is the term most commonly used by other providers of real-time collaboration tools, including Liveblocks.
@@ -443,14 +476,20 @@
           <p class="casestudy-text">
             When only a single user is editing, the concept of undo is simple: simply revert to the state immediately preceding the most recent change.
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/whiteboard-undo.gif"/>
+          <div class="diagram">  
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/whiteboard-undo.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             However, when multiple users are making changes, the picture gets more complicated. If a user’s undo action simply returns the state to that immediately preceding that user’s last update, what happens to intervening updates by others?
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/whiteboard-undo-collab.gif"/>
+          <div class="diagram">            
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/whiteboard-undo-collab-bad.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             When Bob clicks the undo button, Alice’s red triangle is deleted. That’s probably not what either person wanted!
@@ -458,8 +497,11 @@
           <p class="casestudy-text">
             So going back to the state preceding the user’s change is not the answer. What we want instead is to make the undo/redo behavior user-specific. Fortunately, Yjs provides us with a robust undo/redo implementation that does just that: it limits the scope of these actions to the user’s own changes.
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/whiteboard-undo-collab-good.gif"/>
+          <div class="diagram">            
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/whiteboard-undo-collab-good.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             When Bob clicks “Undo”, his color change to the circle is reverted, but Alice’s red triangle remains in place.
@@ -480,7 +522,7 @@
           Next, we’ll need a means of resolving merge conflicts, e.g. an implementation of OT or a CRDT.
         </p>
         <div class="diagram">
-          <img src="images/diagrams/real-time-banner.png"/>
+          <img src="assets/images/diagrams/real-time-banner.png"/>
         </div>
         <p class='casestudy-text'>
           Ideally, we will also have a way of persisting room state. When users leave a room, they probably don’t want to lose all of their work. Instead, they should be able to return later and pick up where they left off. This can be achieved by storing room state in a database when users disconnect, and retrieving that state from the database when they reconnect.
@@ -544,7 +586,7 @@
             In short, Symphony is aimed at developers of collaborative web applications who want to get real-time collaboration up and running quickly on a smaller budget.
           </p>
           <div class="diagram">
-            <img src="images/diagrams/solutions.png"/>
+            <img src="assets/images/diagrams/solutions.png"/>
           </div>
         </div>
       </div>
@@ -698,8 +740,11 @@
           <p class="casestudy-text">
             For the second, we decided to persist document data to S3 when the last user leaves a room. At this point, the server stores the document in S3 and unloads it from memory, freeing up server resources.
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/client-ec2-server-s3.gif"/>
+          <div class="diagram">            
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/client-ec2-server-s3.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             We also need to retrieve S3 data when the server opens up a room. Whenever a user connects to a room and the server does not have the document for that room in memory, it queries S3 to retrieve the data there, if any.
@@ -709,13 +754,19 @@
             We also wanted the server to persist metadata about each room to give developers visibility into metrics like number of rooms and connections per room. To do this, the server sends metadata about connections and rooms to a PostgreSQL database provisioned in AWS’s Relational Database Service (RDS).
           </p>
           <div class="diagram">
-            <img src="images/diagrams/client-ec2-server-s3-pg-meta-and-time.gif"/>
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/client-ec2-server-s3-pg-meta-and-time.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             To access this room metadata, we added GET routes to the server. The dashboard sends HTTP requests to these routes, and the server responds with data such as the number rooms and connections per room that are used to populate the dashboard. A continuous stream of data is also sent from the server to the dashboard client via SSE.
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/dashboard-events-ec2.gif"/>
+          <div class="diagram">            
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/dashboard-events-ec2.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <h4 class="subsubsection-heading">Connecting to the prototype</h4>
           <p class="casestudy-text">
@@ -738,7 +789,7 @@
             The diagram below shows our completed Symphony backend prototype with a single server instance running in ECS. Note that while ECS is a scalable service, our server isn’t actually scalable yet, for reasons we’ll discuss later.
           </p>
           <div class="diagram">
-            <img src="images/diagrams/client-alb-ecs-server-s3-pg.png"/>
+            <img src="assets/images/diagrams/client-alb-ecs-server-s3-pg.png"/>
           </div>
         </div>
 
@@ -756,7 +807,7 @@
             Given the constraints of the above testing platforms, we decided to write a Node.js application that initiates [500] connections (each connection representing a single user) to the Symphony backend, with a total of [125] rooms ([four users per room]). The connections are established over [X] minutes ([Y users every Z seconds]). We then deployed this application to [multiple] EC2 instances.
           </p>
           <div class="diagram">
-            <img src="images/diagrams/load-testing-symphony-server.png"/>
+            <img src="assets/images/diagrams/load-testing-symphony-server.png"/>
           </div>
           <p class="casestudy-text">
             In our testing script, each user would send [one] document update per second, and [five] presence updates per second. While the rate of both updates could vary widely depending on the specific use case, we felt that these were reasonable values to simulate real-world usage (Liveblocks’ default settings throttle user updates to 10 per second, for comparison).
@@ -786,7 +837,7 @@
             Our WebSocket server and dashboard server currently reside in the same code. We want to scale the WebSocket server so that our system can support more users, but we don’t need to scale the dashboard server. We therefore extracted the dashboard routes into a separate server, containerized it, and deployed a single instance of it to ECS.
           </p>
           <div class="diagram">
-            <img src="images/diagrams/dashboard-client-alb-ecs-server-s3.png"/>
+            <img src="assets/images/diagrams/dashboard-client-alb-ecs-server-s3.png" class="w-full h-auto"/>
           </div>
           <p class="casestudy-text">
             With that out of the way …
@@ -801,15 +852,21 @@
           <p class="casestudy-text">
             The problem is that not all WebSocket servers will have the same documents loaded in memory. Imagine that users A and B want to join the same room for a collaboration session. User A joins first and is routed by the ALB to server #1; he begins making some document updates. A little while later, user B joins the same room and is routed to server #2. But user A has been sending updates to server #1. How can server #2 know the current state of the document?
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/old-doc-state.gif"/>
+          <div class="diagram">            
+            <video autoplay loop muted playsinline class="w-full">
+              <source src="assets/videos/old-doc-state.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <h4 class="subsubsection-heading">Looking to existing solutions</h4>
           <p class="casestudy-text">
             This is not a problem unique to the Symphony backend. One common pattern for scaling WebSockets is to have each server connect to Redis channels: to a “publish” channel to send all updates received by the server from users, and to a “subscribe” channel to receive all updates published by other servers. In this way, we can scale our servers horizontally and they will be able to receive all updates they need for their connected users. Indeed, this is how existing attempts to scale Yjs documents with Redis, such as y-redis, have worked.
           </p>
-          <div class="diagram">
-            <img src="images/diagrams/pub-sub.gif"/>
+          <div class="diagram">            
+            <video autoplay loop muted playsinline class="w-full">
+              <source src="assets/videos/pub-sub.mp4" type="video/mp4"/>
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
           <p class="casestudy-text">
             However, we’ve still got a problem. 
@@ -853,7 +910,7 @@
             Our final architecture is below:
           </p>
           <div class="diagram">
-            <img src="images/diagrams/scaled-cropped.png"/>
+            <img src="assets/images/diagrams/scaled-cropped.png" class="w-full"/>
           </div>
         </div>
 
