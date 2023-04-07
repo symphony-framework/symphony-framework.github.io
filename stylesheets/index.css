@@ -31,6 +31,10 @@
     @apply flex justify-center pb-6;
   }
 
+  img {
+    @apply w-2/3 h-auto;
+  }
+
   .intro-panels {
     @apply flex flex-row h-screen w-full;
   }
@@ -55,6 +59,10 @@
     @apply text-5xl mb-8 font-bold;
   }
 
+  .small-dg {
+    @apply w-1/2;
+  }
+
   .subsection-heading {
     @apply text-4xl mb-10 mt-12 font-bold;
   }
@@ -73,5 +81,9 @@
 
   .sidebar-subsection-list {
     @apply hidden;
+  }
+
+  video {
+    @apply w-2/3 h-auto
   }
 }
