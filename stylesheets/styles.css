@@ -426,6 +426,22 @@ header ul {
   margin-right: 40px;
 }
 
+/* List item hover effects */
+
+.font-bold:hover,
+.font-bold:hover .font-bold:hover,
+.font-bold li {
+  text-shadow: none;
+}
+
+.font-bold li:hover,
+ul li:hover {
+  text-shadow: 0 0 0.01px #15376e;
+  cursor: pointer;
+}
+
+/* Logos */
+
 .symphony-logo {
   min-width: 200px;
   max-width: 200px;
