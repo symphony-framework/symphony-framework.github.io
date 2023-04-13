@@ -418,8 +418,12 @@ video {
 }
 
 header {
-  display: flex;
-  /* z-index: 3; */
+  padding: 10px 0;
+}
+
+header ul {
+  border-bottom: none;
+  margin-right: 40px;
 }
 
 .symphony-logo {
