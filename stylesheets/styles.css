@@ -436,7 +436,7 @@ header ul {
 
 .font-bold li:hover,
 ul li:hover {
-  text-shadow: 0 0 0.01px #15376e;
+  text-shadow: 0 0 1px #15376e;
   cursor: pointer;
 }
 
