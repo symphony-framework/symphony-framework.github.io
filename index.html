@@ -244,172 +244,179 @@
           developers can use it, how we created it, and the trade-offs we weighed during the development process.
         </p>
       </div>
+    </div>
 
-      <!-- Section 2 -->
+    <!-- Section 2 -->
 
-      <div id="section-2" class="section">
-        <h2 class='section-heading' data-section="2">What is real-time collaboration?</h2>
-        <div id="subsection-2.1">
-          <h3 class="subsection-heading" data-subsection="2.1">Real-time</h3>
-          <p class='casestudy-text'>
-            For an application to feature real-time collaboration, the first requirement is that data must be
-            exchanged
-            between users, or between users and a server, in real-time. Generally, when we say that an application is
-            “real-time”, we mean that the user sees updated data either instantly or without noticeable delay, and
-            without needing to take any specific action or make any particular request to see the updated data.
+    <div id="section-2" class="section">
+      <h2 class='section-heading' data-section="2">What is real-time collaboration?</h2>
+      <div id="subsection-2.1">
+        <h3 class="subsection-heading" data-subsection="2.1">Real-time</h3>
+        <p class='casestudy-text'>
+          For an application to feature real-time collaboration, the first requirement is that data must be
+          exchanged
+          between users, or between users and a server, in real-time. Generally, when we say that an application is
+          “real-time”, we mean that the user sees updated data either instantly or without noticeable delay, and
+          without needing to take any specific action or make any particular request to see the updated data.
+        </p>
+
+        <div class="diagram">
+          <video autoplay loop muted playsinline class="w-1/2 h-auto">
+            <source src="assets/videos/real-time-example.mp4" type="video/mp4" />
+            Your browser does not support the HTML5 Video element.
+          </video>
+        </div>
+
+
+        <p class='casestudy-text'>
+          For the purposes of real-time collaboration, data must flow in two directions: from the user, when that
+          user
+          makes a change that will be shared with others, and to the user, when someone else makes a change.
+        </p>
+
+        <div class="diagram">
+          <video autoplay loop muted playsinline class="small-dg">
+            <source src="assets/videos/broadcast.mp4" type="video/mp4" />
+            Your browser does not support the HTML5 Video element.
+          </video>
+        </div>
+
+
+        <p class='casestudy-text'>
+          When implementing a real-time web application, challenges arise because HTTP, the protocol by which most
+          web
+          communication occurs, is not real-time by design. Instead, HTTP uses a request-response model whereby the
+          client sends a request to a server and then waits for the server to respond with the requested data.
+        </p>
+        <div class="diagram">
+          <img src="assets/images/diagrams/http-request-response.png" />
+        </div>
+        <p class="casestudy-text">
+          So how can we make an application that lets users see a constant stream of updated data? For bi-direction,
+          real-time data exchange over the web, two protocols in particular merit our consideration:
+          <strong>WebRTC</strong> and <strong>WebSocket</strong>.
+        </p>
+        <div id="subsection-2.1.1">
+          <h4 class="subsubsection-heading" data-subsection="2.1.1">WebRTC</h4>
+          <p class="casestudy-text">
+            <strong>WebRTC</strong>, which stands for Web Real-Time Communication, is an open-source project that allows
+            web browsers and mobile applications to engage in peer-to-peer real-time communication via APIs. The
+            connection between peers is established with the use of a signaling server that acts as an initial
+            intermediary, allowing two clients to find each other and negotiate connection parameters. Once the
+            connection
+            is established, data is transferred directly between the peers via media streams and/or data channels.
           </p>
-
           <div class="diagram">
-            <video autoplay loop muted playsinline class="w-1/2 h-auto">
-              <source src="assets/videos/real-time-example.mp4" type="video/mp4" />
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/webrtc.mp4" type="video/mp4" />
               Your browser does not support the HTML5 Video element.
             </video>
-          </div>
-
-
-          <p class='casestudy-text'>
-            For the purposes of real-time collaboration, data must flow in two directions: from the user, when that
-            user
-            makes a change that will be shared with others, and to the user, when someone else makes a change.
-          </p>
-
-          <div class="diagram">
-            <video autoplay loop muted playsinline class="small-dg">
-              <source src="assets/videos/broadcast.mp4" type="video/mp4" />
-              Your browser does not support the HTML5 Video element.
-            </video>
-          </div>
-
-
-          <p class='casestudy-text'>
-            When implementing a real-time web application, challenges arise because HTTP, the protocol by which most
-            web
-            communication occurs, is not real-time by design. Instead, HTTP uses a request-response model whereby the
-            client sends a request to a server and then waits for the server to respond with the requested data.
-          </p>
-          <div class="diagram">
-            <img src="assets/images/diagrams/http-request-response.png" />
           </div>
           <p class="casestudy-text">
-            So how can we make an application that lets users see a constant stream of updated data? For bi-direction,
-            real-time data exchange over the web, two protocols in particular merit our consideration:
-            <strong>WebRTC</strong> and <strong>WebSocket</strong>.
+            Since WebRTC is primarily used over UDP, it offers superior latency at the cost of some packet loss. This
+            makes it an especially attractive choice for video and audio streaming.
           </p>
         </div>
-        <h4 class="subsubsection-heading">WebRTC</h4>
-        <p class="casestudy-text">
-          <strong>WebRTC</strong>, which stands for Web Real-Time Communication, is an open-source project that allows
-          web browsers and mobile applications to engage in peer-to-peer real-time communication via APIs. The
-          connection between peers is established with the use of a signaling server that acts as an initial
-          intermediary, allowing two clients to find each other and negotiate connection parameters. Once the
-          connection
-          is established, data is transferred directly between the peers via media streams and/or data channels.
+        <div id="subsection-2.1.2">
+          <h4 class="subsubsection-heading" data-subsection="2.1.2">WebSocket</h4>
+          <p class="casestudy-text">
+            <strong>WebSocket</strong> is a protocol that provides a two-way channel of real-time communication between
+            a
+            client and a server. The connection is established via the WebSocket handshake:
+          </p>
+          <ul class="casestudy-list">
+            <li class="casestudy-list-item">
+              The client sends an HTTP request to the server with an <code>Upgrade</code> header
+            </li>
+            <li class="casestudy-list-item">
+              The server responds with <code>Connection: Upgrade</code> and <code>Upgrade: Websocket</code> headers
+            </li>
+          </ul>
+          <p class="casestudy-text">
+            Once the handshake is complete, the WebSocket connection is established using the same underlying TCP/IP
+            connection used in the handshake, and either party can now send data.
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/websocket.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+          <p class="casestudy-text">
+            WebSocket provides better data integrity than WebRTC due to the underlying reliability of TCP. It is
+            therefore
+            often used in situations where delivering accurate data is paramount (e.g. real-time dashboards, stock price
+            tickers) and where minimizing latency is less critical (e.g. live chat).
+          </p>
+        </div>
+        <div id="subsection-2.1.3">
+          <h4 class="subsubsection-heading" data-subsection="2.1.3">
+            Real-time infrastructure in Symphony
+          </h4>
+          <p class="casestudy-text">
+            As we have seen, both WebRTC and WebSocket have trade-offs that make each better for some use cases and less
+            suitable for others. When designing Symphony, we thought about which of these two technologies would be
+            better
+            for our use case.
+          </p>
+          <p class="casestudy-text">
+            Applications that would use Symphony are likely already using a client-server model. We also knew that we
+            wanted to persist data - both the data users are working on, as well as metadata about how users are
+            collaborating. To do this, a server would be needed. As a protocol based on a client-server model, WebSocket
+            was therefore a natural choice for us.
+          </p>
+        </div>
+      </div>
+      <div id="subsection-2.2">
+        <h3 class="subsection-heading" data-subsection="2.2">Collaboration</h3>
+        <p class='casestudy-text'>
+          Now that we’ve established what “real-time” means and how it can be achieved over the web, let’s turn to
+          collaboration. What do we mean by “collaboration,” and what are some of its components?
+        </p>
+        <p class='casestudy-text'>
+          First, let’s consider a simple chat application. Imagine we have two users, Sarah and Bob, exchanging
+          messages in real-time. As soon as one user enters a message, the other user sees the message displayed
+          without noticeable delay. Is this an example of a collaborative application?
         </p>
         <div class="diagram">
           <video autoplay loop muted playsinline>
-            <source src="assets/videos/webrtc.mp4" type="video/mp4" />
+            <source src="assets/videos/chat-app.mp4" type="video/mp4" />
+            Your browser does not support the HTML5 Video element.
+          </video>
+        </div>
+        <p class='casestudy-text'>
+          The answer is <strong>no</strong>. While the two users are exchanging information in real-time, they are
+          not
+          collaborating because they are not modifying the same state. Each user has control only over his or her
+          own
+          messages, and each of these messages is independent of the others. Sarah can see Bob’s messages in
+          real-time, but she cannot modify them.
+        </p>
+        <p class="casestudy-text">
+          Now let’s look at a different kind of application.
+        </p>
+        <div class="diagram">
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/word-processor.mp4" type="video/mp4" />
             Your browser does not support the HTML5 Video element.
           </video>
         </div>
         <p class="casestudy-text">
-          Since WebRTC is primarily used over UDP, it offers superior latency at the cost of some packet loss. This
-          makes it an especially attractive choice for video and audio streaming.
-        </p>
-        <h4 class="subsubsection-heading">WebSocket</h4>
-        <p class="casestudy-text">
-          <strong>WebSocket</strong> is a protocol that provides a two-way channel of real-time communication between
-          a
-          client and a server. The connection is established via the WebSocket handshake:
-        </p>
-        <ul class="casestudy-list">
-          <li class="casestudy-list-item">
-            The client sends an HTTP request to the server with an <code>Upgrade</code> header
-          </li>
-          <li class="casestudy-list-item">
-            The server responds with <code>Connection: Upgrade</code> and <code>Upgrade: Websocket</code> headers
-          </li>
-        </ul>
-        <p class="casestudy-text">
-          Once the handshake is complete, the WebSocket connection is established using the same underlying TCP/IP
-          connection used in the handshake, and either party can now send data.
-        </p>
-        <div class="diagram">
-          <video autoplay loop muted playsinline>
-            <source src="assets/videos/websocket.mp4" type="video/mp4" />
-            Your browser does not support the HTML5 Video element.
-          </video>
-        </div>
-        <p class="casestudy-text">
-          WebSocket provides better data integrity than WebRTC due to the underlying reliability of TCP. It is
-          therefore
-          often used in situations where delivering accurate data is paramount (e.g. real-time dashboards, stock price
-          tickers) and where minimizing latency is less critical (e.g. live chat).
-        </p>
-        <h4 class="subsubsection-heading">
-          Real-time infrastructure in Symphony
-        </h4>
-        <p class="casestudy-text">
-          As we have seen, both WebRTC and WebSocket have trade-offs that make each better for some use cases and less
-          suitable for others. When designing Symphony, we thought about which of these two technologies would be
-          better
-          for our use case.
+          This time, Sarah and Bob are using an online word processor to work together on a document. Sarah and Bob
+          are each making their own changes, but they are viewing the same document, reflecting the modifications
+          made
+          by both users to that document, in real-time. Therefore we can say that there exists a <strong>shared
+            state</strong> between Sarah and Bob.
         </p>
         <p class="casestudy-text">
-          Applications that would use Symphony are likely already using a client-server model. We also knew that we
-          wanted to persist data - both the data users are working on, as well as metadata about how users are
-          collaborating. To do this, a server would be needed. As a protocol based on a client-server model, WebSocket
-          was therefore a natural choice for us.
+          This shared state, which is reflected in a single synchronized view presented to all users working on the
+          same document or project, lies at the core of real-time collaborative applications.
         </p>
-
-        <div id="subsection-2.2">
-          <h3 class="subsection-heading" data-subsection="2.2">Collaboration</h3>
-          <p class='casestudy-text'>
-            Now that we’ve established what “real-time” means and how it can be achieved over the web, let’s turn to
-            collaboration. What do we mean by “collaboration,” and what are some of its components?
-          </p>
-          <p class='casestudy-text'>
-            First, let’s consider a simple chat application. Imagine we have two users, Sarah and Bob, exchanging
-            messages in real-time. As soon as one user enters a message, the other user sees the message displayed
-            without noticeable delay. Is this an example of a collaborative application?
-          </p>
-          <div class="diagram">
-            <video autoplay loop muted playsinline>
-              <source src="assets/videos/chat-app.mp4" type="video/mp4" />
-              Your browser does not support the HTML5 Video element.
-            </video>
-          </div>
-          <p class='casestudy-text'>
-            The answer is <strong>no</strong>. While the two users are exchanging information in real-time, they are
-            not
-            collaborating because they are not modifying the same state. Each user has control only over his or her
-            own
-            messages, and each of these messages is independent of the others. Sarah can see Bob’s messages in
-            real-time, but she cannot modify them.
-          </p>
-          <p class="casestudy-text">
-            Now let’s look at a different kind of application.
-          </p>
-          <div class="diagram">
-            <video autoplay loop muted playsinline>
-              <source src="assets/videos/word-processor.mp4" type="video/mp4" />
-              Your browser does not support the HTML5 Video element.
-            </video>
-          </div>
-          <p class="casestudy-text">
-            This time, Sarah and Bob are using an online word processor to work together on a document. Sarah and Bob
-            are each making their own changes, but they are viewing the same document, reflecting the modifications
-            made
-            by both users to that document, in real-time. Therefore we can say that there exists a <strong>shared
-              state</strong> between Sarah and Bob.
-          </p>
-          <p class="casestudy-text">
-            This shared state, which is reflected in a single synchronized view presented to all users working on the
-            same document or project, lies at the core of real-time collaborative applications.
-          </p>
-          <p class="casestudy-text">
-            Let’s now review some concepts that are critical to understanding how online collaboration works.
-          </p>
-          <h4 class="subsubsection-heading">Conflict</h4>
+        <p class="casestudy-text">
+          Let’s now review some concepts that are critical to understanding how online collaboration works.
+        </p>
+        <div id="subsection-2.2.1">
+          <h4 class="subsubsection-heading" data-subsection="2.2.1">Conflict</h4>
           <p class="casestudy-text">
             In a chat application, delayed or out-of-order delivery of messages is generally not a critical problem.
           </p>
@@ -561,7 +568,9 @@
             not a wrong choice to be made between the two, but we were ultimately persuaded by Yjs’s superior maturity
             and speed, as well as its relative memory efficiency.
           </p>
-          <h4 class="subsubsection-heading">Rooms</h4>
+        </div>
+        <div id="subsection-2.2.2">
+          <h4 class="subsubsection-heading" data-subsection="2.2.2">Rooms</h4>
           <div class="diagram">
             <img src="assets/images/diagrams/rooms.png" />
           </div>
@@ -579,7 +588,9 @@
             collaboration is <strong>not limited to text documents</strong>; a document could also be a JavaScript Map
             with key/value pairs that represent drawn objects on a whiteboard, for example.
           </p>
-          <h4 class="subsubsection-heading">Presence</h4>
+        </div>
+        <div id="subsection-2.2.3">
+          <h4 class="subsubsection-heading" data-subsection="2.2.3">Presence</h4>
           <p class="casestudy-text">
             When collaborating with others, it is useful to see not only the current state of the document but also
             which users are currently present and what they are doing at any given moment. Seeing what other users are
@@ -603,7 +614,9 @@
             users’ collaboration. Importantly, presence data is ephemeral and does not need to be retained on the
             backend.
           </p>
-          <h4 class="subsubsection-heading">Undo/Redo</h4>
+        </div>
+        <div id="subsection-2.2.4">
+          <h4 class="subsubsection-heading" data-subsection="2.2.4">Undo/Redo</h4>
           <p class="casestudy-text">
             There is one additional concept worth discussing when it comes to collaborative applications: the ability
             of
@@ -652,232 +665,240 @@
             place.
           </p>
         </div>
+      </div>
+    </div>
 
-        <!-- Section 3 -->
+    <!-- Section 3 -->
 
-        <div id="section-3" class="section">
-          <h2 class='section-heading' data-section="3">Solutions</h2>
-          <p class='casestudy-text'>
-            Now that we understand the ingredients of real-time collaboration, let’s place ourselves in the shoes of a
-            developer who wishes to add real-time collaboration to an application. What kinds of functionality and
-            infrastructure will we need?
-          </p>
-          <p class='casestudy-text'>
-            First, we’ll want a WebSocket server or servers to receive updates from users and transmit those updates
+    <div id="section-3" class="section">
+      <h2 class='section-heading' data-section="3">Solutions</h2>
+      <p class='casestudy-text'>
+        Now that we understand the ingredients of real-time collaboration, let’s place ourselves in the shoes of a
+        developer who wishes to add real-time collaboration to an application. What kinds of functionality and
+        infrastructure will we need?
+      </p>
+      <p class='casestudy-text'>
+        First, we’ll want a WebSocket server or servers to receive updates from users and transmit those updates
+        to
+        other users who are in the same room.
+      </p>
+      <p class='casestudy-text'>
+        Next, we’ll need a means of resolving merge conflicts, e.g. an implementation of OT or a CRDT.
+      </p>
+      <div class="diagram">
+        <img src="assets/images/diagrams/real-time-banner.png" />
+      </div>
+      <p class='casestudy-text'>
+        Ideally, we will also have a way of persisting room state. When users leave a room, they probably don’t
+        want
+        to lose all of their work. Instead, they should be able to return later and pick up where they left off.
+        This can be achieved by storing room state in a database when users disconnect, and retrieving that state
+        from the database when they reconnect.
+      </p>
+      <p class='casestudy-text'>
+        What if a user loses their internet connection but wants to continue working on a document? Wouldn’t it be
+        nice if a user’s offline changes can be stored and then synced back up with others when the user
+        reconnects?
+        To enable this, we’ll want a way for each client to store state locally.
+      </p>
+      <p class='casestudy-text'>
+        Finally, from the developer’s perspective, it could be useful to know how users are collaborating in an
+        application. A developer dashboard might be one way of gaining visibility into metrics like the number of
+        rooms, the number of users per room, and the size of the document associated with a given room.
+      </p>
+      <p class="casestudy-text">
+        What then are the developer’s options for obtaining this functionality and related infrastructure?
+      </p>
+
+      <div id="subsection-3.1">
+        <h3 class="subsection-heading" data-subsection="3.1">Do-it-yourself (DIY)</h3>
+        <p class='casestudy-text'>
+          One option is for the developer to implement or source each of these components separately and stitch
+          them
+          together.
+        </p>
+        <p class='casestudy-text'>
+          For the backend infrastructure to handle real-time messaging and persist state, one could use a
+          so-called
+          backend-as-a-service such as Ably, Pusher, or PubNub, or alternatively deploy one’s own backend by
+          provisioning resources on a cloud provider like AWS.
+        </p>
+        <p class='casestudy-text'>
+          For conflict resolution, as we discussed earlier, robust open-source solutions such as Yjs and Automerge
+          are a solid choice. One could even choose to implement a bespoke conflict resolution implementation,
+          although this would be considerably more time-consuming and difficult.
+        </p>
+        <p class="casestudy-text">
+          In sum, going the DIY route is less costly, but the implementation burden placed on the developer is
+          higher.
+        </p>
+      </div>
+
+      <div id="subsection-3.2">
+        <h3 class="subsection-heading" data-subsection="3.2">Real-time collaboration as a service</h3>
+        <p class='casestudy-text'>
+          Building out your own backend to manage websocket connections and implementing or integrating a means of
+          conflict resolution can be challenging. For this reason, services and frameworks exist to abstract away
+          the backend and conflict resolution and let the developer focus on their application itself.
+        </p>
+        <blockquote class="blockquote">
+          "Because building low-latency, collaborative experiences is hard!" <nobr>- Microsoft</nobr>
+        </blockquote>
+        <div id="subsection-3.2.1">
+          <h4 class="subsubsection-heading" data-subsection="3.2.1">Liveblocks</h4>
+          <p class="casestudy-text">
+            Liveblocks is a major player in this space that provides an all-in-one solution for developers wishing
             to
-            other users who are in the same room.
+            add real-time collaboration to their applications. A service that takes care of managing and scaling the
+            WebSocket infrastructure, Liveblocks also provides a custom CRDT-like solution for resolving merge
+            conflicts. This convenience comes at a cost, however: for an application with up to 2,000 monthly active
+            users, the price is $299 as of this writing.
           </p>
-          <p class='casestudy-text'>
-            Next, we’ll need a means of resolving merge conflicts, e.g. an implementation of OT or a CRDT.
-          </p>
-          <div class="diagram">
-            <img src="assets/images/diagrams/real-time-banner.png" />
-          </div>
-          <p class='casestudy-text'>
-            Ideally, we will also have a way of persisting room state. When users leave a room, they probably don’t
-            want
-            to lose all of their work. Instead, they should be able to return later and pick up where they left off.
-            This can be achieved by storing room state in a database when users disconnect, and retrieving that state
-            from the database when they reconnect.
-          </p>
-          <p class='casestudy-text'>
-            What if a user loses their internet connection but wants to continue working on a document? Wouldn’t it be
-            nice if a user’s offline changes can be stored and then synced back up with others when the user
-            reconnects?
-            To enable this, we’ll want a way for each client to store state locally.
-          </p>
-          <p class='casestudy-text'>
-            Finally, from the developer’s perspective, it could be useful to know how users are collaborating in an
-            application. A developer dashboard might be one way of gaining visibility into metrics like the number of
-            rooms, the number of users per room, and the size of the document associated with a given room.
-          </p>
-          <p class="casestudy-text">
-            What then are the developer’s options for obtaining this functionality and related infrastructure?
-          </p>
-
-          <div id="subsection-3.1">
-            <h3 class="subsection-heading" data-subsection="3.1">Do-it-yourself (DIY)</h3>
-            <p class='casestudy-text'>
-              One option is for the developer to implement or source each of these components separately and stitch
-              them
-              together.
-            </p>
-            <p class='casestudy-text'>
-              For the backend infrastructure to handle real-time messaging and persist state, one could use a
-              so-called
-              backend-as-a-service such as Ably, Pusher, or PubNub, or alternatively deploy one’s own backend by
-              provisioning resources on a cloud provider like AWS.
-            </p>
-            <p class='casestudy-text'>
-              For conflict resolution, as we discussed earlier, robust open-source solutions such as Yjs and Automerge
-              are a solid choice. One could even choose to implement a bespoke conflict resolution implementation,
-              although this would be considerably more time-consuming and difficult.
-            </p>
-            <p class="casestudy-text">
-              In sum, going the DIY route is less costly, but the implementation burden placed on the developer is
-              higher.
-            </p>
-          </div>
-
-          <div id="subsection-3.2">
-            <h3 class="subsection-heading" data-subsection="3.2">Real-time collaboration as a service</h3>
-            <p class='casestudy-text'>
-              Building out your own backend to manage websocket connections and implementing or integrating a means of
-              conflict resolution can be challenging. For this reason, services and frameworks exist to abstract away
-              the backend and conflict resolution and let the developer focus on their application itself.
-            </p>
-            <blockquote class="blockquote">
-              "Because building low-latency, collaborative experiences is hard!" <nobr>- Microsoft</nobr>
-            </blockquote>
-            <h4 class="subsubsection-heading">Liveblocks</h4>
-            <p class="casestudy-text">
-              Liveblocks is a major player in this space that provides an all-in-one solution for developers wishing
-              to
-              add real-time collaboration to their applications. A service that takes care of managing and scaling the
-              WebSocket infrastructure, Liveblocks also provides a custom CRDT-like solution for resolving merge
-              conflicts. This convenience comes at a cost, however: for an application with up to 2,000 monthly active
-              users, the price is $299 as of this writing.
-            </p>
-            <h4 class="subsubsection-heading">Fluid Framework</h4>
-            <p class="casestudy-text">
-              Fluid Framework is an open-source, cloud-agnostic framework for real-time collaboration, developed by
-              Microsoft. For conflict resolution, it uses a distributed data structure that Microsoft describes as
-              “more
-              similar to CRDT than OT.” When deployed on a single server, Fluid Framework can handle hundreds of
-              concurrent users. For larger applications, however,the developer will need to implement her own scaling
-              solution. Another drawback of Fluid Framework is that it does not include support for offline editing,
-              although short periods of client disconnection are tolerated.
-            </p>
-            <p class="casestudy-text">
-              While Fluid Framework itself is open-source and self-hosted, Microsoft also offers a managed service
-              called Azure Fluid Framework that uses Fluid Framework under the hood.
-            </p>
-          </div>
-
-          <div id="subsection-3.3">
-            <h3 class="subsection-heading" data-subsection="3.3">Where does Symphony fit in?</h3>
-            <p class='casestudy-text'>
-              We drew inspiration from both Liveblocks and Fluid Framework. Our goal was to build a framework that
-              developers can easily integrate into existing applications to add real-time collaborative functionality.
-              We also wanted Symphony to be open-source, like Fluid Framework, and to enable offline editing
-              functionality.
-            </p>
-            <p class='casestudy-text'>
-              We liked Liveblocks’ developer dashboard, which gives devs real-time insight into how users are
-              collaborating via their application, and decided to implement a dashboard in Symphony as well.
-            </p>
-            <p class='casestudy-text'>
-              In short, Symphony is aimed at developers of collaborative web applications who want to get real-time
-              collaboration up and running quickly on a smaller budget.
-            </p>
-            <div class="diagram">
-              <img src="assets/images/diagrams/solutions.png" />
-            </div>
-          </div>
         </div>
+        <div id="subsection-3.2.2">
+          <h4 class="subsubsection-heading" data-subsection="3.2.2">Fluid Framework</h4>
+          <p class="casestudy-text">
+            Fluid Framework is an open-source, cloud-agnostic framework for real-time collaboration, developed by
+            Microsoft. For conflict resolution, it uses a distributed data structure that Microsoft describes as
+            “more
+            similar to CRDT than OT.” When deployed on a single server, Fluid Framework can handle hundreds of
+            concurrent users. For larger applications, however,the developer will need to implement her own scaling
+            solution. Another drawback of Fluid Framework is that it does not include support for offline editing,
+            although short periods of client disconnection are tolerated.
+          </p>
+          <p class="casestudy-text">
+            While Fluid Framework itself is open-source and self-hosted, Microsoft also offers a managed service
+            called Azure Fluid Framework that uses Fluid Framework under the hood.
+          </p>
+        </div>
+      </div>
 
-        <div id="section-4" class="section">
-          <h2 class='section-heading' data-section="4">Using Symphony</h2>
-          <div class="casestudy-text">
-            Symphony has three main components:
-          </div>
-          <ul class="casestudy-list">
-            <li class="casestudy-list-item">
-              Symphony backend
-            </li>
-            <li class="casestudy-list-item">
-              Symphony client
-            </li>
-            <li class="casestudy-list-item">
-              Symphony dashboard
-            </li>
-          </ul>
-          <p class="casestudy-text">
-            The Symphony backend receives updates from and distributes updates to clients via WebSocket connections,
-            persists document data, and stores metadata about rooms and user connections to rooms.
-          </p>
-          <p class="casestudy-text">
-            The Symphony client enables the developer’s web application to connect to, and exchange updates with, the
-            Symphony backend.
-          </p>
-          <p class="casestudy-text">
-            The Symphony dashboard provides developers with visibility into how their users are collaborating by
-            displaying metadata about rooms and users.
-          </p>
+      <div id="subsection-3.3">
+        <h3 class="subsection-heading" data-subsection="3.3">Where does Symphony fit in?</h3>
+        <p class='casestudy-text'>
+          We drew inspiration from both Liveblocks and Fluid Framework. Our goal was to build a framework that
+          developers can easily integrate into existing applications to add real-time collaborative functionality.
+          We also wanted Symphony to be open-source, like Fluid Framework, and to enable offline editing
+          functionality.
+        </p>
+        <p class='casestudy-text'>
+          We liked Liveblocks’ developer dashboard, which gives devs real-time insight into how users are
+          collaborating via their application, and decided to implement a dashboard in Symphony as well.
+        </p>
+        <p class='casestudy-text'>
+          In short, Symphony is aimed at developers of collaborative web applications who want to get real-time
+          collaboration up and running quickly on a smaller budget.
+        </p>
+        <div class="diagram">
+          <img src="assets/images/diagrams/solutions.png" />
+        </div>
+      </div>
+    </div>
 
-          <div id="subsection-4.1">
-            <h3 class="subsection-heading" data-subsection="4.1">Backend</h3>
-            <p class="casestudy-text">
-              The first step to using Symphony is to deploy the Symphony backend to AWS.
-            </p>
-            <p class="casestudy-text font-bold">
-              [TBA]
-            </p>
-          </div>
-          <div id="subsection-4.2">
-            <h3 class="subsection-heading" data-subsection="4.2">Client</h3>
-            <p class="casestudy-text">
-              Once you’ve got the Symphony backend deployed, the next step is to import the Symphony client into your
-              web application.
-            </p>
-            <p class="casestudy-text">
-              First, install the <code>@symphony-rtc/client</code> npm library:
-            </p>
-            <code class="code-example">
+    <!-- Section 4 -->
+
+    <div id="section-4" class="section">
+      <h2 class='section-heading' data-section="4">Using Symphony</h2>
+      <div class="casestudy-text">
+        Symphony has three main components:
+      </div>
+      <ul class="casestudy-list">
+        <li class="casestudy-list-item">
+          Symphony backend
+        </li>
+        <li class="casestudy-list-item">
+          Symphony client
+        </li>
+        <li class="casestudy-list-item">
+          Symphony dashboard
+        </li>
+      </ul>
+      <p class="casestudy-text">
+        The Symphony backend receives updates from and distributes updates to clients via WebSocket connections,
+        persists document data, and stores metadata about rooms and user connections to rooms.
+      </p>
+      <p class="casestudy-text">
+        The Symphony client enables the developer’s web application to connect to, and exchange updates with, the
+        Symphony backend.
+      </p>
+      <p class="casestudy-text">
+        The Symphony dashboard provides developers with visibility into how their users are collaborating by
+        displaying metadata about rooms and users.
+      </p>
+
+      <div id="subsection-4.1">
+        <h3 class="subsection-heading" data-subsection="4.1">Backend</h3>
+        <p class="casestudy-text">
+          The first step to using Symphony is to deploy the Symphony backend to AWS.
+        </p>
+        <p class="casestudy-text font-bold">
+          [TBA]
+        </p>
+      </div>
+      <div id="subsection-4.2">
+        <h3 class="subsection-heading" data-subsection="4.2">Client</h3>
+        <p class="casestudy-text">
+          Once you’ve got the Symphony backend deployed, the next step is to import the Symphony client into your
+          web application.
+        </p>
+        <p class="casestudy-text">
+          First, install the <code>@symphony-rtc/client</code> npm library:
+        </p>
+        <code class="code-example">
             $ npm install @symphony-rtc/client<br>
           </code>
-            <p class="casestudy-text">
-              Next, in your application, import the <code>SymphonyClient</code> class and instantiate a new client
-              object, passing in your Symphony backend endpoint:
-            </p>
-            <code class="code-example">
+        <p class="casestudy-text">
+          Next, in your application, import the <code>SymphonyClient</code> class and instantiate a new client
+          object, passing in your Symphony backend endpoint:
+        </p>
+        <code class="code-example">
             import { SymphonyClient } from "@symphony-rtc/client";<br>
             <br>
             const client = new SymphonyClient(websocket_url);
           </code>
-            <div class="casestudy-text">
-              To begin collaborating, call enter on the client object, passing in the name of the room
-              (<code>roomId</code>) as an argument:
-            </div>
-            <code class="code-example">
+        <div class="casestudy-text">
+          To begin collaborating, call enter on the client object, passing in the name of the room
+          (<code>roomId</code>) as an argument:
+        </div>
+        <code class="code-example">
             const room = client.enter(roomId);
           </code>
-            <div class="casestudy-text">
-              Symphony provides two shared data types for collaboration: <code>SyncedMap</code>, an object based on
-              the
-              JavaScript Map, and <code>SyncedList</code>, which is based on the JavaScript Array. To create one of
-              these data types, call the appropriate method on the room object returned in the previous step, e.g:
-            </div>
-            <code class="code-example">
+        <div class="casestudy-text">
+          Symphony provides two shared data types for collaboration: <code>SyncedMap</code>, an object based on
+          the
+          JavaScript Map, and <code>SyncedList</code>, which is based on the JavaScript Array. To create one of
+          these data types, call the appropriate method on the room object returned in the previous step, e.g:
+        </div>
+        <code class="code-example">
             const syncedMap = room.newMap();
           </code>
-            <div class="casestudy-text">
-              To subscribe to updates to a synced data structure, call <code>subscribe</code> on the room object,
-              passing in the synced object and a callback function. The callback function will be invoked when the
-              synced data structure is updated.
-            </div>
-            <code class="code-example">
+        <div class="casestudy-text">
+          To subscribe to updates to a synced data structure, call <code>subscribe</code> on the room object,
+          passing in the synced object and a callback function. The callback function will be invoked when the
+          synced data structure is updated.
+        </div>
+        <code class="code-example">
             room.subscribe(syncedMap, event => {<br>
               &#160;&#160;// ...<br>
             })
           </code>
-            <div class="casestudy-text">
-              To stop collaborating in a room, call <code>leave</code> on the client object and pass in the name of
-              the
-              room (<code>roomId</code>) as an argument:
-            </div>
-            <code class="code-example">
+        <div class="casestudy-text">
+          To stop collaborating in a room, call <code>leave</code> on the client object and pass in the name of
+          the
+          room (<code>roomId</code>) as an argument:
+        </div>
+        <code class="code-example">
             client.leave(roomId);
           </code>
-            <p class="casestudy-text">
-              The Symphony client is designed with ease of use in mind, abstracting away some of the complexity of
-              working with the underlying Yjs types. If you want more granular, low-level control, or access to Yjs
-              types not implemented in Symphony such as Text, XmlElement, XmlFragment, etc., you can still use the Yjs
-              API on the frontend–it works just fine with the Symphony backend. For more information about the Yjs
-              API,
-              see the <a href="https://docs.yjs.dev/" class="casestudy-link">Yjs documentation</a>.
-            </p>
-            <code class="code-example">
+        <p class="casestudy-text">
+          The Symphony client is designed with ease of use in mind, abstracting away some of the complexity of
+          working with the underlying Yjs types. If you want more granular, low-level control, or access to Yjs
+          types not implemented in Symphony such as Text, XmlElement, XmlFragment, etc., you can still use the Yjs
+          API on the frontend–it works just fine with the Symphony backend. For more information about the Yjs
+          API,
+          see the <a href="https://docs.yjs.dev/" class="casestudy-link">Yjs documentation</a>.
+        </p>
+        <code class="code-example">
             import * as Y from "yjs";<br>
             import { WebsocketProvider } from "y-websocket";<br>
             <br>
@@ -886,444 +907,473 @@
             const yText = ydoc.getText("my-text-document");<br>
             // ...
           </code>
-          </div>
+      </div>
 
-          <div id="subsection-4.3">
-            <h3 class="subsection-heading" data-subsection="4.3">Developer dashboard</h3>
-            <p class="casestudy-text">
-              With the Symphony backend up and running and the Symphony client integrated in your application, your
-              users can now collaborate.
-            </p>
-            <p class="casestudy-text">
-              But for the developer, the story doesn’t end there.
-            </p>
-            <p class="casestudy-text font-bold">
-              [TBA]
-            </p>
-          </div>
-        </div>
+      <div id="subsection-4.3">
+        <h3 class="subsection-heading" data-subsection="4.3">Developer dashboard</h3>
+        <p class="casestudy-text">
+          With the Symphony backend up and running and the Symphony client integrated in your application, your
+          users can now collaborate.
+        </p>
+        <p class="casestudy-text">
+          But for the developer, the story doesn’t end there.
+        </p>
+        <p class="casestudy-text font-bold">
+          [TBA]
+        </p>
+      </div>
+    </div>
 
-        <div id="section-5" class="section">
-          <h2 class="section-heading" data-section="5">Building Symphony</h2>
+    <!-- Section 5 -->
 
-          <div id="subsection-5.1">
-            <h3 class="subsection-heading" data-subsection="5.1">Design philosophy</h3>
-            <p class="casestudy-text">
-              When designing Symphony, our decisions were informed at every step of the way by the fundamental problem
-              we aimed to address: that building collaborative applications where multiple users can change a given
-              piece of state concurrently is difficult.
-            </p>
-            <p class="casestudy-text">
-              With this in mind, we aimed to provide the infrastructure needed for creating conflict-free
-              collaborative
-              experiences on the web in a way that is easy for developers to drop into their existing applications.
-            </p>
-            <p class="casestudy-text">
-              We wanted to abstract away the complexity of managing WebSocket connections, resolving merge conflicts,
-              and persisting state so that developers would be free to focus on their applications.
-            </p>
-            <p class="casestudy-text">
-              Finally, we wanted the framework to be suitable for small to medium-sized applications, with capacity
-              for
-              at least 1,000 concurrent users.
-            </p>
-          </div>
+    <div id="section-5" class="section">
+      <h2 class="section-heading" data-section="5">Building Symphony</h2>
 
-          <div id="subsection-5.2">
-            <h3 class="subsection-heading" data-subsection="5.2">Prototyping</h3>
-            <p class="casestudy-text">
-              Our first goal when building Symphony was to create a basic prototype of the system. We chose to do this
-              in AWS, which was a natural choice as the biggest player in the cloud provider market with 32% market
-              share as of early 2023.
-            </p>
-            <h4 class="subsubsection-heading">Deploying the WebSocket server</h4>
-            <p class="casestudy-text">
-              Our starting point for the Symphony backend was y-websocket, a reference WebSocket server for syncing
-              Yjs
-              documents over a WebSocket connection. We deployed the server to Amazon Elastic Compute Cloud (EC2),
-              which
-              is the standard virtual private server offered by AWS.
-            </p>
-            <h4 class="subsubsection-heading">Persisting and retrieving document data</h4>
-            <p class="casestudy-text">
-              Our next step was to modify the server to persist document data to a database so that users would be
-              able
-              to leave a room without losing their work.
-            </p>
-            <p class="casestudy-text">
-              The main decision points here were 1) where to persist the data and 2) when to persist the data.
-            </p>
-            <p class="casestudy-text">
-              For the first point we chose Amazon Simple Storage Service (S3). S3 provides object storage, which is
-              ideal for persisting large amounts of unstructured data such as our room documents.
-            </p>
-            <p class="casestudy-text">
-              For the second, we decided to persist document data to S3 when the last user leaves a room. At this
-              point,
-              the server stores the document in S3 and unloads it from memory, freeing up server resources.
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline>
-                <source src="assets/videos/client-ec2-server-s3.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <p class="casestudy-text">
-              We also need to retrieve S3 data when the server opens up a room. Whenever a user connects to a room and
-              the server does not have the document for that room in memory, it queries S3 to retrieve the data there,
-              if any.
-            </p>
-            <h4 class="subsubsection-heading">Persisting and accessing metadata</h4>
-            <p class="casestudy-text">
-              We also wanted the server to persist metadata about each room to give developers visibility into metrics
-              like number of rooms and connections per room. To do this, the server sends metadata about connections
-              and
-              rooms to a PostgreSQL database provisioned in AWS’s Relational Database Service (RDS).
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline>
-                <source src="assets/videos/client-ec2-server-s3-pg-meta-and-time.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <p class="casestudy-text">
-              To access this room metadata, we added GET routes to the server. The dashboard sends HTTP requests to
-              these routes, and the server responds with data such as the number rooms and connections per room that
-              are
-              used to populate the dashboard. A continuous stream of data is also sent from the server to the
-              dashboard
-              client via SSE.
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline>
-                <source src="assets/videos/dashboard-events-ec2.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <h4 class="subsubsection-heading">Connecting to the prototype</h4>
-            <p class="casestudy-text">
-              To enable web applications to connect to the Symphony backend, we developed a frontend client library.
-              The
-              library provides an easy-to-use API for developer convenience and utilizes an existing IndexedDB plugin
-              for Yjs to store state locally in the browser. This local storage allows users to work offline and sync
-              their changes when they reconnect.
-            </p>
-            <h4 class="subsubsection-heading">From EC2 to ECS</h4>
-            <p class="casestudy-text">
-              With the server deployed to EC2, the developer remains responsible for managing the server–applying
-              security updates, handling logs, etc. We wanted Symphony to abstract away this backend management from
-              the
-              developer, in line with our design philosophy of making an easy-to-use framework.
-            </p>
-            <p class="casestudy-text">
-              With that in mind, we moved our architecture into AWS Elastic Container Service (ECS), a fully managed
-              container orchestration service for deploying, managing, and scaling containerized applications.
-            </p>
-            <p class="casestudy-text">
-              To do this, we first had to containerize our application, and then reference that Docker container in an
-              ECS task definition. The task definition is then referenced by a service definition which indicates how
-              many instances of the container we want to run. ECS also gives you the choice of deploying in EC2 or
-              Fargate mode. Since we wanted to abstract away all instance management from the developer, we chose
-              Fargate.
-            </p>
-            <p class="casestudy-text">
-              Finally, we provisioned an Application Load Balancer (ALB) which serves as a single point of entry to
-              our
-              backend for both the Symphony client and the dashboard client.
-            </p>
-            <p class="casestudy-text">
-              The diagram below shows our completed Symphony backend prototype with a single server instance running
-              in
-              ECS. Note that while ECS is a scalable service, our server isn’t actually scalable yet, for reasons
-              we’ll
-              discuss later.
-            </p>
-            <div class="diagram">
-              <img src="assets/images/diagrams/client-alb-ecs-server-s3-pg.png" />
-            </div>
-          </div>
+      <div id="subsection-5.1">
+        <h3 class="subsection-heading" data-subsection="5.1">Design philosophy</h3>
+        <p class="casestudy-text">
+          When designing Symphony, our decisions were informed at every step of the way by the fundamental problem
+          we aimed to address: that building collaborative applications where multiple users can change a given
+          piece of state concurrently is difficult.
+        </p>
+        <p class="casestudy-text">
+          With this in mind, we aimed to provide the infrastructure needed for creating conflict-free
+          collaborative
+          experiences on the web in a way that is easy for developers to drop into their existing applications.
+        </p>
+        <p class="casestudy-text">
+          We wanted to abstract away the complexity of managing WebSocket connections, resolving merge conflicts,
+          and persisting state so that developers would be free to focus on their applications.
+        </p>
+        <p class="casestudy-text">
+          Finally, we wanted the framework to be suitable for small to medium-sized applications, with capacity
+          for
+          at least 1,000 concurrent users.
+        </p>
+      </div>
 
-          <div id="subsection-5.3">
-            <h3 class="subsection-heading" data-subsection="5.3">Load testing the prototype</h3>
-            <p class="casestudy-text">
-              Now that our prototype was up and running, we wanted to test how many users could connect to the
-              Symphony
-              backend at once, under as close to real-life conditions as possible. We also wanted to identify our
-              server’s bottlenecks (especially compute vs memory) to inform our scaling strategy.
-            </p>
-            <h4 class="subsubsection-heading">Initial steps</h4>
-            <p class="casestudy-text">
-              We started out by exploring two popular open-source load testing tools, Artillery.io and Graphana k6.
-              While both support WebSocket testing, neither proved to be appropriate for our use case. <strong>[TBA -
-                1-2 sentences on why we didn't use these]</strong>
-            </p>
-            <h4 class="subsubsection-heading">Building a testing architecture</h4>
-            <p class="casestudy-text">
-              Given the constraints of the above testing platforms, we decided to write a Node.js application that
-              initiates [500] connections (each connection representing a single user) to the Symphony backend, with a
-              total of [125] rooms ([four users per room]). The connections are established over [X] minutes ([Y users
-              every Z seconds]). We then deployed this application to [multiple] EC2 instances.
-            </p>
-            <div class="diagram">
-              <img src="assets/images/diagrams/load-testing-symphony-server.png" />
-            </div>
-            <p class="casestudy-text">
-              In our testing script, each user would send [one] document update per second, and [five] presence
-              updates
-              per second. While the rate of both updates could vary widely depending on the specific use case, we felt
-              that these were reasonable values to simulate real-world usage (Liveblocks’ default settings throttle
-              user
-              updates to 10 per second, for comparison).
-            </p>
-            <h4 class="subsubsection-heading">Testing the prototype</h4>
-            <p class="casestudy-text">
-              We tested our prototype provisioned with a single WebSocket server deployed to a t2.small instance,
-              which
-              has 1vCPU and 2GiB of memory.
-            </p>
-            <p class="casestudy-text font-bold">
-              [TBA - diagram with load testing results]
-            </p>
-            <p class="casestudy-text font-bold">
-              [TBA - discussion of load testing results]
-            </p>
-          </div>
-
-          <div id="subsection-5.4">
-            <h3 class="subsection-heading" data-subsection="5.4">Scaling</h3>
-            <p class="casestudy-text">
-              With load testing results in hand, we turned to the task of scaling our architecture to accommodate a
-              greater number of users.
-            </p>
-            <p class="casestudy-text">
-              But before we start thinking about how to actually scale our architecture, we’ve got a little
-              housekeeping
-              to take care of.
-            </p>
-            <h4 class="subsubsection-heading">Decoupling</h4>
-            <p class="casestudy-text">
-              Our WebSocket server and dashboard server currently reside in the same code. We want to scale the
-              WebSocket server so that our system can support more users, but we don’t need to scale the dashboard
-              server. We therefore extracted the dashboard routes into a separate server, containerized it, and
-              deployed
-              a single instance of it to ECS.
-            </p>
-            <div class="diagram">
-              <img src="assets/images/diagrams/dashboard-client-alb-ecs-server-s3.png" class="w-full h-auto" />
-            </div>
-            <p class="casestudy-text">
-              With that out of the way …
-            </p>
-            <h4 class="subsubsection-heading">Scaling with ECS Fargate</h4>
-            <p class="casestudy-text">
-              AWS ECS Fargate offers auto scaling out of the box, based on metrics like average CPU and memory usage.
-              So
-              with our containerized WebSocket server currently deployed to Fargate, isn’t the Symphony backend
-              already
-              scalable?
-            </p>
-            <p class="casestudy-text">
-              Not quite. If we try to scale now, we’ll find that users who are in the same room but connected to
-              different servers are out of sync. Why is that?
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline>
-                <source src="assets/videos/servers-old-state.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <p class="casestudy-text">
-              The problem is that not all WebSocket servers will have the same documents loaded in memory. Imagine
-              that
-              users A and B want to join the same room for a collaboration session. User A joins first and is routed
-              by
-              the ALB to server #1; he begins making some document updates. A little while later, user B joins the
-              same
-              room and is routed to server #2. But user A has been sending updates to server #1. How can server #2
-              know
-              the current state of the document?
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline class="w-full">
-                <source src="assets/videos/old-doc-state.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <h4 class="subsubsection-heading">Looking to existing solutions</h4>
-            <p class="casestudy-text">
-              This is not a problem unique to the Symphony backend. One common pattern for scaling WebSockets is to
-              have
-              each server connect to Redis channels: to a “publish” channel to send all updates received by the server
-              from users, and to a “subscribe” channel to receive all updates published by other servers. In this way,
-              we can scale our servers horizontally and they will be able to receive all updates they need for their
-              connected users. Indeed, this is how existing attempts to scale Yjs documents with Redis, such as
-              y-redis,
-              have worked.
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline class="w-full">
-                <source src="assets/videos/pub-sub.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <p class="casestudy-text">
-              However, we’ve still got a problem.
-            </p>
-            <p class="casestudy-text">
-              When a server receives an incoming connection for a given room for the first time, it doesn’t just need
-              to
-              receive all <strong>future</strong> updates to that room’s state. It also needs to somehow get all
-              <strong>previous</strong> updates to state. If we’re using the traditional Redis pub/sub approach, this
-              means that every server needs to subscribe to Redis for every document, and needs to hold every document
-              in memory, to ensure that the state is there when it needs it–when a user connects and starts
-              collaborating on that state. In other words, we haven’t actually done anything to reduce the memory
-              demands on our servers.
-            </p>
-            <div class="diagram">
-              <img src="assets/images/diagrams/all-servers-all-docs.png" class="w-full" />
-            </div>
-            <p class="casestudy-text">
-              What if we could design the system in such a way that servers don’t need to hold all documents in
-              memory–but instead, only the documents for which they have connected users? In that case, when a server
-              receives a connection for a room for the first time, it would need to get the current document data from
-              somewhere.
-            </p>
-            <p class="casestudy-text">
-              But from where?
-            </p>
-            <p class="casestudy-text">
-              One idea that came to mind was to allow servers to query each other for that initial state. In this way,
-              a
-              server receiving a new connection could get “up to speed” so to speak on the current state of the
-              document, and then subscribe to Redis for all future updates.
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline>
-                <source src="assets/videos/current-state-from-other-server.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <h4 class="subsubsection-heading">Querying for state</h4>
-            <p class="casestudy-text">
-              If a server is going to get document data from another server, the next question is, how does it know
-              which server to query? We would need to store data–room names and IP addresses–indicating which rooms
-              are
-              being handled by which servers. For this we chose AWS DynamoDB, a serverless NoSQL key-value database.
-            </p>
-            <p class="casestudy-text">
-              When a user is routed to a server that does not have the relevant document in memory, the server queries
-              DynamoDB with the room name.
-            </p>
-            <p class="casestudy-text">
-              If DynamoDB returns an empty set, it means that there aren’t any servers currently handling that room.
-              In
-              this case, the server queries S3 to get persisted data for the room, if any, and then
-              publishes/subscribes
-              to Redis for updates to that room.
-            </p>
-            <p class="casestudy-text">
-              If DynamoDB returns a set containing one or more server IP addresses, the server sends a GET request to
-              the first IP address in the set. The responding server sends the current state of the document, and the
-              requesting server then publishes/subscribes to Redis as usual.
-            </p>
-            <p class="casestudy-text">
-              In either case, the server’s IP address is added to the DynamoDB set for that room name, registering it
-              as
-              one of the servers that can now be queried for the room’s state.
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline class="w-full">
-                <source src="assets/videos/current-doc-state.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <h4 class="subsubsection-heading">Some more housekeeping</h4>
-            <p class="casestudy-text">
-              There’s one last bit of cleanup that we need to take care of. What happens when the last user for a room
-              disconnects from a server, and the server unloads the relevant document from memory? We don’t want other
-              servers to query it for that state, because it doesn’t have that state any longer.
-            </p>
-            <p class="casestudy-text">
-              To handle this, after the last user connected to a server for a given room disconnects, but before the
-              server backs up the document data to S3 and unloads that data from memory, the server sends a query to
-              DynamoDB to remove its IP address from the set for the relevant room.
-            </p>
-            <div class="diagram">
-              <video autoplay loop muted playsinline class="w-full">
-                <source src="assets/videos/last-connection-close.mp4" type="video/mp4" />
-                Your browser does not support the HTML5 Video element.
-              </video>
-            </div>
-            <p class="casestudy-text">
-              Our final architecture is below:
-            </p>
-            <div class="diagram">
-              <img src="assets/images/diagrams/scaled-cropped.png" class="w-full" />
-            </div>
-          </div>
-
-          <div id="subsection-5.5">
-            <h3 class="subsection-heading" data-subsection="5.5">
-              Load testing the final architecture
-            </h3>
-            <p class="casestudy-text">
-              With our scaled solution in place, we wanted to see how many concurrent users and rooms it could
-              support.
-              For consistency and comparability, we used the same parameters as when we tested the single-server
-              prototype: [four] users per room, [five] presence updates per user per second, and [one] document update
-              per user per second.
-            </p>
-            <p class="casestudy-text font-bold">
-              [TBA - diagram of final load testing results]
-            </p>
-            <p class="casestudy-text font-bold">
-              [TBA - discussion of final load testing results]
-            </p>
-          </div>
-        </div>
-
-        <div id="section-6" class="section">
-          <h2 class="section-heading" data-section="6">The future of Symphony</h2>
+      <div id="subsection-5.2">
+        <h3 class="subsection-heading" data-subsection="5.2">Prototyping</h3>
+        <p class="casestudy-text">
+          Our first goal when building Symphony was to create a basic prototype of the system. We chose to do this
+          in AWS, which was a natural choice as the biggest player in the cloud provider market with 32% market
+          share as of early 2023.
+        </p>
+        <div id="subsection-5.2.1">
+          <h4 class="subsubsection-heading" data-subsection="5.2.1">Deploying the WebSocket server</h4>
           <p class="casestudy-text">
-            While we were mostly satisfied with our final architecture’s capacity to support [X] rooms, we’ve started
-            to
-            think about how we might be able to do even better.
+            Our starting point for the Symphony backend was y-websocket, a reference WebSocket server for syncing
+            Yjs
+            documents over a WebSocket connection. We deployed the server to Amazon Elastic Compute Cloud (EC2),
+            which
+            is the standard virtual private server offered by AWS.
           </p>
-
-          <div id="subsection-6.1">
-            <h3 class="subsection-heading" data-subsection="6.1">Limitations of Redis pub/sub</h3>
-            <p class="casestudy-text">
-              While our final architecture allows our WebSocket servers to scale horizontally, we still see some
-              duplication of rooms across servers. This inefficiency means that developers are provisioning more
-              resources than are strictly needed to handle their WebSocket traffic, and these resources come at a
-              cost.
-            </p>
+        </div>
+        <div id="subsection-5.2.2">
+          <h4 class="subsubsection-heading" data-subsection="5.2.2">Persisting and retrieving document data</h4>
+          <p class="casestudy-text">
+            Our next step was to modify the server to persist document data to a database so that users would be
+            able
+            to leave a room without losing their work.
+          </p>
+          <p class="casestudy-text">
+            The main decision points here were 1) where to persist the data and 2) when to persist the data.
+          </p>
+          <p class="casestudy-text">
+            For the first point we chose Amazon Simple Storage Service (S3). S3 provides object storage, which is
+            ideal for persisting large amounts of unstructured data such as our room documents.
+          </p>
+          <p class="casestudy-text">
+            For the second, we decided to persist document data to S3 when the last user leaves a room. At this
+            point,
+            the server stores the document in S3 and unloads it from memory, freeing up server resources.
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/client-ec2-server-s3.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
           </div>
-
-          <div id="subsection-6.2">
-            <h3 class="subsection-heading" data-subsection="6.2">Toward a new architecture</h3>
-            <p class="casestudy-text">
-              One design pattern we’ve noticed in the real-time collaborative space is what we’ll call the “single
-              room
-              per container” design. In this approach, each instance of the WebSocket server is responsible for only a
-              single room, and all users for a given room are routed to the same server. Figma, a collaborative web
-              application for interface that uses a custom-built WebSocket backend and conflict resolution mechanism,
-              appears to use this pattern.
-            </p>
-            <blockquote class="blockquote">
-              "Our servers currently spin up a separate process for each multiplayer document which everyone editing
-              that document connects to." <nobr>- Evan Wallace, Figma</nobr>
-            </blockquote>
-            <p class="casestudy-text">
-              A possible advantage of this approach might be improved CPU and memory efficiency. If all traffic for a
-              given room is routed to the same container, there will be no duplication of room states across servers.
-            </p>
+          <p class="casestudy-text">
+            We also need to retrieve S3 data when the server opens up a room. Whenever a user connects to a room and
+            the server does not have the document for that room in memory, it queries S3 to retrieve the data there,
+            if any.
+          </p>
+        </div>
+        <div id="subsection-5.2.3">
+          <h4 class="subsubsection-heading" data-subsection="5.2.3">Persisting and accessing metadata</h4>
+          <p class="casestudy-text">
+            We also wanted the server to persist metadata about each room to give developers visibility into metrics
+            like number of rooms and connections per room. To do this, the server sends metadata about connections
+            and
+            rooms to a PostgreSQL database provisioned in AWS’s Relational Database Service (RDS).
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/client-ec2-server-s3-pg-meta-and-time.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+          <p class="casestudy-text">
+            To access this room metadata, we added GET routes to the server. The dashboard sends HTTP requests to
+            these routes, and the server responds with data such as the number rooms and connections per room that
+            are
+            used to populate the dashboard. A continuous stream of data is also sent from the server to the
+            dashboard
+            client via SSE.
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/dashboard-events-ec2.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+        </div>
+        <div id="subsection-5.2.4">
+          <h4 class="subsubsection-heading" data-subsection="5.2.4">Connecting to the prototype</h4>
+          <p class="casestudy-text">
+            To enable web applications to connect to the Symphony backend, we developed a frontend client library.
+            The
+            library provides an easy-to-use API for developer convenience and utilizes an existing IndexedDB plugin
+            for Yjs to store state locally in the browser. This local storage allows users to work offline and sync
+            their changes when they reconnect.
+          </p>
+        </div>
+        <div id="subsection-5.2.5">
+          <h4 class="subsubsection-heading" data-subsection="5.2.5">From EC2 to ECS</h4>
+          <p class="casestudy-text">
+            With the server deployed to EC2, the developer remains responsible for managing the server–applying
+            security updates, handling logs, etc. We wanted Symphony to abstract away this backend management from
+            the
+            developer, in line with our design philosophy of making an easy-to-use framework.
+          </p>
+          <p class="casestudy-text">
+            With that in mind, we moved our architecture into AWS Elastic Container Service (ECS), a fully managed
+            container orchestration service for deploying, managing, and scaling containerized applications.
+          </p>
+          <p class="casestudy-text">
+            To do this, we first had to containerize our application, and then reference that Docker container in an
+            ECS task definition. The task definition is then referenced by a service definition which indicates how
+            many instances of the container we want to run. ECS also gives you the choice of deploying in EC2 or
+            Fargate mode. Since we wanted to abstract away all instance management from the developer, we chose
+            Fargate.
+          </p>
+          <p class="casestudy-text">
+            Finally, we provisioned an Application Load Balancer (ALB) which serves as a single point of entry to
+            our
+            backend for both the Symphony client and the dashboard client.
+          </p>
+          <p class="casestudy-text">
+            The diagram below shows our completed Symphony backend prototype with a single server instance running
+            in
+            ECS. Note that while ECS is a scalable service, our server isn’t actually scalable yet, for reasons
+            we’ll
+            discuss later.
+          </p>
+          <div class="diagram">
+            <img src="assets/images/diagrams/client-alb-ecs-server-s3-pg.png" />
           </div>
         </div>
       </div>
 
+      <div id="subsection-5.3">
+        <h3 class="subsection-heading" data-subsection="5.3">Load testing the prototype</h3>
+        <p class="casestudy-text">
+          Now that our prototype was up and running, we wanted to test how many users could connect to the
+          Symphony
+          backend at once, under as close to real-life conditions as possible. We also wanted to identify our
+          server’s bottlenecks (especially compute vs memory) to inform our scaling strategy.
+        </p>
+        <div id="subsection-5.3.1">
+          <h4 class="subsubsection-heading" data-subsection="5.3.1">Initial steps</h4>
+          <p class="casestudy-text">
+            We started out by exploring two popular open-source load testing tools, Artillery.io and Graphana k6.
+            While both support WebSocket testing, neither proved to be appropriate for our use case. <strong>[TBA -
+              1-2 sentences on why we didn't use these]</strong>
+          </p>
+        </div>
+        <div id="subsection-5.3.2">
+          <h4 class="subsubsection-heading" data-subsection="5.3.2">Building a testing architecture</h4>
+          <p class="casestudy-text">
+            Given the constraints of the above testing platforms, we decided to write a Node.js application that
+            initiates [500] connections (each connection representing a single user) to the Symphony backend, with a
+            total of [125] rooms ([four users per room]). The connections are established over [X] minutes ([Y users
+            every Z seconds]). We then deployed this application to [multiple] EC2 instances.
+          </p>
+          <div class="diagram">
+            <img src="assets/images/diagrams/load-testing-symphony-server.png" />
+          </div>
+          <p class="casestudy-text">
+            In our testing script, each user would send [one] document update per second, and [five] presence
+            updates
+            per second. While the rate of both updates could vary widely depending on the specific use case, we felt
+            that these were reasonable values to simulate real-world usage (Liveblocks’ default settings throttle
+            user
+            updates to 10 per second, for comparison).
+          </p>
+        </div>
+        <div id="subsection-5.3.3">
+          <h4 class="subsubsection-heading" data-subsection="5.3.3">Testing the prototype</h4>
+          <p class="casestudy-text">
+            We tested our prototype provisioned with a single WebSocket server deployed to a t2.small instance,
+            which
+            has 1vCPU and 2GiB of memory.
+          </p>
+          <p class="casestudy-text font-bold">
+            [TBA - diagram with load testing results]
+          </p>
+          <p class="casestudy-text font-bold">
+            [TBA - discussion of load testing results]
+          </p>
+        </div>
+      </div>
 
-      <script src="javascripts/index.js"></script>
+      <div id="subsection-5.4">
+        <h3 class="subsection-heading" data-subsection="5.4">Scaling</h3>
+        <p class="casestudy-text">
+          With load testing results in hand, we turned to the task of scaling our architecture to accommodate a
+          greater number of users.
+        </p>
+        <p class="casestudy-text">
+          But before we start thinking about how to actually scale our architecture, we’ve got a little
+          housekeeping
+          to take care of.
+        </p>
+        <div id="subsection-5.4.1">
+          <h4 class="subsubsection-heading" data-subsection="5.4.1">Decoupling</h4>
+          <p class="casestudy-text">
+            Our WebSocket server and dashboard server currently reside in the same code. We want to scale the
+            WebSocket server so that our system can support more users, but we don’t need to scale the dashboard
+            server. We therefore extracted the dashboard routes into a separate server, containerized it, and
+            deployed
+            a single instance of it to ECS.
+          </p>
+          <div class="diagram">
+            <img src="assets/images/diagrams/dashboard-client-alb-ecs-server-s3.png" class="w-full h-auto" />
+          </div>
+          <p class="casestudy-text">
+            With that out of the way …
+          </p>
+        </div>
+        <div id="subsection-5.4.2">
+          <h4 class="subsubsection-heading" data-subsection="5.4.2">Scaling with ECS Fargate</h4>
+          <p class="casestudy-text">
+            AWS ECS Fargate offers auto scaling out of the box, based on metrics like average CPU and memory usage.
+            So
+            with our containerized WebSocket server currently deployed to Fargate, isn’t the Symphony backend
+            already
+            scalable?
+          </p>
+          <p class="casestudy-text">
+            Not quite. If we try to scale now, we’ll find that users who are in the same room but connected to
+            different servers are out of sync. Why is that?
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/servers-old-state.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+          <p class="casestudy-text">
+            The problem is that not all WebSocket servers will have the same documents loaded in memory. Imagine
+            that
+            users A and B want to join the same room for a collaboration session. User A joins first and is routed
+            by
+            the ALB to server #1; he begins making some document updates. A little while later, user B joins the
+            same
+            room and is routed to server #2. But user A has been sending updates to server #1. How can server #2
+            know
+            the current state of the document?
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline class="w-full">
+              <source src="assets/videos/old-doc-state.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+        </div>
+        <div id="subsection-5.4.3">
+          <h4 class="subsubsection-heading" data-subsection="5.4.3">Looking to existing solutions</h4>
+          <p class="casestudy-text">
+            This is not a problem unique to the Symphony backend. One common pattern for scaling WebSockets is to
+            have
+            each server connect to Redis channels: to a “publish” channel to send all updates received by the server
+            from users, and to a “subscribe” channel to receive all updates published by other servers. In this way,
+            we can scale our servers horizontally and they will be able to receive all updates they need for their
+            connected users. Indeed, this is how existing attempts to scale Yjs documents with Redis, such as
+            y-redis,
+            have worked.
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline class="w-full">
+              <source src="assets/videos/pub-sub.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+          <p class="casestudy-text">
+            However, we’ve still got a problem.
+          </p>
+          <p class="casestudy-text">
+            When a server receives an incoming connection for a given room for the first time, it doesn’t just need
+            to
+            receive all <strong>future</strong> updates to that room’s state. It also needs to somehow get all
+            <strong>previous</strong> updates to state. If we’re using the traditional Redis pub/sub approach, this
+            means that every server needs to subscribe to Redis for every document, and needs to hold every document
+            in memory, to ensure that the state is there when it needs it–when a user connects and starts
+            collaborating on that state. In other words, we haven’t actually done anything to reduce the memory
+            demands on our servers.
+          </p>
+          <div class="diagram">
+            <img src="assets/images/diagrams/all-servers-all-docs.png" class="w-full" />
+          </div>
+          <p class="casestudy-text">
+            What if we could design the system in such a way that servers don’t need to hold all documents in
+            memory–but instead, only the documents for which they have connected users? In that case, when a server
+            receives a connection for a room for the first time, it would need to get the current document data from
+            somewhere.
+          </p>
+          <p class="casestudy-text">
+            But from where?
+          </p>
+          <p class="casestudy-text">
+            One idea that came to mind was to allow servers to query each other for that initial state. In this way,
+            a
+            server receiving a new connection could get “up to speed” so to speak on the current state of the
+            document, and then subscribe to Redis for all future updates.
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline>
+              <source src="assets/videos/current-state-from-other-server.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+        </div>
+        <div id="subsection-5.4.4">
+          <h4 class="subsubsection-heading" data-subsection="5.4.4">Querying for state</h4>
+          <p class="casestudy-text">
+            If a server is going to get document data from another server, the next question is, how does it know
+            which server to query? We would need to store data–room names and IP addresses–indicating which rooms
+            are
+            being handled by which servers. For this we chose AWS DynamoDB, a serverless NoSQL key-value database.
+          </p>
+          <p class="casestudy-text">
+            When a user is routed to a server that does not have the relevant document in memory, the server queries
+            DynamoDB with the room name.
+          </p>
+          <p class="casestudy-text">
+            If DynamoDB returns an empty set, it means that there aren’t any servers currently handling that room.
+            In
+            this case, the server queries S3 to get persisted data for the room, if any, and then
+            publishes/subscribes
+            to Redis for updates to that room.
+          </p>
+          <p class="casestudy-text">
+            If DynamoDB returns a set containing one or more server IP addresses, the server sends a GET request to
+            the first IP address in the set. The responding server sends the current state of the document, and the
+            requesting server then publishes/subscribes to Redis as usual.
+          </p>
+          <p class="casestudy-text">
+            In either case, the server’s IP address is added to the DynamoDB set for that room name, registering it
+            as
+            one of the servers that can now be queried for the room’s state.
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline class="w-full">
+              <source src="assets/videos/current-doc-state.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+        </div>
+        <div id="subsection-5.4.5">
+          <h4 class="subsubsection-heading" data-subsection="5.4.5">Some more housekeeping</h4>
+          <p class="casestudy-text">
+            There’s one last bit of cleanup that we need to take care of. What happens when the last user for a room
+            disconnects from a server, and the server unloads the relevant document from memory? We don’t want other
+            servers to query it for that state, because it doesn’t have that state any longer.
+          </p>
+          <p class="casestudy-text">
+            To handle this, after the last user connected to a server for a given room disconnects, but before the
+            server backs up the document data to S3 and unloads that data from memory, the server sends a query to
+            DynamoDB to remove its IP address from the set for the relevant room.
+          </p>
+          <div class="diagram">
+            <video autoplay loop muted playsinline class="w-full">
+              <source src="assets/videos/last-connection-close.mp4" type="video/mp4" />
+              Your browser does not support the HTML5 Video element.
+            </video>
+          </div>
+          <p class="casestudy-text">
+            Our final architecture is below:
+          </p>
+          <div class="diagram">
+            <img src="assets/images/diagrams/scaled-cropped.png" class="w-full" />
+          </div>
+        </div>
+      </div>
+
+      <div id="subsection-5.5">
+        <h3 class="subsection-heading" data-subsection="5.5">
+          Load testing the final architecture
+        </h3>
+        <p class="casestudy-text">
+          With our scaled solution in place, we wanted to see how many concurrent users and rooms it could
+          support.
+          For consistency and comparability, we used the same parameters as when we tested the single-server
+          prototype: [four] users per room, [five] presence updates per user per second, and [one] document update
+          per user per second.
+        </p>
+        <p class="casestudy-text font-bold">
+          [TBA - diagram of final load testing results]
+        </p>
+        <p class="casestudy-text font-bold">
+          [TBA - discussion of final load testing results]
+        </p>
+      </div>
+    </div>
+
+    <!-- Section 6 -->
+
+    <div id="section-6" class="section">
+      <h2 class="section-heading" data-section="6">The future of Symphony</h2>
+      <p class="casestudy-text">
+        While we were mostly satisfied with our final architecture’s capacity to support [X] rooms, we’ve started
+        to
+        think about how we might be able to do even better.
+      </p>
+
+      <div id="subsection-6.1">
+        <h3 class="subsection-heading" data-subsection="6.1">Limitations of Redis pub/sub</h3>
+        <p class="casestudy-text">
+          While our final architecture allows our WebSocket servers to scale horizontally, we still see some
+          duplication of rooms across servers. This inefficiency means that developers are provisioning more
+          resources than are strictly needed to handle their WebSocket traffic, and these resources come at a
+          cost.
+        </p>
+      </div>
+
+      <div id="subsection-6.2">
+        <h3 class="subsection-heading" data-subsection="6.2">Toward a new architecture</h3>
+        <p class="casestudy-text">
+          One design pattern we’ve noticed in the real-time collaborative space is what we’ll call the “single
+          room
+          per container” design. In this approach, each instance of the WebSocket server is responsible for only a
+          single room, and all users for a given room are routed to the same server. Figma, a collaborative web
+          application for interface that uses a custom-built WebSocket backend and conflict resolution mechanism,
+          appears to use this pattern.
+        </p>
+        <blockquote class="blockquote">
+          "Our servers currently spin up a separate process for each multiplayer document which everyone editing
+          that document connects to." <nobr>- Evan Wallace, Figma</nobr>
+        </blockquote>
+        <p class="casestudy-text">
+          A possible advantage of this approach might be improved CPU and memory efficiency. If all traffic for a
+          given room is routed to the same container, there will be no duplication of room states across servers.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="javascripts/index.js"></script>
 </body>
 
 </html>
