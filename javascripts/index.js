@@ -16,10 +16,10 @@ const selectSidebarSection = (sectionNumber) => {
   sidebarSections.forEach(sidebarSection => {
     if (sidebarSection.dataset.section === sectionNumber) {
       sidebarSection.classList.remove('font-normal');
-      sidebarSection.classList.add('font-bold');      
+      sidebarSection.classList.add('font-bold');
     }
   });
-}
+};
 
 const selectSidebarSubsection = (subsectionNumber) => {
   sidebarSubsections.forEach(sidebarSubsection => {
@@ -28,7 +28,7 @@ const selectSidebarSubsection = (subsectionNumber) => {
       sidebarSubsection.classList.add('font-bold');
     }
   });
-}
+};
 
 const showSidebarSubsectionList = (sectionNumber) => {
   sidebarSubsectionLists.forEach(list => {
@@ -45,8 +45,8 @@ const unselectAllSidebarSections = () => {
   sidebarSections.forEach(sidebarSection => {
     sidebarSection.classList.remove('font-bold');
     sidebarSection.classList.add('font-normal');
-  })
-}
+  });
+};
 
 const unselectAllSidebarSubsections = () => {
   sidebarSubsections.forEach(sidebarSubsection => {
@@ -68,30 +68,12 @@ const handleSelectSubsection = (subsectionNumber) => {
   unselectAllSidebarSections();
   unselectAllSidebarSubsections();
   hideAllSidebarSubsectionLists();
-  
+
   const sectionNumber = subsectionNumber.split('.')[0];
   selectSidebarSection(sectionNumber);
   showSidebarSubsectionList(sectionNumber);
   selectSidebarSubsection(subsectionNumber);
-}
-
-const handleNewSection = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const sectionNumber = entry.target.dataset.section;
-      handleSelectSection(sectionNumber);
-    }
-  })
 };
-
-const handleNewSubsection = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const subsectionNumber = entry.target.dataset.subsection;
-      handleSelectSubsection(subsectionNumber);
-    }
-  })
-}
 
 const handleShowSidebar = (entries, observer) => {
   if (!entries[0].isIntersecting) {
@@ -102,19 +84,52 @@ const handleShowSidebar = (entries, observer) => {
 };
 
 const handlePageLoad = () => {
-  const sectionObserver = new IntersectionObserver(handleNewSection, { threshold: 1 });
-  sectionHeadings.forEach(heading => {
-    sectionObserver.observe(heading);
-  });
+  // Helper
+  const throttle = (callback, limit) => {
+    let wait = false;
+    return (...args) => {
+      if (!wait) {
+        callback(...args);
+        wait = true;
+        setTimeout(() => {
+          wait = false;
+        }, limit);
+      }
+    };
+  };
 
-  const subsectionObserver = new IntersectionObserver(handleNewSubsection, { threshold: 1 });
-  subsectionHeadings.forEach(subheading => {
-    subsectionObserver.observe(subheading);
-  })
-
+  // Show sidebar
   const introObserver = new IntersectionObserver(handleShowSidebar, { threshold: 0.02 });
   introObserver.observe(intro);
+
+  // Highlight sidebar menu sections
+  let sections = [...sectionHeadings].map(heading => heading.parentElement);
+  let subsections = [...subsectionHeadings].map(heading => heading.parentElement);
+
+  const handleScroll = () => {
+    sections.forEach(section => {
+      if (section.offsetTop <= window.scrollY + 80 * 2) {
+        unselectAllSidebarSections();
+        unselectAllSidebarSubsections();
+        hideAllSidebarSubsectionLists();
+
+        let sectionNumber = section.firstElementChild.dataset.section;
+        selectSidebarSection(sectionNumber);
+        showSidebarSubsectionList(sectionNumber);
+      }
+    });
+
+    subsections.forEach(subsection => {
+      if (subsection.offsetTop <= window.scrollY + 80 * 2) {
+        unselectAllSidebarSubsections();
+
+        let subsectionNumber = subsection.firstElementChild.dataset.subsection;
+        selectSidebarSubsection(subsectionNumber);
+      }
+    });
+  };
+
+  document.addEventListener("scroll", throttle(handleScroll, 100));
 };
 
-
-document.addEventListener("DOMContentLoaded", handlePageLoad)
+document.addEventListener("DOMContentLoaded", handlePageLoad);
