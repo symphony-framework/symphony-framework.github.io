@@ -886,6 +886,10 @@ video {
 
 /* ===== Added ===== */
 
+.ml-96.pl-20.mr-64 {
+  min-width: 60%;
+}
+
 .blockquote {
   padding: 0 20px;
 }
