@@ -960,7 +960,7 @@ header #hamburger-menu {
   text-align: center;
   width: 100%;
   padding: 16px 0 6px;
-  margin: 60px 0 0;
+  margin: 58px 0 0;
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   background-color: white;
@@ -996,11 +996,11 @@ header #hamburger-menu li:hover {
     background-image: url(../assets/images/icons/symphony.png);
     background-size: 25%;
     background-repeat: no-repeat;
-    background-position: center 30%;
+    background-position: center 40%;
   }
 
   .intro-panels:nth-of-type(1) .intro-panel:nth-of-type(2) p {
-    margin-top: 260px;
+    margin-top: 360px;
   }
 
   .fixed-logo {
