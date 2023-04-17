@@ -18,7 +18,7 @@
     <ul class="py-2 flex flex-row border-b h-full items-center">
       <li class="navbar-item">Case Study</li>
       <li class='navbar-item'>Presentation</li>
-      <li class='navbar-item'>Our team</li>
+      <li class='navbar-item'>Our Team</li>
       <li class="navbar-item">Docs</li>
       <li class='navbar-item ml-4'>
         <a target="_blank" href="https://github.com/symphony-hq">
@@ -26,8 +26,18 @@
         </a>
       </li>
     </ul>
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" id="hamburger" fill="none" viewBox="0 0 24 24"
+      stroke="currentColor" style="border: none;">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+    <ul id="hamburger-menu" style="display: none;">
+      <li>Case Study</li>
+      <li>Presentation</li>
+      <li>Our Team</li>
+      <li>Docs</li>
+      <li><a target="_blank" href="https://github.com/symphony-hq">GitHub</a></li>
+    </ul>
   </header>
-
   <div id="intro">
 
     <!-- First intro panel -->
@@ -38,7 +48,7 @@
         <!-- <img class="symphony-logo" src="assets/images/icons/symphony.png" alt="symphony icon"> -->
       </div>
       <div class="intro-panel bg-symphony-background-blue text-gray-50">
-        <p class="text-center w-1/2 text-5xl leading-relaxed">
+        <p class="text-center w-1 text-5xl leading-relaxed">
           Symphony brings real-time collaboration to web applications
         </p>
       </div>
@@ -51,7 +61,7 @@
         <p class="text-5xl">More stuff here</p>
       </div>
       <div class="intro-panel bg-symphony-dark-green text-gray-50">
-        <p class="text-center w-1/2 text-5xl leading-relaxed">
+        <p class="text-center w-1 text-5xl leading-relaxed">
           Even more stuff
         </p>
       </div>
@@ -64,7 +74,7 @@
         <p class="text-5xl">Something else?</p>
       </div>
       <div class="intro-panel bg-symphony-light-blue">
-        <p class="text-center w-1/2 text-5xl leading-relaxed">
+        <p class="text-center w-1 text-5xl leading-relaxed">
           Pretty awesome stuff right here
         </p>
       </div>
@@ -162,7 +172,7 @@
     <div id="section-1" class="section">
       <h2 class='section-heading' data-section="1"></h2>
       <blockquote class='blockquote'>
-        "Alone we can do so little; together we can do so much." <nobr>- Hellen Keller</nobr>
+        "Alone we can do so little; together we can do so much." - Hellen Keller
       </blockquote>
       <p class='casestudy-text'>
         Collaboration has been a key feature of the internet since its earliest days. The history of collaboration on
@@ -205,7 +215,7 @@
       </p>
       <blockquote class="blockquote">"[Real-time collaboration] eliminates the need to export, sync, or email copies
         of
-        files and allows more people to take part in the design process." <nobr>- Evan Wallace, Figma</nobr>
+        files and allows more people to take part in the design process." - Evan Wallace, Figma
       </blockquote>
 
       <div id="subsection-1.1">
@@ -487,8 +497,8 @@
           <blockquote class="blockquote">
             "Unfortunately, implementing OT sucks. There's a million algorithms with different tradeoffs, mostly
             trapped
-            in academic papers. The algorithms are really hard and time consuming to implement correctly." <nobr>-
-              Joseph Gentle, former Google Wave engineer</nobr>
+            in academic papers. The algorithms are really hard and time consuming to implement correctly." -
+            Joseph Gentle, former Google Wave engineer
           </blockquote>
           <h5 class="mini-heading">Conflict-free replicated data types</h5>
           <p class="casestudy-text">
@@ -508,7 +518,7 @@
           </p>
           <blockquote class="blockquote">
             "Even if you have a client-server setup, CRDTs are still worth researching because they provide a
-            well-studied, solid foundation to start with."" <nobr>- Evan Wallace, Figma</nobr>
+            well-studied, solid foundation to start with."" - Evan Wallace, Figma
           </blockquote>
           <p class="casestudy-text">
             Early CRDTs were found to be relatively slow compared to their OT counterparts. Another potential downside
@@ -518,9 +528,9 @@
           <blockquote class="blockquote">
             "Because of how CRDTs work, documents grow without bound. … Can you ever delete that data? Probably not.
             And
-            that data can’t just sit on disk. It needs to be loaded into memory to handle edits." <nobr>- Joseph
-              Gentle,
-              former Google Wave engineer</nobr>
+            that data can’t just sit on disk. It needs to be loaded into memory to handle edits." - Joseph
+            Gentle,
+            former Google Wave engineer
           </blockquote>
           <p class="casestudy-text">
             Recent work by Martin Kleppmann and others has made CRDTs faster and less memory hungry. These
@@ -581,7 +591,7 @@
             including Liveblocks, a provider of real-time collaboration as a service:
           </p>
           <blockquote class="blockquote">
-            "A room is the space people can join to collaborate together."" <nobr>- Liveblocks</nobr>
+            "A room is the space people can join to collaborate together."" - Liveblocks
           </blockquote>
           <p class="casestudy-text">
             A <strong>document</strong> is the shared state that users are collaborating on. Keep in mind that
@@ -742,7 +752,7 @@
           the backend and conflict resolution and let the developer focus on their application itself.
         </p>
         <blockquote class="blockquote">
-          "Because building low-latency, collaborative experiences is hard!" <nobr>- Microsoft</nobr>
+          "Because building low-latency, collaborative experiences is hard!" - Microsoft
         </blockquote>
         <div id="subsection-3.2.1">
           <h4 class="subsubsection-heading" data-subsection="3.2.1">Liveblocks</h4>
@@ -1363,7 +1373,7 @@
         </p>
         <blockquote class="blockquote">
           "Our servers currently spin up a separate process for each multiplayer document which everyone editing
-          that document connects to." <nobr>- Evan Wallace, Figma</nobr>
+          that document connects to." - Evan Wallace, Figma
         </blockquote>
         <p class="casestudy-text">
           A possible advantage of this approach might be improved CPU and memory efficiency. If all traffic for a

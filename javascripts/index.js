@@ -5,6 +5,8 @@ const sidebarSubsectionLists = document.querySelectorAll('.sidebar-subsection-li
 const sidebarSubsections = document.querySelectorAll('.sidebar-subsection');
 const sidebar = document.querySelector('#sidebar');
 const intro = document.querySelector('#intro');
+const hamburger = document.querySelector("#hamburger");
+const hamburgerMenu = document.querySelector("#hamburger-menu");
 
 const hideAllSidebarSubsectionLists = () => {
   sidebarSubsectionLists.forEach(list => {
@@ -32,9 +34,7 @@ const selectSidebarSubsection = (subsectionNumber) => {
 
 const showSidebarSubsectionList = (sectionNumber) => {
   sidebarSubsectionLists.forEach(list => {
-    console.log(list.dataset.section, sectionNumber);
     if (list.dataset.section === sectionNumber) {
-      console.log('here')
       list.classList.remove('hidden');
       list.classList.add('block');
     }
@@ -130,6 +130,17 @@ const handlePageLoad = () => {
   };
 
   document.addEventListener("scroll", throttle(handleScroll, 100));
+
+  // Hmaburger menu
+  hamburger.addEventListener("click", () => {
+    if (hamburgerMenu.style.display === "none") {
+      hamburger.style.border = "1px solid #15376e";
+      hamburgerMenu.style.display = "block";
+    } else {
+      hamburger.style.border = "none";
+      hamburgerMenu.style.display = "none";
+    }
+  });
 };
 
 document.addEventListener("DOMContentLoaded", handlePageLoad);

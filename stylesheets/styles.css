@@ -417,45 +417,6 @@ video {
   height: auto;
 }
 
-header {
-  padding: 10px 0;
-}
-
-header ul {
-  border-bottom: none;
-  margin-right: 40px;
-}
-
-/* List item hover effects */
-
-.font-bold:hover,
-.font-bold:hover .font-bold:hover,
-.font-bold li {
-  text-shadow: none;
-}
-
-.font-bold li:hover,
-ul li:hover {
-  text-shadow: 0 0 1px #15376e;
-  cursor: pointer;
-}
-
-/* Logos */
-
-.symphony-logo {
-  min-width: 200px;
-  max-width: 200px;
-}
-
-.fixed-logo {
-  background-image: url(../assets/images/icons/symphony.png);
-  background-attachment: fixed;
-  background-size: 25%;
-  background-repeat: no-repeat;
-  background-position: calc(50% / 3) calc(50% + 2rem);
-  background-blend-mode: screen;
-}
-
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
 [hidden] {
@@ -591,6 +552,7 @@ ul li:hover {
     max-width: 1536px;
   }
 }
+
 
 .blockquote {
   margin-top: 2rem;
@@ -920,4 +882,169 @@ video {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+/* ===== Added ===== */
+
+.blockquote {
+  padding: 0 20px;
+}
+
+.intro-panel p {
+  font-size: 1.5rem;
+}
+
+#intro .symphony-logo {
+  min-width: 100px;
+}
+
+header {
+  padding: 10px 0;
+}
+
+header ul {
+  border-bottom: none;
+  margin-right: 2.5rem;
+}
+
+/* List item hover effects */
+
+.font-bold:hover,
+.font-bold:hover .font-bold:hover,
+.font-bold li {
+  text-shadow: none;
+}
+
+.font-bold li:hover,
+ul li:hover {
+  text-shadow: 0 0 1px #15376e;
+  cursor: pointer;
+}
+
+/* Logos */
+
+.symphony-logo {
+  width: 200px;
+}
+
+.fixed-logo {
+  background-image: url(../assets/images/icons/symphony.png);
+  background-attachment: fixed;
+  background-size: 25%;
+  background-repeat: no-repeat;
+  background-position: calc(50% / 3) calc(50% + 2rem);
+  background-blend-mode: screen;
+}
+
+.intro-panels:nth-child(1) .symphony-logo {
+  display: none;
+}
+
+header #hamburger {
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  margin-right: 40px;
+  border-radius: 8px;
+  display: none;
+}
+
+header #hamburger:hover {
+  background-color: #efefef;
+  cursor: pointer;
+}
+
+header #hamburger-menu {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  padding: 16px 0 6px;
+  margin: 60px 0 0;
+  border-top: 1px solid lightgray;
+  background-color: white;
+}
+
+header #hamburger-menu li {
+  padding: 6px 0;
+  margin: 6px;
+  border-radius: 6px;
+}
+
+header #hamburger-menu li:hover {
+  background-color: #efefef;
+  text-shadow: 0 0 0.01px #15376e;
+}
+
+/* Responsive */
+@media (max-width:1020px) {
+  body {
+    overflow-wrap: break-word;
+  }
+
+  .intro-panels {
+    flex-direction: column;
+  }
+
+  .intro-panels:nth-of-type(1) .intro-panel:nth-of-type(1) {
+    display: none;
+  }
+
+  .intro-panels:nth-of-type(1) .intro-panel:nth-of-type(2) {
+    background-image: url(../assets/images/icons/symphony.png);
+    background-size: 25%;
+    background-repeat: no-repeat;
+    background-position: center 30%;
+  }
+
+  .intro-panels:nth-of-type(1) .intro-panel:nth-of-type(2) p {
+    margin-top: 260px;
+  }
+
+  .fixed-logo {
+    display: none;
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  .ml-96.pl-20.mr-64 {
+    width: 100%;
+    padding: 0 40px;
+    margin: 0 auto;
+  }
+
+  .intro-panel {
+    flex-direction: column;
+  }
+
+  #intro .symphony-logo {
+    margin-bottom: 80px;
+    display: block;
+  }
+}
+
+@media (max-width:860px) {
+  header .py-2 {
+    display: none;
+  }
+
+  header #hamburger {
+    display: block;
+  }
+
+  .ml-96.pl-20.mr-64 {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  header #hamburger {
+    margin-right: 20px;
+  }
+
+  header a:first-of-type {
+    margin-left: 20px;
+  }
 }
