@@ -916,8 +916,13 @@ header ul {
 
 .font-bold:hover,
 .font-bold:hover .font-bold:hover,
-.font-bold li {
+.font-bold li,
+.casestudy-list-item:hover {
   text-shadow: none;
+}
+
+.casestudy-list-item:hover {
+  cursor: default;
 }
 
 .font-bold li:hover,
@@ -981,6 +986,10 @@ header #hamburger-menu li {
 header #hamburger-menu li:hover {
   background-color: #efefef;
   text-shadow: 0 0 0.01px #15376e;
+}
+
+#final-architecture {
+  margin-top: 60px;
 }
 
 /* Responsive */
