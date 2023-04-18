@@ -44,8 +44,6 @@
 
     <div class="intro-panels">
       <div class="intro-panel fixed-logo">
-        <!-- <img src="./assets/images/6.png" alt="Symphony logo" class="w-10"/> -->
-        <!-- <img class="symphony-logo" src="assets/images/icons/symphony.png" alt="symphony icon"> -->
       </div>
       <div class="intro-panel bg-symphony-background-blue text-gray-50">
         <p class="text-center w-1 text-5xl leading-relaxed">
@@ -57,10 +55,7 @@
     <!-- Second intro panel -->
 
     <div class="intro-panels">
-      <div class="intro-panel bg-symphony-dark-green fixed-logo">
-        <p class="text-5xl">More stuff here</p>
-      </div>
-      <div class="intro-panel bg-symphony-dark-green text-gray-50">
+      <div class="intro-panel bg-symphony-dark-green text-gray-50 fixed-logo">
         <p class="text-center w-1 text-5xl leading-relaxed">
           Even more stuff
         </p>
@@ -70,10 +65,7 @@
     <!-- Third intro panel -->
 
     <div class="intro-panels">
-      <div class="intro-panel bg-symphony-light-blue text-gray-50 fixed-logo">
-        <p class="text-5xl">Something else?</p>
-      </div>
-      <div class="intro-panel bg-symphony-light-blue">
+      <div class="intro-panel bg-symphony-light-blue fixed-logo">
         <p class="text-center w-1 text-5xl leading-relaxed">
           Pretty awesome stuff right here
         </p>
@@ -309,7 +301,8 @@
         <div id="subsection-2.1.1">
           <h4 class="subsubsection-heading" data-subsection="2.1.1">WebRTC</h4>
           <p class="casestudy-text">
-            <strong>WebRTC</strong>, which stands for Web Real-Time Communication, is an open-source project that allows
+            <strong>WebRTC</strong>, which stands for Web Real-Time Communication, is an open-source project that
+            allows
             web browsers and mobile applications to engage in peer-to-peer real-time communication via APIs. The
             connection between peers is established with the use of a signaling server that acts as an initial
             intermediary, allowing two clients to find each other and negotiate connection parameters. Once the
@@ -330,7 +323,8 @@
         <div id="subsection-2.1.2">
           <h4 class="subsubsection-heading" data-subsection="2.1.2">WebSocket</h4>
           <p class="casestudy-text">
-            <strong>WebSocket</strong> is a protocol that provides a two-way channel of real-time communication between
+            <strong>WebSocket</strong> is a protocol that provides a two-way channel of real-time communication
+            between
             a
             client and a server. The connection is established via the WebSocket handshake:
           </p>
@@ -355,7 +349,8 @@
           <p class="casestudy-text">
             WebSocket provides better data integrity than WebRTC due to the underlying reliability of TCP. It is
             therefore
-            often used in situations where delivering accurate data is paramount (e.g. real-time dashboards, stock price
+            often used in situations where delivering accurate data is paramount (e.g. real-time dashboards, stock
+            price
             tickers) and where minimizing latency is less critical (e.g. live chat).
           </p>
         </div>
@@ -364,7 +359,8 @@
             Real-time infrastructure in Symphony
           </h4>
           <p class="casestudy-text">
-            As we have seen, both WebRTC and WebSocket have trade-offs that make each better for some use cases and less
+            As we have seen, both WebRTC and WebSocket have trade-offs that make each better for some use cases and
+            less
             suitable for others. When designing Symphony, we thought about which of these two technologies would be
             better
             for our use case.
@@ -372,7 +368,8 @@
           <p class="casestudy-text">
             Applications that would use Symphony are likely already using a client-server model. We also knew that we
             wanted to persist data - both the data users are working on, as well as metadata about how users are
-            collaborating. To do this, a server would be needed. As a protocol based on a client-server model, WebSocket
+            collaborating. To do this, a server would be needed. As a protocol based on a client-server model,
+            WebSocket
             was therefore a natural choice for us.
           </p>
         </div>

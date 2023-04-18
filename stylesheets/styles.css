@@ -817,6 +817,7 @@ video {
 .bg-symphony-light-blue {
   --tw-bg-opacity: 1;
   background-color: rgb(65 201 249 / var(--tw-bg-opacity));
+  background-blend-mode: scren;
 }
 
 .bg-white {
@@ -1008,7 +1009,12 @@ header #hamburger-menu li:hover {
   }
 
   .fixed-logo {
-    display: none;
+    background-image: none;
+    background-attachment: none;
+    background-size: 0;
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-blend-mode: none;
   }
 
   #sidebar {
