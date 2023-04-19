@@ -1069,3 +1069,11 @@ header #hamburger-menu li:hover {
     margin-left: 20px;
   }
 }
+
+@media (max-width: 500px) {
+
+  img,
+  video {
+    width: 100%;
+  }
+}
