@@ -926,7 +926,8 @@ header ul {
 }
 
 .font-bold li:hover,
-ul li:hover {
+ul li:hover,
+.casestudy-list-item a:hover {
   text-shadow: 0 0 1px #15376e;
   cursor: pointer;
 }
@@ -1075,11 +1076,5 @@ header #hamburger-menu li:hover {
   img,
   video {
     width: 100%;
-  }
-}
-
-@media (max-width:500px) and (orientation:landscape) {
-  .intro-panels {
-    height: 200vh;
   }
 }
