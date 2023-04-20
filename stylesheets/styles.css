@@ -1077,3 +1077,9 @@ header #hamburger-menu li:hover {
     width: 100%;
   }
 }
+
+@media (max-width:500px) and (orientation:landscape) {
+  .intro-panels {
+    height: 200vh;
+  }
+}
