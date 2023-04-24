@@ -917,11 +917,13 @@ header ul {
 .font-bold:hover,
 .font-bold:hover .font-bold:hover,
 .font-bold li,
-.casestudy-list-item:hover {
+.casestudy-list-item:hover,
+#our-team ul.people>li:hover {
   text-shadow: none;
 }
 
-.casestudy-list-item:hover {
+.casestudy-list-item:hover,
+#our-team ul.people>li:hover {
   cursor: default;
 }
 
@@ -993,6 +995,115 @@ header #hamburger-menu li:hover {
   margin-top: 60px;
 }
 
+/* Our Team */
+#our-team>div {
+  background-color: var(--gray-900);
+}
+
+#our-team>div>div {
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 6rem 2rem;
+}
+
+#our-team>div>div>*+* {
+  margin-top: 3rem;
+}
+
+#our-team>div>div>div {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+#our-team ul.people {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#our-team>div>div>div h2 {
+  color: var(--white);
+  font-size: 1.875rem;
+  font-weight: 800;
+  line-height: 2.25rem;
+}
+
+#our-team>div>div>div p {
+  color: var(--gray-300);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+#our-team>div>div>div>*+* {
+  margin-top: 1.25rem;
+}
+
+#our-team ul.people>li {
+  margin-top: 1rem;
+}
+
+#our-team .profile {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+#our-team .profile>*+* {
+  margin-top: 1.5rem;
+}
+
+#our-team .profile>div>*+* {
+  margin-top: 0.5rem;
+}
+
+#our-team .profile>div>div {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.75rem;
+}
+
+#our-team .profile>div>div>*+* {
+  margin-top: 0.25rem;
+}
+
+#our-team .profile>div>div>h3 {
+  color: var(--white);
+}
+
+#our-team .profile>div>div>p {
+  color: var(--ekko-teal);
+}
+
+#our-team .social {
+  display: flex;
+  justify-content: center;
+}
+
+#our-team .social>*+* {
+  margin-left: 1rem;
+}
+
+#our-team .social li {
+  color: var(--gray-400);
+  width: 1.75rem;
+  margin-top: 0.25rem;
+}
+
+#our-team .social a {
+  color: var(--gray-400);
+  font-size: 1.5rem;
+}
+
+#our-team .social a:hover {
+  color: var(--gray-300);
+}
+
+#our-team img {
+  border-radius: 5rem;
+  height: 10rem;
+  width: 10rem;
+  margin: 0 auto;
+}
+
 /* Responsive */
 @media (max-width:1020px) {
   body {
@@ -1045,6 +1156,29 @@ header #hamburger-menu li:hover {
     margin-bottom: 80px;
     display: block;
   }
+
+  #our-team>div>div>div {
+    max-width: none;
+  }
+
+  #our-team ul.people {
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #our-team>div>div {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  #our-team>div>div>div>*+* {
+    margin-top: 1rem;
+  }
+
+  #our-team>div>div>div h2 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 @media (max-width:860px) {
@@ -1059,6 +1193,22 @@ header #hamburger-menu li:hover {
   .ml-96.pl-20.mr-64 {
     padding: 0 20px;
   }
+
+  #our-team>div>div>div {
+    max-width: 36rem;
+  }
+}
+
+@media (max-width: 640px) {
+
+  img,
+  video {
+    width: 100%;
+  }
+
+  #our-team ul.people {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 360px) {
@@ -1068,13 +1218,5 @@ header #hamburger-menu li:hover {
 
   header a:first-of-type {
     margin-left: 20px;
-  }
-}
-
-@media (max-width: 500px) {
-
-  img,
-  video {
-    width: 100%;
   }
 }
