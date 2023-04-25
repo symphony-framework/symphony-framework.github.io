@@ -1104,6 +1104,23 @@ header #hamburger-menu li:hover {
   margin: 0 auto;
 }
 
+
+div#single-player-demo {
+  justify-content: center;
+}
+
+div#multiplayer-demo {
+  display: flex;
+  justify-content: space-between;
+}
+
+iframe {
+  box-sizing: border-box;
+  border: 5px #41c9f9 solid;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+
 /* Responsive */
 @media (max-width:1020px) {
   body {
