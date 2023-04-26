@@ -232,7 +232,7 @@
         files and allows more people to take part in the design process." - Evan Wallace, Figma
       </blockquote>
 
-      <div id="subsection-1.1">
+      <div id="subsection-1.1" class="subsection" class="subsection">
         <h3 class="subsection-heading" data-subsection="1.1">Introducing Symphony</h3>
         <p class='casestudy-text'>
           <strong>Symphony</strong> is a framework for providing real-time collaboration functionality to web
@@ -335,7 +335,7 @@
         data exchange over the web, two protocols in particular merit our consideration:
         <strong>WebRTC</strong> and <strong>WebSocket</strong>.
       </p>
-      <div id="subsection-2.1">
+      <div id="subsection-2.1" class="subsection">
         <h3 class="subsection-heading" data-subsection="2.1">WebRTC</h3>
         <p class="casestudy-text">
           <strong>WebRTC</strong>, which stands for Web Real-Time Communication, is an open-source project that allows
@@ -359,7 +359,7 @@
           especially attractive choice for video and audio streaming.
         </p>
       </div>
-      <div id="subsection-2.2">
+      <div id="subsection-2.2" class="subsection">
         <h3 class="subsection-heading" data-subsection="2.2">WebSocket</h3>
         <p class="casestudy-text">
           <strong>WebSocket</strong> is a protocol that provides a two-way channel of real-time communication between a
@@ -396,7 +396,7 @@
           chat).
         </p>
       </div>
-      <div id="subsection-2.3">
+      <div id="subsection-2.3" class="subsection">
         <h3 class="subsection-heading" data-subsection="2.3">Real-Time Infrastructure in Symphony</h3>
         <p class="casestudy-text">
           As we have seen, both WebRTC and WebSocket have trade-offs that make each better for some use cases and less
@@ -468,7 +468,7 @@
       <p class="casestudy-text">
         Let’s now review some concepts that are critical to understanding how online collaboration works.
       </p>
-      <div id="subsection-3.1">
+      <div id="subsection-3.1" class="subsection">
         <h3 class="subsection-heading" data-subsection="3.1">Rooms</h3>
         <div class="diagram">
           <img src="assets/images/diagrams/rooms.png" class="w-full" />
@@ -491,7 +491,7 @@
           with key/value pairs that represent drawn objects on a whiteboard, for example.
         </p>
       </div>
-      <div id="subsection-3.2">
+      <div id="subsection-3.2" class="subsection">
         <h3 class="subsection-heading" data-subsection="3.2">Presence</h3>
         <p class="casestudy-text">
           When collaborating with others, it is useful to see not only the current state of the document but also which
@@ -518,7 +518,7 @@
           collaboration. Importantly, presence data is ephemeral and does not need to be persisted in the backend.
         </p>
       </div>
-      <div id="subsection-3.3">
+      <div id="subsection-3.3" class="subsection">
         <h3 class="subsection-heading" data-subsection="3.3">Undo/Redo</h3>
         <p class="casestudy-text">
           Another concept worth discussing when it comes to collaborative applications is the ability of users to
@@ -567,7 +567,7 @@
           When Bob clicks “Undo”, his color change to the circle is reverted, but Alice’s red triangle remains in place.
         </p>
       </div>
-      <div id="subsection-3.4">
+      <div id="subsection-3.4" class="subsection">
         <h3 class="subsection-heading" data-subsection="3.4">Conflict and Resolution</h3>
         <p class="casestudy-text">
           Turning back to Alice and Bob’s document, let’s imagine that Alice and Bob make different changes to the same
@@ -768,7 +768,7 @@
       </p>
       <p class='casestudy-text'>
         Next, we’ll need a means of resolving merge conflicts.
-      </p>      
+      </p>
       <p class='casestudy-text'>
         Ideally, we will also have a way of persisting room state. When users leave a room, they probably don’t want to
         lose all
@@ -795,7 +795,7 @@
         What then are the developer’s options for obtaining this functionality and related infrastructure?
       </p>
 
-      <div id="subsection-4.1">
+      <div id="subsection-4.1" class="subsection">
         <h3 class="subsection-heading" data-subsection="4.1">Do-It-Yourself (DIY)</h3>
         <p class='casestudy-text'>
           One option is for the developer to implement or source each of these components separately and stitch them
@@ -822,7 +822,7 @@
         </p>
       </div>
 
-      <div id="subsection-4.2">
+      <div id="subsection-4.2" class="subsection">
         <h3 class="subsection-heading" data-subsection="4.2">Real-Time Collaboration as a Service</h3>
         <p class='casestudy-text'>
           Building out your own backend to manage websocket connections and implementing or integrating a means of
@@ -834,7 +834,7 @@
         <blockquote class="blockquote">
           "Because building low-latency, collaborative experiences is hard!" - Microsoft
         </blockquote>
-        <div id="subsection-4.2.1">
+        <div id="subsection-4.2.1" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="4.2.1">Liveblocks</h4>
           <p class="casestudy-text">
             Liveblocks is a major player in this space that provides an all-in-one solution for developers wishing to
@@ -846,7 +846,7 @@
             however: for an application with up to 2,000 monthly active users, the price is $299 as of this writing.
           </p>
         </div>
-        <div id="subsection-4.2.2">
+        <div id="subsection-4.2.2" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="4.2.2">Fluid Framework</h4>
           <p class="casestudy-text">
             Fluid Framework is an open-source, cloud-agnostic framework for real-time collaboration, developed by
@@ -868,7 +868,7 @@
         </div>
       </div>
 
-      <div id="subsection-4.3">
+      <div id="subsection-4.3" class="subsection">
         <h3 class="subsection-heading" data-subsection="4.3">Where Does Symphony Fit In?</h3>
         <p class='casestudy-text'>
           We drew inspiration from both Liveblocks and Fluid Framework. Our goal was to build a framework that
@@ -914,7 +914,7 @@
     <div id="section-5" class="section">
       <h2 class="section-heading" data-section="5">Building Symphony</h2>
 
-      <div id="subsection-5.1">
+      <div id="subsection-5.1" class="subsection">
         <h3 class="subsection-heading" data-subsection="5.1">Design Philosophy</h3>
         <p class="casestudy-text">
           When designing Symphony, our decisions were informed at every step of the way by the fundamental problem we
@@ -934,11 +934,13 @@
           persisting state so that developers would be free to focus on their applications.
         </p>
         <p class="casestudy-text">
-          Finally, we wanted the framework to provide capacity comparable to the highest level of Liveblocks’ Pro tier, which supports up to 25,000 monthly active users. Assuming 10%-30% of MAUs online at any given time, and choosing to err on the high side, we arrived at a goal of 8,000 concurrent active users.
+          Finally, we wanted the framework to provide capacity comparable to the highest level of Liveblocks’ Pro tier,
+          which supports up to 25,000 monthly active users. Assuming 10%-30% of MAUs online at any given time, and
+          choosing to err on the high side, we arrived at a goal of 8,000 concurrent active users.
         </p>
       </div>
 
-      <div id="subsection-5.2">
+      <div id="subsection-5.2" class="subsection">
         <h3 class="subsection-heading" data-subsection="5.2">Prototyping</h3>
         <p class="casestudy-text">
           Our first goal when building Symphony was to create a basic prototype of the system. We chose to do this in
@@ -946,7 +948,7 @@
           was a natural choice as the biggest player in the cloud provider market with 32% market share as of early
           2023.
         </p>
-        <div id="subsection-5.2.1">
+        <div id="subsection-5.2.1" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.2.1">Deploying the WebSocket Server</h4>
           <p class="casestudy-text">
             Since we are using the WebSocket protocol for real-time data transfer, we will need a WebSocket server to
@@ -960,7 +962,7 @@
             server offered by AWS.
           </p>
         </div>
-        <div id="subsection-5.2.2">
+        <div id="subsection-5.2.2" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.2.2">Persisting and Retrieving Document Data</h4>
           <p class="casestudy-text">
             When a collaboration session ends, users will likely want to come back later and continue where they left
@@ -1015,7 +1017,7 @@
             room in memory, the server needs to query S3 for that data and retrieve it, if it exists.
           </p>
         </div>
-        <div id="subsection-5.2.3">
+        <div id="subsection-5.2.3" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.2.3">Persisting and Accessing Metadata</h4>
           <p class="casestudy-text">
             Now we have a way of establishing WebSocket connections between users and the server, and a way to persist
@@ -1056,7 +1058,7 @@
             </video>
           </div>
         </div>
-        <div id="subsection-5.2.4">
+        <div id="subsection-5.2.4" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.2.4">Connecting to the Prototype</h4>
           <p class="casestudy-text">
             We now have the basic components of the Symphony backend in place: a WebSocket server to exchange document
@@ -1083,7 +1085,7 @@
             sent to the server.
           </p>
         </div>
-        <div id="subsection-5.2.5">
+        <div id="subsection-5.2.5" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.2.5">From EC2 to ECS</h4>
           <p class="casestudy-text">
             With the server deployed to EC2, the developer remains responsible for managing the server–applying security
@@ -1127,7 +1129,7 @@
         </div>
       </div>
 
-      <div id="subsection-5.3">
+      <div id="subsection-5.3" class="subsection">
         <h3 class="subsection-heading" data-subsection="5.3">Load Testing the Prototype</h3>
         <p class="casestudy-text">
           Now that our prototype was up and running, we wanted to test how many users could connect to a single instance
@@ -1136,7 +1138,7 @@
           bottlenecks
           (especially compute vs memory) to inform our scaling strategy.
         </p>
-        <div id="subsection-5.3.1">
+        <div id="subsection-5.3.1" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.3.1">Setting Up a Testing Environment</h4>
           <p class="casestudy-text">
             We first needed a way to establish a large number of user connections, with each virtual user sending
@@ -1151,7 +1153,7 @@
             <img src="assets/images/diagrams/load-testing-symphony-server.png" class="w-full" />
           </div>
         </div>
-        <div id="subsection-5.3.2">
+        <div id="subsection-5.3.2" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.3.2">Testing the Prototype</h4>
           <p class="casestudy-text">
             For the test itself, we provisioned a single WebSocket server with 1vCPU and 4GB of memory. We configured
@@ -1209,7 +1211,7 @@
         </div>
       </div>
 
-      <div id="subsection-5.4">
+      <div id="subsection-5.4" class="subsection">
         <h3 class="subsection-heading" data-subsection="5.4">Scaling</h3>
         <p class="casestudy-text">
           With load testing results in hand, we turned to the task of scaling out our architecture to accommodate a
@@ -1221,7 +1223,7 @@
           take care
           of.
         </p>
-        <div id="subsection-5.4.1">
+        <div id="subsection-5.4.1" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.4.1">Decoupling</h4>
           <p class="casestudy-text">
             Our WebSocket server and dashboard server currently reside in the same code. We want to scale the WebSocket
@@ -1237,7 +1239,7 @@
             With that out of the way …
           </p>
         </div>
-        <div id="subsection-5.4.2">
+        <div id="subsection-5.4.2" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.4.2">Scaling with ECS Fargate</h4>
           <p class="casestudy-text">
             AWS ECS Fargate offers auto scaling out of the box, based on metrics like average CPU and memory usage. So
@@ -1276,7 +1278,7 @@
             to retrieve the
             current room state.</em>
         </div>
-        <div id="subsection-5.4.3">
+        <div id="subsection-5.4.3" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.4.3">Looking to Existing Solutions</h4>
           <p class="casestudy-text">
             This is not a problem unique to the Symphony backend. One common pattern for scaling WebSockets is to have
@@ -1335,7 +1337,7 @@
             </video>
           </div>
         </div>
-        <div id="subsection-5.4.4">
+        <div id="subsection-5.4.4" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.4.4">Querying for State</h4>
           <p class="casestudy-text">
             If a server is going to get document data from another server, the next question is, how does it know which
@@ -1345,7 +1347,10 @@
             servers.
           </p>
           <p class="casestudy-text">
-            For this we chose AWS DynamoDB, a serverless NoSQL key-value database. While it might seem tempting to use Redis for both the pub/sub messaging system and the IP address data store, we decided against it. By using DynamoDB we could separate those concerns, leading to a cleaner architecture and preventing a potential overloading of Redis with multiple responsibilities.
+            For this we chose AWS DynamoDB, a serverless NoSQL key-value database. While it might seem tempting to use
+            Redis for both the pub/sub messaging system and the IP address data store, we decided against it. By using
+            DynamoDB we could separate those concerns, leading to a cleaner architecture and preventing a potential
+            overloading of Redis with multiple responsibilities.
           </p>
           <p class="casestudy-text">
             When a user is routed to a server that does not have the relevant document in memory, the server queries
@@ -1382,7 +1387,7 @@
             </video>
           </div>
         </div>
-        <div id="subsection-5.4.5">
+        <div id="subsection-5.4.5" class="subsection">
           <p class="casestudy-text">
             Our system is now capable of functioning with multiple WebSocket server instances deployed, but we don’t yet
             have any
@@ -1400,7 +1405,7 @@
             scale in when it is lower than that number.
           </p>
         </div>
-        <div id="subsection-5.4.6">
+        <div id="subsection-5.4.6" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.4.6">Deregistering Servers</h4>
           <p class="casestudy-text">
             There’s one last bit of cleanup that we need to take care of. What happens when the last user for a room
@@ -1433,7 +1438,7 @@
         </div>
       </div>
 
-      <div id="subsection-5.5">
+      <div id="subsection-5.5" class="subsection">
         <h3 class="subsection-heading" data-subsection="5.5">
           Load Testing the Final Architecture
         </h3>
@@ -1473,7 +1478,9 @@
           the instance with the least number of outstanding requests, taking the load off overloaded servers.
         </p>
         <p class="casestudy-text">
-          We ran our test again with 1,200 virtual users, and saw no issues this time. We then continued adding users and at 10,000 virtual users, CPU utilization for the cluster remained near the 50 percent target, without any server failures observed. 
+          We ran our test again with 1,200 virtual users, and saw no issues this time. We then continued adding users
+          and at 10,000 virtual users, CPU utilization for the cluster remained near the 50 percent target, without any
+          server failures observed.
         </p>
       </div>
     </div>
@@ -1488,7 +1495,7 @@
         about how we might be able to do even better.
       </p>
 
-      <div id="subsection-6.1">
+      <div id="subsection-6.1" class="subsection">
         <h3 class="subsection-heading" data-subsection="6.1">Limitations of Redis Pub/Sub</h3>
         <p class="casestudy-text">
           Our final architecture allows our WebSocket servers to scale horizontally, but we still see some duplication
@@ -1499,7 +1506,7 @@
         </p>
       </div>
 
-      <div id="subsection-6.2">
+      <div id="subsection-6.2" class="subsection">
         <h3 class="subsection-heading" data-subsection="6.2">Toward a New Architecture</h3>
         <p class="casestudy-text">
           One design pattern we’ve noticed in the real-time collaborative space is what we’ll call the “single room per

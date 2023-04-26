@@ -657,6 +657,11 @@ img {
   width: 50%;
 }
 
+.section,
+.subsection {
+  scroll-margin-top: 100px;
+}
+
 .subsection-heading {
   margin-bottom: 2.5rem;
   margin-top: 3rem;
