@@ -111,6 +111,15 @@ a {
   text-decoration: inherit;
 }
 
+.casestudy-text > a {
+  text-decoration: underline;
+  color: rgba(37, 99, 235);
+}
+
+.casestudy-text > a:visited {
+  color: rgba(96, 165, 250);
+}
+
 /*
 Add the correct font weight in Edge and Safari.
 */
