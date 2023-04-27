@@ -8,6 +8,7 @@ const intro = document.querySelector('#intro');
 const hamburger = document.querySelector("#hamburger");
 const hamburgerMenu = document.querySelector("#hamburger-menu");
 const ourTeam = document.querySelector("#our-team");
+const presentation = document.querySelector('#presentation');
 
 const hideAllSidebarSubsectionLists = () => {
   sidebarSubsectionLists.forEach(list => {
@@ -102,7 +103,7 @@ const handlePageLoad = () => {
   // Show or hide sidebar
   const introAndOutroObserver = new IntersectionObserver(handleShowSidebar, { threshold: 0.05 });
   introAndOutroObserver.observe(intro);
-  introAndOutroObserver.observe(ourTeam);
+  introAndOutroObserver.observe(presentation);
 
   // Highlight sidebar menu sections
   let sections = [...sectionHeadings].map(heading => heading.parentElement);
