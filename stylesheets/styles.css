@@ -1065,6 +1065,15 @@ header #hamburger-menu li:hover {
   margin-top: 60px;
 }
 
+#presentation {
+  background-color: rgb(236, 234, 234);
+  padding: 5rem 2rem;
+}
+
+#presentation-heading {
+  padding-bottom: 3rem;
+}
+
 /* Our Team */
 #our-team>div {
   background-color: var(--gray-900);
@@ -1089,13 +1098,6 @@ header #hamburger-menu li:hover {
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-#our-team>div>div>div h2 {
-  color: var(--white);
-  font-size: 1.875rem;
-  font-weight: 800;
-  line-height: 2.25rem;
 }
 
 #our-team>div>div>div p {
@@ -1174,6 +1176,10 @@ header #hamburger-menu li:hover {
   margin: 0 auto;
 }
 
+.youtube {
+  aspect-ratio: 16 / 9;
+  width: 65%;
+}
 
 div#single-player-demo {
   justify-content: center;
