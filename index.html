@@ -17,12 +17,17 @@
     <a href="/" class='ml-10 mr-auto'> <img class="symphony-logo"
         src="assets/images/logos/transparent-logo-2.png" /></a>
     <ul class="py-2 flex flex-row border-b h-full items-center">
-      <li class="navbar-item">Case Study</li>
-      <li class='navbar-item'>Presentation</li>
-      <li class='navbar-item'>Our Team</li>
-      <li class="navbar-item">Docs</li>
+      <li class="navbar-item">
+        <a href="#section-1">Case Study</a>
+      </li>
+      <li class='navbar-item'>
+        <a href="#presentation">Presentation</a>
+      </li>
+      <li class='navbar-item'>
+        <a href="#our-team">Our Team</a>
+      </li>
       <li class='navbar-item ml-4'>
-        <a target="_blank" href="https://github.com/symphony-hq">
+        <a target="_blank" href="https://github.com/symphony-framework">
           <img src="assets/images/icons/github-mark.png" class=" w-8 h-auto" />
         </a>
       </li>
@@ -32,11 +37,16 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
     <ul id="hamburger-menu" class="shadow-lg" style="display: none;">
-      <li>Case Study</li>
-      <li>Presentation</li>
-      <li>Our Team</li>
-      <li>Docs</li>
-      <li><a target="_blank" href="https://github.com/symphony-hq">GitHub</a></li>
+      <li>
+        <a href="#section-1">Case Study</a>
+      </li>
+      <li>
+        <a href="#presentation">Presentation</a>
+      </li>
+      <li>
+        <a href="#our-team">Our Team</a>
+      </li>
+      <li><a target="_blank" href="https://github.com/symphony-framework">GitHub</a></li>
     </ul>
   </header>
   <div id="intro">
@@ -186,9 +196,11 @@
       <p class='casestudy-text'>
         Collaboration has been a key feature of the internet since its earliest days. The history of collaboration on
         the
-        internet can be traced back to the 1960s, when Douglas Engelbart, the inventor of the computer mouse, <a href="https://archive.org/details/nasa_techdoc_19660020914/page/n1/mode/2up">studied</a>
+        internet can be traced back to the 1960s, when Douglas Engelbart, the inventor of the computer mouse, <a
+          href="https://archive.org/details/nasa_techdoc_19660020914/page/n1/mode/2up">studied</a>
         how
-        computers could support collaborative work and communication. He developed a system called <a href="https://dougengelbart.org/content/view/183/">
+        computers could support collaborative work and communication. He developed a system called <a
+          href="https://dougengelbart.org/content/view/183/">
           NLS (oN-Line
           System)
         </a>
@@ -227,7 +239,9 @@
       <p class="casestudy-text">
         <strong>Real-time collaboration</strong> refers to the ability for multiple users to work on the same document
         or project simultaneously and see the changes made
-        by others as they happen. Real-time collaboration has become so prevalent that <a href="https://www.figma.com/blog/how-figmas-multiplayer-technology-works/">some</a> deem it an essential aspect
+        by others as they happen. Real-time collaboration has become so prevalent that <a
+          href="https://www.figma.com/blog/how-figmas-multiplayer-technology-works/">some</a> deem it an essential
+        aspect
         of many
         modern web applications, one that has opened up new ways of working together on the web.
       </p>
@@ -390,7 +404,9 @@
           </video>
         </div>
         <p class="casestudy-text">
-          WebSocket provides better data integrity than WebRTC due to the underlying <a href="https://ably.com/topic/webrtc-vs-websocket#:~:text=While%20WebSocket%20works%20only%20over,the%20underlying%20reliability%20of%20TCP">reliability of TCP</a>, which provides
+          WebSocket provides better data integrity than WebRTC due to the underlying <a
+            href="https://ably.com/topic/webrtc-vs-websocket#:~:text=While%20WebSocket%20works%20only%20over,the%20underlying%20reliability%20of%20TCP">reliability
+            of TCP</a>, which provides
           error
           detection, acknowledgement, and flow/congestion control mechanisms to ensure the accurate, complete, and
           in-order
@@ -409,7 +425,9 @@
           use case.
         </p>
         <p class="casestudy-text">
-          Applications that would use Symphony are likely already using the <a href="https://www.liquidweb.com/blog/client-server-architecture/">client-server model</a>, which lies at the heart
+          Applications that would use Symphony are likely already using the <a
+            href="https://www.liquidweb.com/blog/client-server-architecture/">client-server model</a>, which lies at the
+          heart
           of modern
           web applications. As a protocol based on a client-server model, WebSocket was therefore a natural
           choice for us.
@@ -442,7 +460,8 @@
       <p class='casestudy-text'>
         The answer is <strong>no</strong>. While the two users are exchanging information in real-time, they are not
         collaborating because they are not modifying
-        the <a href="https://www.figma.com/blog/how-figmas-multiplayer-technology-works/">same state</a>. Each user has control only over his or her own messages, and each of these messages is
+        the <a href="https://www.figma.com/blog/how-figmas-multiplayer-technology-works/">same state</a>. Each user has
+        control only over his or her own messages, and each of these messages is
         independent
         of
         the others. Alice can see Bob’s messages in real-time, but she cannot modify them.
@@ -482,7 +501,8 @@
           project.
           We call
           this group of collaborating users, together with the shared state they are collaborating on, a
-          <strong>room</strong>. This is consistent with the nomenclature <a href="https://liveblocks.io/docs/concepts#Room">favored by others</a> in this space including
+          <strong>room</strong>. This is consistent with the nomenclature <a
+            href="https://liveblocks.io/docs/concepts#Room">favored by others</a> in this space including
           Liveblocks, a provider of real-time
           collaboration as a service:
         </p>
@@ -490,7 +510,8 @@
           "A room is the space people can join to collaborate together."" - Liveblocks
         </blockquote>
         <p class="casestudy-text">
-          A <strong><a href="https://docs.yjs.dev/">document</a></strong> is the shared state that users are collaborating on. Keep in mind that
+          A <strong><a href="https://docs.yjs.dev/">document</a></strong> is the shared state that users are
+          collaborating on. Keep in mind that
           collaboration is <strong>not limited to text documents</strong>; a document could also be a JavaScript Map
           with key/value pairs that represent drawn objects on a whiteboard, for example.
         </p>
@@ -651,8 +672,10 @@
           and
           performance overhead. They do have downsides, however. They generally require that a user be connected to
           the
-          server at all times, <a href="https://www.tiny.cloud/blog/real-time-collaboration-ot-vs-crdt/">limiting</a> the user’s ability to work offline and sync up later after connecting. Most
-          importantly, they are <a href="https://www.figma.com/blog/how-figmas-multiplayer-technology-works/">very hard to implement correctly</a>. It is difficult to deal with all edge cases, and
+          server at all times, <a href="https://www.tiny.cloud/blog/real-time-collaboration-ot-vs-crdt/">limiting</a>
+          the user’s ability to work offline and sync up later after connecting. Most
+          importantly, they are <a href="https://www.figma.com/blog/how-figmas-multiplayer-technology-works/">very hard
+            to implement correctly</a>. It is difficult to deal with all edge cases, and
           many
           papers on OT implementations were found to have errors, years after publication.
         </p>
@@ -670,7 +693,8 @@
           properties that guarantee eventual consistency, even in the presence of concurrent, conflicting updates.
         </p>
         <p class="casestudy-text">
-          A relatively new concept aiming to solve problems in distributed computing, <a href="https://exaspark.medium.com/top-5-ways-to-implement-real-time-rich-text-editor-ranked-by-complexity-3bc26e3c777f">
+          A relatively new concept aiming to solve problems in distributed computing, <a
+            href="https://exaspark.medium.com/top-5-ways-to-implement-real-time-rich-text-editor-ranked-by-complexity-3bc26e3c777f">
             CRDTs have become a popular
             choice
           </a> in
@@ -681,7 +705,9 @@
         <p class="casestudy-text">
           Unlike OT, CRDTs do not make any assumptions about your network topology–they can be used in a strictly
           peer-to-peer
-          environment, but also work <a href="https://exaspark.medium.com/top-5-ways-to-implement-real-time-rich-text-editor-ranked-by-complexity-3bc26e3c777f">perfectly well in a client-server model</a>.
+          environment, but also work <a
+            href="https://exaspark.medium.com/top-5-ways-to-implement-real-time-rich-text-editor-ranked-by-complexity-3bc26e3c777f">perfectly
+            well in a client-server model</a>.
         </p>
         <blockquote class="blockquote">
           "Even if you have a client-server setup, CRDTs are still worth researching because they provide a
@@ -695,7 +721,8 @@
           content concurrently, the updates will eventually merge when the partition is resolved.
         </p>
         <p class="casestudy-text">
-          Early CRDTs were found to be relatively slow compared to their <a href="https://josephg.com/blog/crdts-are-the-future/">OT counterparts</a>. Another potential
+          Early CRDTs were found to be relatively slow compared to their <a
+            href="https://josephg.com/blog/crdts-are-the-future/">OT counterparts</a>. Another potential
           downside is
           memory overhead, since every change to a document creates more data that must be retained to guarantee
           consistency.
@@ -708,9 +735,11 @@
           former Google Wave engineer
         </blockquote>
         <p class="casestudy-text">
-          <a href="https://www.youtube.com/watch?v=x7drE24geUw">Recent work by Martin Kleppmann</a> and others has made CRDTs faster and less memory hungry. These
+          <a href="https://www.youtube.com/watch?v=x7drE24geUw">Recent work by Martin Kleppmann</a> and others has made
+          CRDTs faster and less memory hungry. These
           advancements have
-          led CRDTs to overtake OT as the tool of choice for real-time collaboration in the <a href="https://josephg.com/blog/crdts-are-the-future/">
+          led CRDTs to overtake OT as the tool of choice for real-time collaboration in the <a
+            href="https://josephg.com/blog/crdts-are-the-future/">
             estimation of some
             researchers.
           </a>
@@ -733,7 +762,8 @@
           implementations, recent performance improvements, and tolerance for network partitions.
         </p>
         <p class="casestudy-text">
-          For the specific CRDT implementation we chose <strong><a href="https://www.tag1consulting.com/blog/yjs-webrtc-part-5">Yjs</a></strong>, a mature library with
+          For the specific CRDT implementation we chose <strong><a
+              href="https://www.tag1consulting.com/blog/yjs-webrtc-part-5">Yjs</a></strong>, a mature library with
           an active community and tools ecosystem. Yjs has also been battle-tested in production applications
           including:
         </p>
@@ -752,7 +782,8 @@
           We also considered using Automerge, the other leading open-source offering in this space. There was probably
           not
           a wrong
-          choice to be made between the two, but we were ultimately persuaded by Yjs’s superior <a href="https://github.com/dmonad/crdt-benchmarks">maturity and speed</a>,
+          choice to be made between the two, but we were ultimately persuaded by Yjs’s superior <a
+            href="https://github.com/dmonad/crdt-benchmarks">maturity and speed</a>,
           as well
           as its <a href="https://news.ycombinator.com/item?id=34586433">relative memory efficiency</a>.
         </p>
@@ -835,7 +866,8 @@
         <p class='casestudy-text'>
           Building out your own backend to manage websocket connections and implementing or integrating a means of
           conflict
-          resolution <a href="https://fluidframework.com/docs/">can be challenging</a>. For this reason, services and frameworks exist to abstract away the backend and
+          resolution <a href="https://fluidframework.com/docs/">can be challenging</a>. For this reason, services and
+          frameworks exist to abstract away the backend and
           conflict
           resolution and let the developer focus on the application itself.
         </p>
@@ -851,7 +883,8 @@
             infrastructure,
             Liveblocks also provides a custom CRDT-like solution for resolving merge conflicts. This convenience comes
             at a cost,
-            however: for an application with up to 2,000 monthly active users, <a href="https://liveblocks.io/pricing">the price is</a> $299 as of this writing.
+            however: for an application with up to 2,000 monthly active users, <a
+              href="https://liveblocks.io/pricing">the price is</a> $299 as of this writing.
           </p>
         </div>
         <div id="subsection-4.2.2" class="subsection">
@@ -859,12 +892,14 @@
           <p class="casestudy-text">
             Fluid Framework is an open-source, cloud-agnostic framework for real-time collaboration, developed by
             Microsoft. For
-            conflict resolution, it uses a distributed data structure that Microsoft describes as <a href="https://fluidframework.com/docs/faq/">
+            conflict resolution, it uses a distributed data structure that Microsoft describes as <a
+              href="https://fluidframework.com/docs/faq/">
               “more similar to CRDT
               than OT”
             </a>. When deployed on a single server, Fluid Framework can handle hundreds of concurrent users. For
             larger
-            applications, however,the developer will need to implement <a href="https://fluidframework.com/docs/faq/">her own scaling solution</a>. Another drawback of
+            applications, however,the developer will need to implement <a
+              href="https://fluidframework.com/docs/faq/">her own scaling solution</a>. Another drawback of
             Fluid
             Framework is that it does not include support for offline editing, although short periods of client
             disconnection are
@@ -965,7 +1000,8 @@
             receive and
             distribute messages. And since we have chosen the Yjs CRDT implementation, our starting point for the
             Symphony backend
-            was y-websocket, a reference WebSocket server that implements the <a href="https://github.com/yjs/y-websocket">Yjs protocols</a> for syncing updates and
+            was y-websocket, a reference WebSocket server that implements the <a
+              href="https://github.com/yjs/y-websocket">Yjs protocols</a> for syncing updates and
             broadcasting
             presence. We deployed the server to Amazon Elastic Compute Cloud (EC2), which is the standard virtual
             private
@@ -1254,7 +1290,9 @@
         <div id="subsection-5.4.2" class="subsection">
           <h4 class="subsubsection-heading" data-subsection="5.4.2">Scaling with ECS Fargate</h4>
           <p class="casestudy-text">
-            AWS ECS Fargate offers auto scaling out of the box, <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html">based on metrics</a> like average CPU and memory usage. So
+            AWS ECS Fargate offers auto scaling out of the box, <a
+              href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html">based on
+              metrics</a> like average CPU and memory usage. So
             with
             our containerized WebSocket server currently deployed to Fargate, isn’t the Symphony backend already
             scalable?
@@ -1300,7 +1338,8 @@
             “subscribe” channel to receive all updates published by other servers. In this way, we can scale our servers
             horizontally and they will be able to receive all updates they need for their connected users. Indeed, this
             is how
-            <a href="https://github.com/yjs/y-redis">existing attempts</a> to scale Yjs backends with Redis, such as y-redis, have worked.
+            <a href="https://github.com/yjs/y-redis">existing attempts</a> to scale Yjs backends with Redis, such as
+            y-redis, have worked.
           </p>
           <div class="diagram">
             <video autoplay loop muted playsinline class="w-full">
@@ -1543,17 +1582,14 @@
 
   <!-- Presentation-->
   <div id="presentation" class="bg-gray-800">
-      <h2 id="presentation-heading" class="section-heading text-center">Presentation</h2>
-      <div class="flex justify-center items-center">
-        <iframe          
-          src="https://www.youtube.com/embed/uYjBlU1RScg"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
-          class="youtube">
-        </iframe>       
-      </div>      
+    <h2 id="presentation-heading" class="section-heading text-center">Presentation</h2>
+    <div class="flex justify-center items-center">
+      <iframe src="https://www.youtube.com/embed/uYjBlU1RScg" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen class="youtube">
+      </iframe>
     </div>
+  </div>
   </div>
 
   <!-- Our Team -->

@@ -144,6 +144,17 @@ const handlePageLoad = () => {
       hamburgerMenu.style.display = "none";
     }
   });
+
+  hamburgerMenu.addEventListener("click", event => {
+    let tagName = event.target.tagName;
+
+    if (tagName === "LI") {
+      event.target.firstElementChild.click();
+    } else {
+      hamburger.style.border = "none";
+      hamburgerMenu.style.display = "none";
+    }
+  });
 };
 
 document.addEventListener("DOMContentLoaded", handlePageLoad);
