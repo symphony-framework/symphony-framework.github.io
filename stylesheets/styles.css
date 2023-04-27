@@ -1203,6 +1203,11 @@ video.cli-demo {
   border-radius: 5px;
 }
 
+img.diego {
+  object-fit: cover;
+  object-position: -10px 0;
+}
+
 /* Responsive */
 @media (max-width:1020px) {
   body {
