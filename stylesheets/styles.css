@@ -1065,6 +1065,14 @@ header #hamburger-menu li:hover {
   margin-top: 60px;
 }
 
+#casestudy-heading {
+  margin-bottom: 2rem;
+  padding-top: 5rem;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
 #presentation {
   background-color: rgb(236, 234, 234);
   padding: 5rem 2rem;
