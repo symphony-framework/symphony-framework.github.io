@@ -7,8 +7,9 @@ const sidebar = document.querySelector('#sidebar');
 const intro = document.querySelector('#intro');
 const hamburger = document.querySelector("#hamburger");
 const hamburgerMenu = document.querySelector("#hamburger-menu");
-const ourTeam = document.querySelector("#our-team");
-const presentation = document.querySelector('#presentation');
+const sections = [...sectionHeadings].map(heading => heading.parentElement);
+const subsections = [...subsectionHeadings].map(heading => heading.parentElement);
+const caseStudy = document.querySelector("#casestudy");
 
 const hideAllSidebarSubsectionLists = () => {
   sidebarSubsectionLists.forEach(list => {
@@ -77,12 +78,44 @@ const handleSelectSubsection = (subsectionNumber) => {
   selectSidebarSubsection(subsectionNumber);
 };
 
-const handleShowSidebar = (entries, observer) => {
-  if (!entries[0].isIntersecting) {
-    sidebar.classList.add('translate-x-96')
+const handleShowSidebar = () => {
+  const needSidebar = () => {
+    const caseStudyTopIsVisible = window.scrollY >= caseStudy.offsetTop - 120;
+    const caseStudyBottomIsVisible =
+      window.scrollY + window.innerHeight >
+      caseStudy.offsetHeight + caseStudy.offsetTop + 160;
+
+    return caseStudyTopIsVisible && !caseStudyBottomIsVisible;
+  };
+
+  if (needSidebar()) {
+    sidebar.classList.add('translate-x-96');
   } else {
-    sidebar.classList.remove('translate-x-96')
+    sidebar.classList.remove('translate-x-96');
   }
+};
+
+const handleSections = () => {
+  sections.forEach(section => {
+    if (section.offsetTop <= window.scrollY + 80 * 2) {
+      unselectAllSidebarSections();
+      unselectAllSidebarSubsections();
+      hideAllSidebarSubsectionLists();
+
+      let sectionNumber = section.firstElementChild.dataset.section;
+      selectSidebarSection(sectionNumber);
+      showSidebarSubsectionList(sectionNumber);
+    }
+  });
+
+  subsections.forEach(subsection => {
+    if (subsection.offsetTop <= window.scrollY + 80 * 2) {
+      unselectAllSidebarSubsections();
+
+      let subsectionNumber = subsection.firstElementChild.dataset.subsection;
+      selectSidebarSubsection(subsectionNumber);
+    }
+  });
 };
 
 const handlePageLoad = () => {
@@ -100,41 +133,14 @@ const handlePageLoad = () => {
     };
   };
 
-  // Show or hide sidebar
-  const introAndOutroObserver = new IntersectionObserver(handleShowSidebar, { threshold: 0.05 });
-  introAndOutroObserver.observe(intro);
-  introAndOutroObserver.observe(presentation);
-
-  // Highlight sidebar menu sections
-  let sections = [...sectionHeadings].map(heading => heading.parentElement);
-  let subsections = [...subsectionHeadings].map(heading => heading.parentElement);
-
   const handleScroll = () => {
-    sections.forEach(section => {
-      if (section.offsetTop <= window.scrollY + 80 * 2) {
-        unselectAllSidebarSections();
-        unselectAllSidebarSubsections();
-        hideAllSidebarSubsectionLists();
-
-        let sectionNumber = section.firstElementChild.dataset.section;
-        selectSidebarSection(sectionNumber);
-        showSidebarSubsectionList(sectionNumber);
-      }
-    });
-
-    subsections.forEach(subsection => {
-      if (subsection.offsetTop <= window.scrollY + 80 * 2) {
-        unselectAllSidebarSubsections();
-
-        let subsectionNumber = subsection.firstElementChild.dataset.subsection;
-        selectSidebarSubsection(subsectionNumber);
-      }
-    });
+    handleShowSidebar();
+    handleSections();
   };
 
-  document.addEventListener("scroll", throttle(handleScroll, 100));
+  document.addEventListener("scroll", throttle(handleScroll, 16));
 
-  // Hmaburger menu
+  // Hamburger menu
   hamburger.addEventListener("click", () => {
     if (hamburgerMenu.style.display === "none") {
       hamburger.style.border = "1px solid #15376e";
