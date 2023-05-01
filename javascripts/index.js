@@ -138,7 +138,7 @@ const handlePageLoad = () => {
     handleSections();
   };
 
-  document.addEventListener("scroll", throttle(handleScroll, 100));
+  document.addEventListener("scroll", throttle(handleScroll, 16));
 
   // Hamburger menu
   hamburger.addEventListener("click", () => {
