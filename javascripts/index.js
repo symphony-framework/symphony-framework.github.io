@@ -142,12 +142,14 @@ const handlePageLoad = () => {
 
   // Hamburger menu
   hamburger.addEventListener("click", () => {
-    if (hamburgerMenu.style.display === "none") {
-      hamburger.style.border = "1px solid #15376e";
-      hamburgerMenu.style.display = "block";
+    if (hamburger.classList.contains("selected")) {
+      hamburger.classList.remove("selected");
+      hamburgerMenu.classList.remove("visible");
+      hamburgerMenu.classList.add("hidden");
     } else {
-      hamburger.style.border = "none";
-      hamburgerMenu.style.display = "none";
+      hamburgerMenu.classList.remove("hidden");
+      hamburgerMenu.classList.add("visible");
+      hamburger.classList.add("selected");
     }
   });
 
@@ -157,8 +159,9 @@ const handlePageLoad = () => {
     if (tagName === "LI") {
       event.target.firstElementChild.click();
     } else {
-      hamburger.style.border = "none";
-      hamburgerMenu.style.display = "none";
+      hamburger.classList.remove("selected");
+      hamburgerMenu.classList.remove("visible");
+      hamburgerMenu.classList.add("hidden");
     }
   });
 };
